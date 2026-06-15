@@ -1,0 +1,3062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Normanside | Member Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════
+   NORMANSIDE COUNTRY CLUB — Design System
+   ════════════════════════════════════ */
+:root{
+  --green-deep:#0b1c30;
+  --green:#1a3557;
+  --green-mid:#204269;
+  --green-light:#d6e4f7;
+  --green-pale:#eef4fc;
+  --cream:#f7f9fc;
+  --cream-dark:#e5ecf5;
+  --gold:#c9a84c;
+  --gold-mid:#a8892e;
+  --gold-light:#fdf6e0;
+  --gold-pale:#faf5e8;
+  --white:#ffffff;
+  --off-white:#f5f8fc;
+  --gray-100:#f0f4f8;
+  --gray-200:#dde4ed;
+  --gray-400:#8a98aa;
+  --gray-600:#4a5a6e;
+  --text:#0d1b2a;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:0 4px 16px rgba(0,0,0,.10);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text);min-height:100vh;}
+
+/* ── LOGIN SCREEN ── */
+#login-screen{
+  min-height:100vh;display:flex;align-items:stretch;
+  background:var(--green-deep);
+}
+.login-hero{
+  flex:1;position:relative;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:48px;overflow:hidden;
+  background:linear-gradient(160deg, var(--green-deep) 0%, #0f2440 55%, #1a3560 100%);
+}
+.login-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.login-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,15,30,.88) 0%,rgba(5,15,30,.45) 60%,rgba(5,15,30,.15) 100%);}
+.login-hero-content{position:relative;z-index:2;}
+.login-hero-logo{
+  height:64px;object-fit:contain;margin-bottom:24px;display:block;
+  filter:brightness(0) invert(1);opacity:.92;
+}
+.login-hero-eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;
+}
+.login-hero-title{
+  font-family:'EB Garamond',serif;font-size:52px;line-height:1.08;
+  color:var(--white);margin-bottom:14px;font-weight:400;
+}
+.login-hero-sub{
+  font-size:15px;color:rgba(255,255,255,.6);line-height:1.6;max-width:360px;font-weight:300;
+}
+.login-hero-divider{
+  width:40px;height:2px;background:var(--gold);margin:20px 0;
+}
+.login-hero-tagline{
+  font-family:'EB Garamond',serif;font-style:italic;font-size:18px;
+  color:rgba(255,255,255,.5);
+}
+
+.login-panel{
+  width:460px;flex-shrink:0;
+  background:var(--cream);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:56px 52px;position:relative;min-height:100vh;
+}
+.login-panel-logo{
+  font-family:'EB Garamond',serif;font-size:11px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--green);
+  margin-bottom:32px;display:flex;align-items:center;gap:10px;
+}
+.login-panel-title{
+  font-family:'EB Garamond',serif;font-size:34px;color:var(--text);
+  font-weight:500;margin-bottom:6px;
+}
+.login-panel-sub{font-size:14px;color:var(--gray-400);margin-bottom:36px;font-weight:300;}
+
+.login-label{
+  display:block;font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gray-600);margin-bottom:7px;
+}
+.login-field{
+  width:100%;padding:13px 16px;border:1.5px solid var(--cream-dark);
+  border-radius:9px;font-size:15px;font-family:'DM Sans',sans-serif;
+  color:var(--text);background:var(--white);transition:border-color .15s;
+  margin-bottom:16px;
+}
+.login-field:focus{outline:none;border-color:var(--green);}
+.login-field::placeholder{color:var(--gray-400);}
+.login-submit{
+  width:100%;padding:14px;background:var(--green);color:var(--white);
+  border:none;border-radius:9px;font-size:15px;font-family:'DM Sans',sans-serif;
+  font-weight:500;cursor:pointer;transition:background .15s;letter-spacing:.02em;
+  margin-top:4px;
+}
+.login-submit:hover{background:var(--green-mid);}
+.login-error-msg{
+  font-size:13px;color:#c0392b;margin-top:12px;
+  background:#fee2e2;padding:10px 14px;border-radius:7px;display:none;
+}
+.login-guest-link{
+  text-align:center;margin-top:22px;padding-top:22px;
+  border-top:1px solid var(--cream-dark);
+}
+.login-guest-link span{font-size:13px;color:var(--gray-400);}
+.login-guest-link a{
+  color:var(--green);font-weight:600;cursor:pointer;
+  text-decoration:none;font-size:13px;
+}
+.login-guest-link a:hover{text-decoration:underline;}
+
+/* Staff/Admin corner button */
+.staff-login-corner{
+  position:absolute;bottom:28px;right:32px;
+  font-size:12px;color:var(--gray-400);cursor:pointer;
+  text-decoration:none;font-weight:500;
+  transition:color .15s;
+}
+.staff-login-corner:hover{color:var(--green);}
+
+/* Staff/Admin floating panel */
+.staff-login-panel{
+  position:fixed;bottom:70px;right:28px;
+  background:var(--white);border:1px solid var(--gray-200);
+  border-radius:12px;box-shadow:var(--shadow-lg);
+  padding:24px;width:300px;z-index:300;
+  display:none;
+}
+.staff-login-panel.open{display:block;}
+.staff-login-panel-title{
+  font-family:'EB Garamond',serif;font-size:17px;color:var(--green);
+  margin-bottom:4px;
+}
+.staff-login-panel-sub{font-size:12px;color:var(--gray-400);margin-bottom:16px;}
+.staff-login-tabs{display:flex;background:var(--gray-100);border-radius:7px;padding:3px;gap:3px;margin-bottom:14px;}
+.staff-login-tab{flex:1;padding:7px;border:none;background:transparent;border-radius:5px;font-size:12px;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--gray-600);cursor:pointer;}
+.staff-login-tab.active{background:var(--white);color:var(--green);box-shadow:var(--shadow-sm);}
+.staff-field{width:100%;padding:9px 12px;border:1.5px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);margin-bottom:10px;}
+.staff-field:focus{outline:none;border-color:var(--green);}
+.pin-row{display:flex;gap:8px;justify-content:center;margin-bottom:10px;}
+.pin-digit{width:44px;height:44px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:20px;text-align:center;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);}
+.pin-digit:focus{outline:none;border-color:var(--green);}
+.staff-submit{width:100%;padding:10px;background:var(--green);color:var(--white);border:none;border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;}
+.staff-submit:hover{background:var(--green-mid);}
+.login-error{font-size:12px;color:#c0392b;margin-top:8px;display:none;}
+
+/* Responsive: stack on mobile */
+@media(max-width:768px){
+  #login-screen{flex-direction:column;}
+  .login-hero{min-height:260px;padding:28px;justify-content:flex-end;}
+  .login-hero-title{font-size:34px;}
+  .login-panel{width:100%;padding:36px 24px;min-height:auto;}
+  .staff-login-corner{position:fixed;}
+}
+
+/* ── APP TOPBAR ── */
+#app{display:none;}
+.topbar{
+  background:var(--green-deep);color:var(--white);
+  padding:0 28px;height:62px;display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;z-index:100;
+  border-bottom:1px solid rgba(201,168,76,.25);
+}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.topbar-crest{
+  width:36px;height:36px;border-radius:50%;
+  border:1.5px solid rgba(201,168,76,.5);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.topbar-crest svg{width:20px;height:20px;}
+.topbar-wordmark{
+  font-family:'EB Garamond',serif;font-size:19px;font-weight:500;
+  letter-spacing:.01em;color:var(--white);line-height:1;
+}
+.topbar-wordmark span{
+  display:block;font-family:'DM Sans',sans-serif;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-top:2px;opacity:.9;
+}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.user-badge{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;padding:5px 14px;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,.9);
+}
+.logout-btn{
+  background:transparent;border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.8);padding:6px 16px;border-radius:7px;
+  font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;
+  letter-spacing:.03em;transition:all .15s;font-weight:500;
+}
+.logout-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:var(--white);}
+
+/* ── NAV TABS ── */
+.nav-tabs{
+  background:var(--white);border-bottom:1px solid var(--gray-200);
+  padding:0 28px;display:flex;gap:0;overflow-x:auto;
+  box-shadow:0 1px 0 var(--gray-200);
+}
+.nav-tab{
+  padding:15px 18px;font-size:13px;font-weight:500;color:var(--gray-600);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:2.5px solid transparent;font-family:'DM Sans',sans-serif;
+  white-space:nowrap;transition:color .12s;
+}
+.nav-tab:hover{color:var(--green);}
+.nav-tab.active{color:var(--green);border-bottom-color:var(--green);font-weight:600;}
+
+/* ── ADMIN SECTION TOGGLE ── */
+.admin-section-toggle{display:flex;gap:8px;margin-bottom:14px;}
+.admin-section-btn{
+  padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;
+  border:1.5px solid var(--gray-200);background:var(--white);color:var(--gray-600);
+  font-family:'DM Sans',sans-serif;transition:all .12s;
+}
+.admin-section-btn.active{background:var(--green);border-color:var(--green);color:var(--white);}
+
+/* ── MAIN CONTENT ── */
+.main-content{padding:32px 28px;max-width:1340px;margin:0 auto;}
+.panel{display:none;}.panel.active{display:block;}
+.section-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:24px;flex-wrap:wrap;gap:10px;
+}
+.section-title{
+  font-family:'EB Garamond',serif;font-size:26px;font-weight:500;color:var(--green);
+}
+.section-subtitle{font-size:13px;color:var(--gray-400);margin-top:2px;}
+
+/* ── WEEK NAV ── */
+.week-nav{display:flex;align-items:center;gap:10px;}
+.week-nav-btn{
+  width:34px;height:34px;border:1px solid var(--gray-200);background:var(--white);
+  border-radius:7px;cursor:pointer;font-size:15px;color:var(--gray-600);transition:all .12s;
+}
+.week-nav-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-pale);}
+.week-label{font-size:14px;font-weight:500;color:var(--text);min-width:175px;text-align:center;}
+
+/* ── CARDS ── */
+.card{
+  background:var(--white);border-radius:12px;border:1px solid var(--gray-200);
+  padding:24px;margin-bottom:18px;box-shadow:var(--shadow-sm);
+}
+.card-title{
+  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--gray-400);margin-bottom:16px;
+}
+.card-heading{
+  font-family:'EB Garamond',serif;font-size:20px;color:var(--green);margin-bottom:4px;
+}
+
+/* ── STATS ── */
+.stats-row{display:flex;gap:14px;flex-wrap:wrap;}
+.stat-card{
+  flex:1;min-width:130px;background:var(--cream);border-radius:10px;
+  padding:16px 20px;border:1px solid var(--cream-dark);
+}
+.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-400);margin-bottom:6px;font-weight:600;}
+.stat-value{font-family:'EB Garamond',serif;font-size:36px;color:var(--green);line-height:1;}
+
+/* ── SCHEDULE TABLE ── */
+.tbl-wrap{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);overflow-x:auto;box-shadow:var(--shadow-sm);}
+.sched-tbl{width:100%;border-collapse:collapse;min-width:760px;}
+.sched-tbl th{padding:10px 8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-400);border-bottom:1px solid var(--gray-200);background:var(--gray-100);text-align:center;}
+.sched-tbl th:first-child{text-align:left;padding-left:16px;}
+.sched-tbl td{padding:6px 5px;border-bottom:1px solid var(--gray-200);text-align:center;font-size:12px;vertical-align:middle;}
+.sched-tbl td:first-child{text-align:left;padding-left:14px;font-weight:500;background:var(--gray-100);border-right:1px solid var(--gray-200);}
+.sched-tbl tr:last-child td{border-bottom:none;}
+.sched-tbl tr:hover td{background:var(--off-white);}
+.sched-tbl tr:hover td:first-child{background:var(--gray-100);}
+
+/* ── SHIFT CHIPS ── */
+.shift-chip{display:inline-flex;align-items:center;justify-content:center;padding:3px 9px;border-radius:5px;font-size:11px;font-weight:600;min-width:60px;white-space:nowrap;}
+.shift-off{background:#fee;color:#c0392b;}
+
+/* ── BUILDER ── */
+.builder-cell{display:flex;flex-direction:column;gap:3px;min-width:120px;}
+.builder-pos{width:100%;padding:2px 4px;border:1px solid var(--gray-200);border-radius:4px;font-size:10px;font-family:'DM Sans',sans-serif;background:var(--white);cursor:pointer;}
+.builder-pos:focus{outline:none;}
+.cell-btn{width:100%;padding:5px 5px;border:1px solid var(--gray-200);border-radius:6px;font-size:11px;font-family:'DM Sans',sans-serif;text-align:center;background:var(--white);cursor:pointer;transition:all .12s;}
+.cell-btn:hover{border-color:var(--green);background:var(--green-pale);}
+.cell-btn.has-shift{font-weight:600;}
+.cell-btn.is-off{background:#fee;color:#c0392b;border-color:#f5c6cb;font-weight:600;}
+.cell-btn.rto-day{border-color:#e74c3c!important;background:#fff5f5;color:#c0392b;cursor:default;}
+.cell-btn.recur-blocked{border-color:#e67e22!important;background:#fff8f0;color:#b7650a;cursor:default;}
+.pref-btn{}
+
+/* ── TIME PICKER ── */
+.time-picker-popup{position:fixed;background:var(--white);border:1px solid var(--gray-200);border-radius:12px;box-shadow:0 12px 48px rgba(0,0,0,.22);padding:20px;z-index:1000;width:288px;}
+.time-picker-popup h4{font-family:'EB Garamond',serif;font-size:17px;color:var(--green);margin-bottom:14px;}
+.tp-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.tp-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-600);width:36px;}
+.tp-time{flex:1;padding:8px 10px;border:1.5px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;text-align:center;}
+.tp-time:focus{outline:none;border-color:var(--green);}
+.tp-close-badge{display:flex;align-items:center;gap:6px;margin-bottom:12px;}
+.tp-close-label{font-size:12px;color:var(--gray-600);}
+.tp-actions{display:flex;gap:8px;margin-top:6px;}
+.tp-off{background:#fee;color:#c0392b;border:1px solid #f5c6cb;border-radius:7px;padding:7px 12px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.tp-off:hover{background:#fdd;}
+.tp-clear{background:var(--gray-100);color:var(--gray-600);border:none;border-radius:7px;padding:7px 12px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.tp-clear:hover{background:var(--gray-200);}
+.tp-save{flex:1;background:var(--green);color:white;border:none;border-radius:7px;padding:8px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.tp-save:hover{background:var(--green-mid);}
+
+/* ── BUTTONS ── */
+.btn{padding:8px 18px;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;border:none;transition:all .12s;letter-spacing:.01em;}
+.btn-primary{background:var(--green);color:var(--white);}
+.btn-primary:hover{background:var(--green-mid);}
+.btn-secondary{background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200);}
+.btn-secondary:hover{background:var(--gray-200);color:var(--text);}
+.btn-danger{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;}
+.btn-danger:hover{background:#fca5a5;}
+.btn-gold{background:var(--gold-pale);color:var(--gold-mid);border:1px solid var(--gold-light);}
+.btn-gold:hover{background:var(--gold-light);}
+.btn-warn{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;}
+.btn-warn:hover{background:#fed7aa;}
+.btn-sm{padding:5px 12px;font-size:12px;border-radius:6px;}
+
+/* ── STATUS BADGES ── */
+.status-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.badge-approved{background:#d1fae5;color:#065f46;}
+.badge-pending{background:#fef3c7;color:#92400e;}
+.badge-denied{background:#fee2e2;color:#991b1b;}
+.badge-needsapproval{background:#ede9fe;color:#5b21b6;}
+
+/* ── FORMS ── */
+.form-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
+.form-group{flex:1;min-width:160px;}
+.form-label{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-600);margin-bottom:6px;}
+.form-input,.form-select{width:100%;padding:10px 13px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);}
+.form-input:focus,.form-select:focus{outline:none;border-color:var(--green);}
+.form-input::placeholder{color:var(--gray-400);}
+
+/* ── EVENTS ── */
+.legend-bar{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-600);}
+.legend-dot{width:12px;height:12px;border-radius:3px;}
+.event-row{background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:7px 12px;margin-bottom:6px;}
+.event-date{font-size:11px;color:var(--gold-mid);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.event-name{font-size:13px;font-weight:500;color:var(--text);margin-top:1px;}
+
+/* ── RTO / AVAILABILITY ── */
+.rto-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--off-white);border-radius:9px;border:1px solid var(--gray-200);margin-bottom:8px;flex-wrap:wrap;gap:8px;}
+.rto-info{flex:1;}
+.rto-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:2px;}
+.rto-dates{font-size:12px;color:var(--gray-400);}
+.rto-reason{font-size:12px;color:var(--gray-600);font-style:italic;margin-top:2px;}
+.rto-actions{display:flex;align-items:center;gap:8px;}
+.rto-sub-tab{padding:10px 18px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-2px;}
+
+/* ── TRADES ── */
+.trade-item{background:var(--white);border-radius:9px;border:1px solid var(--gray-200);padding:14px 16px;margin-bottom:8px;box-shadow:var(--shadow-sm);}
+.trade-header{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.shift-pick-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:9px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .12s;}
+.shift-pick-card:hover{border-color:var(--green);background:var(--green-pale);}
+.shift-pick-card.selected{border-color:var(--green);background:var(--green-pale);}
+
+/* ── MODALS ── */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(2px);}
+.modal-backdrop.open{display:flex;}
+.modal{background:var(--white);border-radius:14px;padding:32px;width:480px;max-width:94vw;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow-lg);}
+.modal-wide{width:620px;}
+.modal-title{font-family:'EB Garamond',serif;font-size:22px;color:var(--green);margin-bottom:20px;}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:22px;}
+
+/* ── PREF MODAL ── */
+.pref-section{background:var(--off-white);border-radius:9px;padding:16px;margin-bottom:14px;}
+.pref-section-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-600);margin-bottom:10px;}
+.day-toggle-row{display:flex;flex-direction:column;gap:8px;}
+.day-toggle-item{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.day-toggle{padding:5px 12px;border:1.5px solid var(--gray-200);border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;background:var(--white);font-family:'DM Sans',sans-serif;transition:all .12s;min-width:46px;text-align:center;}
+.day-toggle.preferred{background:var(--green-light);border-color:var(--green);color:var(--green);}
+.day-toggle.avoided{background:#fee;border-color:#c0392b;color:#c0392b;}
+.day-time-fields{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.day-time-fields.hidden{display:none;}
+.day-time-label{font-size:11px;color:var(--gray-400);white-space:nowrap;}
+.day-time-inp{width:82px;padding:4px 8px;border:1.5px solid var(--gray-200);border-radius:5px;font-size:12px;font-family:'DM Sans',sans-serif;text-align:center;}
+.day-time-inp:focus{outline:none;border-color:var(--green);}
+.pos-shift-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.pos-shift-label{font-size:12px;font-weight:500;min-width:140px;}
+.pos-shift-input{width:60px;padding:5px 8px;border:1.5px solid var(--gray-200);border-radius:6px;font-size:13px;text-align:center;font-family:'DM Sans',sans-serif;}
+.pos-shift-input:focus{outline:none;border-color:var(--green);}
+
+/* ── MEMBER PORTAL SPECIFIC ── */
+.tee-controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px;}
+.tee-date-input{padding:10px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);}
+.tee-date-input:focus{outline:none;border-color:var(--green);}
+.tee-window-note{font-size:12px;color:var(--gray-400);}
+.tee-sheet{background:var(--white);border:1px solid var(--gray-200);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm);}
+.tee-row{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--gray-200);flex-wrap:wrap;transition:background .1s;}
+.tee-row:last-child{border-bottom:none;}
+.tee-row:hover{background:var(--off-white);}
+.tee-time{font-size:13px;font-weight:700;color:var(--text);min-width:82px;font-variant-numeric:tabular-nums;}
+.tee-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;min-width:80px;text-align:center;}
+.tee-badge.open{background:#d1fae5;color:#065f46;}
+.tee-badge.partial{background:#dbeafe;color:#1e40af;}
+.tee-badge.full{background:#fee2e2;color:#991b1b;}
+.tee-badge.blocked{background:var(--gray-100);color:var(--gray-400);}
+.tee-names{flex:1;font-size:12px;color:var(--gray-600);min-width:140px;}
+.tee-booking-chip{display:inline-flex;align-items:center;gap:6px;background:var(--off-white);border:1px solid var(--gray-200);border-radius:6px;padding:3px 9px;font-size:11px;margin:2px 4px 2px 0;}
+.tee-action{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.tee-select{padding:6px 10px;border:1.5px solid var(--gray-200);border-radius:7px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--white);}
+.tee-select:focus{outline:none;border-color:var(--green);}
+.booking-list-item{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--white);border-radius:10px;border:1px solid var(--gray-200);margin-bottom:10px;flex-wrap:wrap;gap:8px;box-shadow:var(--shadow-sm);}
+.booking-info{flex:1;}
+.booking-date{font-size:15px;font-weight:600;color:var(--text);}
+.booking-meta{font-size:12px;color:var(--gray-400);margin-top:3px;}
+.day-summary{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;}
+.day-summary-pill{background:var(--white);border:1px solid var(--gray-200);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:500;color:var(--gray-600);box-shadow:var(--shadow-sm);}
+.day-summary-pill strong{color:var(--green);}
+.day-summary-pill.warn strong{color:#c0392b;}
+.inline-form{background:var(--green-pale);border:1.5px dashed var(--green-mid);border-radius:9px;padding:14px;margin:10px 18px;display:none;}
+.inline-form.open{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;}
+
+/* ── GUEST SCREEN ── */
+.guest-screen{min-height:100vh;display:none;align-items:flex-start;justify-content:center;background:linear-gradient(160deg,var(--green-deep) 0%,#0f2440 55%,#1a3560 100%);padding:48px 16px;}
+.guest-card{background:var(--white);border-radius:14px;padding:40px;width:540px;max-width:94vw;box-shadow:var(--shadow-lg);}
+.guest-back{font-size:13px;color:var(--green);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:20px;font-weight:600;transition:color .12s;}
+.guest-back:hover{color:var(--green-mid);}
+.member-login-link{text-align:center;margin-top:14px;}
+.member-login-link a{font-size:13px;color:var(--green);cursor:pointer;text-decoration:none;font-weight:600;}
+.member-login-link a:hover{text-decoration:underline;}
+
+/* ── PUBLISH BANNER ── */
+.publish-banner{background:var(--green-light);border:1px solid var(--green);border-radius:9px;padding:12px 18px;margin-bottom:20px;display:none;align-items:center;gap:12px;}
+.publish-banner p{font-size:13px;color:var(--green);font-weight:500;}
+
+/* ── MISC ── */
+.empty-state{text-align:center;padding:48px 20px;color:var(--gray-400);}
+.empty-state p{font-size:14px;}
+.success-msg{background:#d1fae5;color:#065f46;border-radius:8px;padding:12px 16px;font-size:13px;font-weight:500;margin-bottom:16px;display:none;border:1px solid #a7f3d0;}
+.error-msg{background:#fee2e2;color:#991b1b;border-radius:8px;padding:12px 16px;font-size:13px;font-weight:500;margin-bottom:16px;display:none;border:1px solid #fca5a5;}
+.conflict-box{background:#fff5f5;border:1px solid #f5c6cb;border-radius:8px;padding:12px 16px;margin-top:10px;font-size:13px;color:#991b1b;display:none;}
+.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13px;color:#1e40af;}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--gray-400);}
+
+/* ── BLOCK SCHEDULE TEE SHEET ── */
+.tee-grid{width:100%;border-collapse:collapse;background:var(--white);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--gray-200);}
+.tee-grid th{padding:12px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gray-400);background:var(--gray-100);border-bottom:2px solid var(--gray-200);text-align:center;}
+.tee-grid th:first-child{text-align:left;width:100px;}
+.tee-grid td{padding:8px 10px;border-bottom:1px solid var(--gray-200);vertical-align:middle;text-align:center;}
+.tee-grid td:first-child{text-align:left;font-size:13px;font-weight:700;color:var(--text);padding-left:16px;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.tee-grid tr:last-child td{border-bottom:none;}
+.tee-grid .hour-divider td{background:var(--off-white);padding:6px 16px;font-size:11px;font-weight:700;color:var(--gray-400);letter-spacing:.1em;text-transform:uppercase;border-top:1px solid var(--gray-200);}
+.tee-grid .blocked-row td{background:var(--gray-100);}
+.tee-grid .blocked-row td:first-child{color:var(--gray-400);}
+.slot-booked{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--green);color:var(--white);border-radius:8px;
+  padding:9px 10px;font-size:12px;font-weight:600;line-height:1.3;
+  min-height:52px;cursor:default;
+}
+.slot-booked.pending-slot{background:#92400e;}
+.slot-booked.guest-slot{background:#1e40af;}
+.slot-booked .slot-name{font-size:12px;font-weight:700;}
+.slot-booked .slot-sub{font-size:10px;font-weight:400;opacity:.8;margin-top:2px;}
+.slot-mine{
+  background:var(--gold);color:var(--green-deep);
+}
+.slot-mine .slot-name{font-weight:700;}
+.slot-add{
+  display:flex;align-items:center;justify-content:center;
+  background:var(--green-deep);color:var(--white);border-radius:8px;
+  padding:9px 10px;font-size:12px;font-weight:600;min-height:52px;
+  cursor:pointer;border:none;width:100%;font-family:'DM Sans',sans-serif;
+  transition:all .15s;letter-spacing:.01em;
+}
+.slot-add:hover{background:var(--green-mid);transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.18);}
+.slot-empty{
+  display:flex;align-items:center;justify-content:center;
+  min-height:52px;color:var(--gray-200);font-size:18px;
+}
+.slot-blocked{
+  display:flex;align-items:center;justify-content:center;
+  min-height:52px;border-radius:8px;background:var(--gray-100);
+  color:var(--gray-400);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+}
+
+/* ── STAFF TEE SHEET (Excel-style) ── */
+.ts-wrap{background:var(--white);border:1px solid #b0b8c4;border-radius:4px;overflow:auto;max-height:78vh;}
+.ts-table{border-collapse:collapse;width:100%;min-width:560px;font-size:12px;font-family:'DM Sans',sans-serif;}
+.ts-table th{background:var(--green);color:var(--white);padding:7px 10px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--green-mid);white-space:nowrap;position:sticky;top:0;z-index:2;}
+.ts-table th:first-child{text-align:left;padding-left:14px;width:80px;}
+.ts-table td{border:1px solid #d0d8e4;padding:0;height:32px;vertical-align:middle;text-align:center;}
+.ts-table td:first-child{text-align:right;padding-right:10px;font-size:11px;font-weight:700;color:var(--gray-600);background:#f0f4f8;border-right:2px solid #b0b8c4;white-space:nowrap;width:80px;}
+.ts-table .ts-hour-sep td{border-top:2px solid #90a0b4;background:#e8eef5;}
+.ts-table .ts-hour-sep td:first-child{background:#dde6f0;font-weight:700;color:var(--green);font-size:12px;}
+.ts-cell-empty{display:block;width:100%;height:100%;}
+.ts-cell-confirmed{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;background:#e0eedc;border-left:3px solid #4a8c3f;padding:2px 5px;cursor:default;}
+.ts-cell-pending{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;background:#fff8e0;border-left:3px solid #c9a84c;padding:2px 5px;cursor:default;}
+.ts-cell-guest{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;background:#e0eaff;border-left:3px solid #3b5bdb;padding:2px 5px;cursor:default;}
+.ts-cell-blocked{display:flex;justify-content:center;align-items:center;height:100%;background:#f0f0f0;color:#9a9a94;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.ts-cell-name{font-size:11px;font-weight:600;color:#1a2f4a;line-height:1.2;}
+.ts-cell-sub{font-size:9px;color:#6a7a8a;line-height:1.2;}
+.ts-legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;align-items:center;}
+.ts-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-600);}
+.ts-legend-dot{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
+.ts-date-bar{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
+</style></head><body>
+<!-- LOGIN -->
+<div id="login-screen">
+
+  <!-- LEFT HERO PANEL -->
+  <div class="login-hero">
+    <!-- Real Normanside course photo as background -->
+    <img class="login-hero-bg" 
+      src="https://images.squarespace-cdn.com/content/v1/673b483ae0b0f257f0ab3203/63d48a86-617a-4c40-8763-53066505f2e0/IMG_2367.JPG"
+      alt="Normanside Country Club Golf Course"
+      onerror="this.style.display='none'"/>
+    <div class="login-hero-overlay"></div>
+    <div class="login-hero-content">
+      <!-- Real Normanside arrowhead logo -->
+      <img src="https://images.squarespace-cdn.com/content/v1/673b483ae0b0f257f0ab3203/08ce9a50-bf0a-4c44-9ccd-29c5cb453f6b/normanside-arrowhead-logo.png?format=300w"
+        alt="Normanside" class="login-hero-logo"
+        onerror="this.style.display='none'"/>
+      <div class="login-hero-eyebrow">Est. 1927 &mdash; Delmar, New York</div>
+      <div class="login-hero-title">Normanside<br>Country Club</div>
+      <div class="login-hero-divider"></div>
+      <div class="login-hero-tagline">Exquisite Events &bull; Premier Golf &bull; Sensational Dining</div>
+    </div>
+  </div>
+
+  <!-- RIGHT MEMBER LOGIN PANEL -->
+  <div class="login-panel">
+    <div class="login-panel-logo">
+      <img src="https://images.squarespace-cdn.com/content/v1/673b483ae0b0f257f0ab3203/08ce9a50-bf0a-4c44-9ccd-29c5cb453f6b/normanside-arrowhead-logo.png?format=200w"
+        alt="Normanside Country Club" style="height:36px;object-fit:contain;"
+        onerror="this.parentElement.innerHTML='Normanside Country Club'"/>
+    </div>
+    <div class="login-panel-title">Member Portal</div>
+    <div class="login-panel-sub">Sign in with your membership email and password</div>
+
+    <!-- Member fields (default shown) -->
+    <div id="member-login-fields">
+      <label class="login-label" for="member-email-input">Email Address</label>
+      <input class="login-field" id="member-email-input" type="email" placeholder="yourname@email.com" autocomplete="email"/>
+      <label class="login-label" for="member-pass-input">Password</label>
+      <input class="login-field" id="member-pass-input" type="password" placeholder="••••••••"
+        autocomplete="current-password"
+        onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+
+    <!-- Staff fields (hidden until corner link clicked) -->
+    <div id="staff-login-fields" style="display:none">
+      <label class="login-label">Your Name</label>
+      <select class="login-field" id="staff-name-select" style="margin-bottom:14px"><option value="">-- Select your name --</option></select>
+      <label class="login-label">4-Digit PIN</label>
+      <div class="pin-row" style="justify-content:flex-start;margin-bottom:14px">
+        <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin0" oninput="pinNext(this,1)"/>
+        <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin1" oninput="pinNext(this,2)" onkeydown="pinBack(event,0)"/>
+        <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin2" oninput="pinNext(this,3)" onkeydown="pinBack(event,1)"/>
+        <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin3" onkeydown="pinBack(event,2)" onkeyup="if(this.value)doLogin()"/>
+      </div>
+    </div>
+
+    <!-- Admin fields (hidden until corner link clicked) -->
+    <div id="admin-login-fields" style="display:none">
+      <label class="login-label">Admin Password</label>
+      <input class="login-field" id="admin-pass-input" type="password" placeholder="••••••••"
+        onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+
+    <button class="login-submit" id="login-btn" onclick="doLogin()">Sign In</button>
+    <div class="login-error-msg" id="login-error">Incorrect email or password. Please try again.</div>
+
+    <div class="login-guest-link" id="guest-link-wrap">
+      <span>Not a member? </span>
+      <a onclick="showGuestScreen()">Request a Tee Time as a Guest &rarr;</a>
+    </div>
+
+    <!-- Staff & Admin corner link -->
+    <a class="staff-login-corner" onclick="toggleStaffPanel()">
+      Staff &amp; Admin Login &rsaquo;
+    </a>
+  </div>
+
+  <!-- Floating staff/admin panel -->
+  <div class="staff-login-panel" id="staff-login-panel">
+    <div class="staff-login-panel-title">Staff &amp; Admin</div>
+    <div class="staff-login-panel-sub">For Normanside staff and administrators only</div>
+    <div class="staff-login-tabs">
+      <button class="staff-login-tab active" onclick="setLoginType('staff')">Staff</button>
+      <button class="staff-login-tab" onclick="setLoginType('admin')">Admin</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- GUEST BOOKING SCREEN -->
+<div class="guest-screen" id="guest-screen">
+  <div class="guest-card">
+    <a class="guest-back" onclick="hideGuestScreen()">&larr; Back to login</a>
+    <div class="login-logo">Normanside Country Club</div>
+    <div class="login-title">Guest Tee Time Request</div>
+    <div class="login-sub">Guests can request tee times up to 2 days in advance. Your request will be reviewed by our team.</div>
+
+    <div class="success-msg" id="guest-success">&#10003; Request submitted! We'll email you once it's confirmed.</div>
+    <div class="error-msg" id="guest-error"></div>
+
+    <div id="guest-form-wrap">
+      <div class="form-row" style="margin-bottom:12px">
+        <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" id="guest-name" placeholder="Full name"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="guest-email" placeholder="you@email.com"/></div>
+        <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" id="guest-phone" placeholder="(555) 555-5555"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Date</label>
+          <input class="form-input" type="date" id="guest-date" onchange="onGuestDateChange()"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Time</label>
+          <select class="form-select" id="guest-time" onchange="onGuestTimeChange()"><option value="">Select a date first</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Players</label>
+          <select class="form-select" id="guest-players"><option value="1">1</option></select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="submitGuestBooking()" style="width:100%;margin-top:8px">Submit Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-crest">
+        <img src="https://images.squarespace-cdn.com/content/v1/673b483ae0b0f257f0ab3203/08ce9a50-bf0a-4c44-9ccd-29c5cb453f6b/normanside-arrowhead-logo.png?format=100w"
+          alt="Normanside" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);"
+          onerror="this.style.display='none'"/>
+      </div>
+      <div class="topbar-wordmark">Normanside<span id="topbar-title">Country Club</span></div>
+    </div>
+    <div class="topbar-right">
+      <div class="user-badge" id="topbar-user"></div>
+      <button class="logout-btn" onclick="doLogout()">Sign Out</button>
+    </div>
+  </div>
+  <div class="admin-section-toggle" id="admin-section-toggle" style="display:none;margin:16px 24px 0"></div>
+  <div class="nav-tabs" id="nav-tabs"></div>
+  <div class="main-content">
+
+    <!-- MY SCHEDULE -->
+    <div class="panel" id="panel-my-schedule">
+      <div class="section-header">
+        <div class="section-title">My Schedule</div>
+        <div class="week-nav">
+          <button class="week-nav-btn" onclick="changeWeek(-1)">&#8592;</button>
+          <div class="week-label" id="week-label-my"></div>
+          <button class="week-nav-btn" onclick="changeWeek(1)">&#8594;</button>
+        </div>
+      </div>
+      <div class="legend" id="legend-bar"></div>
+      <div id="my-schedule-table"></div>
+      <div style="margin-top:32px">
+        <div class="section-title" style="font-size:18px;margin-bottom:16px">Full Schedule</div>
+        <div id="full-schedule-table"></div>
+      </div>
+    </div>
+
+    <!-- TIME OFF AND AVAILABILITY -->
+    <div class="panel" id="panel-rto">
+      <div class="section-header"><div class="section-title">Time Off &amp; Availability</div></div>
+      <div class="success-msg" id="rto-success">&#10003; Request submitted!</div>
+      <div class="error-msg" id="rto-error"></div>
+      <div class="conflict-box" id="rto-conflict"></div>
+      <div style="display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid var(--gray-200)">
+        <button class="rto-sub-tab" id="rto-tab-oneoff" onclick="switchRtoTab('oneoff')" style="color:var(--green);border-bottom-color:var(--green)">One-Time Request</button>
+        <button class="rto-sub-tab" id="rto-tab-recurring" onclick="switchRtoTab('recurring')" style="color:var(--gray-600);border-bottom-color:transparent">Recurring Block</button>
+      </div>
+      <div id="rto-form-oneoff">
+        <div class="card">
+          <div class="card-title">One-Time Time Off</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Start Date</label><input class="form-input" type="date" id="rto-start"/></div>
+            <div class="form-group"><label class="form-label">End Date</label><input class="form-input" type="date" id="rto-end"/></div>
+            <div class="form-group"><label class="form-label">Type</label>
+              <select class="form-select" id="rto-type"><option>Day Off</option><option>Vacation</option><option>Personal</option><option>Medical</option><option>Other</option></select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom:14px"><label class="form-label">Reason (optional)</label><textarea class="form-input" id="rto-reason"></textarea></div>
+          <button class="btn btn-primary" onclick="submitRTO()">Submit Request</button>
+        </div>
+      </div>
+      <div id="rto-form-recurring" style="display:none">
+        <div class="card">
+          <div class="card-title">Recurring Availability Block</div>
+          <p style="font-size:13px;color:var(--gray-400);margin-bottom:16px">Block out days you can never work or times when you are unavailable due to school, another job, etc. The scheduler will never assign you during these times.</p>
+          <div class="form-group" style="margin-bottom:14px">
+            <label class="form-label">Days of the Week</label>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">
+              <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox" value="0" class="avail-check" id="rday-0"/> Sun</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox" value="1" class="avail-check" id="rday-1"/> Mon</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox" value="2" class="avail-check" id="rday-2"/> Tue</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox" value="3" class="avail-check" id="rday-3"/> Wed</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox" value="4" class="avail-check" id="rday-4"/> Thu</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox" value="5" class="avail-check" id="rday-5"/> Fri</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox" value="6" class="avail-check" id="rday-6"/> Sat</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Block Type</label>
+              <select class="form-select" id="recur-block-type" onchange="toggleRecurTimeFields()">
+                <option value="allday">All Day (never available this day)</option>
+                <option value="before">Before a certain time (e.g. school mornings)</option>
+                <option value="after">After a certain time</option>
+              </select>
+            </div>
+          </div>
+          <div id="recur-time-fields" style="display:none">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" id="recur-time-label">Not available before</label>
+                <input class="form-input" type="time" id="recur-time" value="14:00"/>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Label / Reason</label>
+              <input class="form-input" type="text" id="recur-reason" placeholder="e.g. School, Second job, Church"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Start Date</label><input class="form-input" type="date" id="recur-start"/></div>
+            <div class="form-group">
+              <label class="form-label">End Date <span style="font-weight:400;font-size:11px;text-transform:none">(leave blank = no end date)</span></label>
+              <input class="form-input" type="date" id="recur-end"/>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="submitRecurring()">Add Recurring Block</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">My Requests &amp; Blocks</div>
+        <div id="my-rto-list"></div>
+      </div>
+    </div>
+
+    <!-- SHIFT TRADING -->
+    <div class="panel" id="panel-trade">
+      <div class="section-header"><div class="section-title">Shift Trading Board</div></div>
+      <div class="success-msg" id="trade-success">&#10003; Shift posted to the board!</div>
+      <div id="trade-role-info"></div>
+      <div class="card">
+        <div class="card-title">Post a Shift You Need Covered</div>
+        <p style="font-size:13px;color:var(--gray-400);margin-bottom:14px">Select the week then pick the shift you want to drop.</p>
+        <div class="week-nav" style="margin-bottom:14px">
+          <button class="week-nav-btn" onclick="changeTradeWeek(-1)">&#8592;</button>
+          <div class="week-label" id="week-label-trade"></div>
+          <button class="week-nav-btn" onclick="changeTradeWeek(1)">&#8594;</button>
+        </div>
+        <div id="my-shifts-to-trade"></div>
+        <div id="trade-note-area" style="display:none;margin-top:12px">
+          <div class="form-group" style="margin-bottom:12px">
+            <label class="form-label">Note for coworkers</label>
+            <input class="form-input" type="text" id="trade-note" placeholder="e.g. Have a family event"/>
+          </div>
+          <button class="btn btn-primary" onclick="postTrade()">Post to Board</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Open Shifts &mdash; Available to Pick Up</div>
+        <div id="trade-board"></div>
+      </div>
+    </div>
+
+    <!-- APPROVE TRADES (leads/admin) -->
+    <div class="panel" id="panel-approve-trades">
+      <div class="section-header"><div class="section-title">Approve Shift Pickups</div></div>
+      <div class="info-box">When a coworker requests to pick up a posted shift, it appears here for your approval.</div>
+      <div id="pending-trades-list"></div>
+    </div>
+
+    <!-- STAFF: TEE SHEET (read-only view) -->
+    <div class="panel" id="panel-staff-tee-sheet">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Today's Tee Sheet</div>
+          <div class="section-subtitle">Read-only view &mdash; contact the office to make changes</div>
+        </div>
+      </div>
+      <div class="ts-date-bar">
+        <input class="tee-date-input" type="date" id="staff-tee-date" onchange="state.staffTeeDate=this.value;renderStaffTeeSheet()"/>
+        <div class="ts-legend">
+          <div class="ts-legend-item"><div class="ts-legend-dot" style="background:#e0eedc;border-left:3px solid #4a8c3f"></div>Confirmed</div>
+          <div class="ts-legend-item"><div class="ts-legend-dot" style="background:#fff8e0;border-left:3px solid #c9a84c"></div>Pending Approval</div>
+          <div class="ts-legend-item"><div class="ts-legend-dot" style="background:#e0eaff;border-left:3px solid #3b5bdb"></div>Guest Request</div>
+          <div class="ts-legend-item"><div class="ts-legend-dot" style="background:#f0f0f0"></div>Closed</div>
+        </div>
+      </div>
+      <div class="ts-wrap">
+        <table class="ts-table" id="staff-tee-table"></table>
+      </div>
+    </div>
+
+    <!-- ADMIN: SCHEDULE BUILDER -->
+    <div class="panel" id="panel-admin-schedule">
+      <div class="section-header">
+        <div class="section-title">Schedule Builder</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <div class="week-nav">
+            <button class="week-nav-btn" onclick="changeWeek(-1)">&#8592;</button>
+            <div class="week-label" id="week-label-admin"></div>
+            <button class="week-nav-btn" onclick="changeWeek(1)">&#8594;</button>
+          </div>
+          <button class="btn btn-secondary" onclick="autoGenSchedule()">&#9889; Auto-Generate</button>
+          <button class="btn btn-gold" onclick="publishSchedule()">&#10003; Publish Schedule</button>
+        </div>
+      </div>
+      <div id="admin-publish-banner" style="display:none" class="publish-banner"><p>&#10003; Schedule published! Staff can now see their shifts.</p></div>
+      <div id="events-this-week" style="margin-bottom:16px"></div>
+      <div style="font-size:12px;color:var(--gray-400);margin-bottom:8px">Each cell: position dropdown (top) + shift time (bottom). Red = RTO. Orange = recurring block. Colors match position.</div>
+      <div class="legend" id="admin-legend"></div>
+      <div class="tbl-wrap"><table class="sched-tbl" id="admin-schedule-table"></table></div>
+    </div>
+
+    <!-- ADMIN: APPROVE TRADES -->
+    <div class="panel" id="panel-admin-approve-trades">
+      <div class="section-header"><div class="section-title">Approve Shift Pickups</div></div>
+      <div id="admin-pending-trades-list"></div>
+    </div>
+
+    <!-- ADMIN: AVAILABILITY -->
+    <div class="panel" id="panel-admin-avail">
+      <div class="section-header"><div class="section-title">Staff Availability &amp; Blocks</div></div>
+      <div id="admin-avail-view"></div>
+    </div>
+
+    <!-- ADMIN: RTO -->
+    <div class="panel" id="panel-admin-rto">
+      <div class="section-header"><div class="section-title">Time Off Requests</div></div>
+      <div class="stats-row" id="rto-stats"></div>
+      <div id="admin-rto-list"></div>
+    </div>
+
+    <!-- ADMIN: STAFF -->
+    <div class="panel" id="panel-admin-staff">
+      <div class="section-header">
+        <div class="section-title">Staff Management</div>
+        <button class="btn btn-primary" onclick="openAddStaffModal()">+ Add Staff Member</button>
+      </div>
+      <div class="tbl-wrap">
+        <table class="sched-tbl">
+          <thead><tr><th style="text-align:left;padding-left:16px">Name</th><th>Position</th><th>PIN</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="staff-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ADMIN: EVENTS -->
+    <div class="panel" id="panel-admin-events">
+      <div class="section-header">
+        <div class="section-title">Event Tracker</div>
+        <button class="btn btn-primary" onclick="openAddEventModal()">+ Add Event</button>
+      </div>
+      <div id="events-list"></div>
+    </div>
+
+    <!-- ═══════ MEMBER SERVICES PANELS ═══════ -->
+
+    <!-- MEMBER: BOOK TEE TIME -->
+    <div class="panel" id="panel-member-tee-book">
+      <div class="section-header"><div class="section-title">Book a Tee Time</div></div>
+      <div class="tee-controls">
+        <input class="tee-date-input" type="date" id="member-tee-date" onchange="onMemberTeeDateChange()"/>
+        <span class="tee-window-note">Members can book up to 14 days in advance &bull; max 4 players per tee time</span>
+      </div>
+      <div class="success-msg" id="member-tee-success">&#10003; Tee time booked!</div>
+      <div class="error-msg" id="member-tee-error"></div>
+      <div class="tee-sheet" id="member-tee-sheet"></div>
+    </div>
+
+    <!-- MEMBER: MY TEE TIMES -->
+    <div class="panel" id="panel-member-tee-mine">
+      <div class="section-header"><div class="section-title">My Tee Times</div></div>
+      <div id="member-tee-mine-list"></div>
+    </div>
+
+    <!-- MEMBER: BOOK A TABLE -->
+    <div class="panel" id="panel-member-dining-book">
+      <div class="section-header"><div class="section-title">Book a Table</div></div>
+      <div class="success-msg" id="member-dining-success">&#10003; Table reserved!</div>
+      <div class="error-msg" id="member-dining-error"></div>
+      <div class="card" style="max-width:560px">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date" id="member-dining-date" onchange="state.memberDiningDate=this.value;renderMemberDiningBook()"/></div>
+          <div class="form-group"><label class="form-label">Time</label><select class="form-select" id="member-dining-time"></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Party Size</label><select class="form-select" id="member-dining-party"></select></div>
+          <div class="form-group"><label class="form-label">Notes (optional)</label><input class="form-input" type="text" id="member-dining-notes" placeholder="Occasion, requests, etc."/></div>
+        </div>
+        <button class="btn btn-primary" onclick="bookDining()" style="width:100%;padding:13px;font-size:14px">Reserve Table</button>
+      </div>
+      <!-- Hidden elements kept for JS compatibility -->
+      <div id="member-dining-summary" style="display:none"></div>
+      <div id="member-dining-overview" style="display:none"></div>
+    </div>
+
+    <!-- MEMBER: MY RESERVATIONS -->
+    <div class="panel" id="panel-member-dining-mine">
+      <div class="section-header"><div class="section-title">My Reservations</div></div>
+      <div id="member-dining-mine-list"></div>
+    </div>
+
+    <!-- MEMBER: ACCOUNT -->
+    <div class="panel" id="panel-member-account">
+      <div class="section-header"><div class="section-title">My Account</div></div>
+      <div class="card" id="member-account-card"></div>
+    </div>
+
+    <!-- ADMIN: TEE SHEET -->
+    <div class="panel" id="panel-admin-tee-sheet">
+      <div class="section-header">
+        <div class="section-title">Tee Sheet</div>
+        <input class="tee-date-input" type="date" id="admin-tee-date" onchange="state.adminTeeDate=this.value;renderAdminTeeSheet()"/>
+      </div>
+      <div class="day-summary" id="admin-tee-summary"></div>
+      <div style="font-size:12px;color:var(--gray-400);margin-bottom:10px">Approve or deny guest requests, cancel bookings, block slots (maintenance/tournaments), or add a walk-in.</div>
+      <div class="tee-sheet" id="admin-tee-sheet"></div>
+    </div>
+
+    <!-- ADMIN: DINING -->
+    <div class="panel" id="panel-admin-dining">
+      <div class="section-header">
+        <div class="section-title">Dining Reservations</div>
+        <input class="tee-date-input" type="date" id="admin-dining-date" onchange="state.adminDiningDate=this.value;renderAdminDining()"/>
+      </div>
+      <div class="day-summary" id="admin-dining-summary"></div>
+      <div class="tbl-wrap"><table class="sched-tbl" id="admin-dining-table"></table></div>
+      <div class="inline-form" id="admin-dining-form">
+        <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" id="admin-dining-name" placeholder="Guest or member name"/></div>
+        <div class="form-group"><label class="form-label">Time</label><select class="form-select" id="admin-dining-time"></select></div>
+        <div class="form-group"><label class="form-label">Party Size</label><select class="form-select" id="admin-dining-party"></select></div>
+        <div class="form-group"><label class="form-label">Notes</label><input class="form-input" type="text" id="admin-dining-notes" placeholder="optional"/></div>
+        <button class="btn btn-primary btn-sm" onclick="addDiningManual()">Add</button>
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="toggleDiningForm()" style="margin-top:10px">+ Add Reservation</button>
+    </div>
+
+    <!-- ADMIN: MEMBERS -->
+    <div class="panel" id="panel-admin-members">
+      <div class="section-header">
+        <div class="section-title">Member Accounts</div>
+        <button class="btn btn-primary" onclick="openAddMemberModal()">+ Add Member</button>
+      </div>
+      <div class="tbl-wrap">
+        <table class="sched-tbl">
+          <thead><tr><th style="text-align:left;padding-left:16px">Name</th><th>Email</th><th>Password</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="member-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-backdrop" id="modal-add-staff">
+  <div class="modal">
+    <div class="modal-title">Add Staff Member</div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Full Name</label><input class="form-input" type="text" id="new-staff-name" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Position</label>
+      <select class="form-select" id="new-staff-pos" style="width:100%"><option>Golf Shop</option><option>Outside Lead</option><option>Cart Attendant</option><option>Range Attendant</option></select>
+    </div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">4-Digit PIN</label><input class="form-input" type="text" id="new-staff-pin" placeholder="1234" maxlength="4" style="width:100%;letter-spacing:.2em;font-size:18px"/></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-add-staff')">Cancel</button>
+      <button class="btn btn-primary" onclick="addStaffMember()">Add</button>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" id="modal-edit-staff">
+  <div class="modal">
+    <div class="modal-title">Edit Staff Member</div>
+    <input type="hidden" id="edit-staff-id"/>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Full Name</label><input class="form-input" type="text" id="edit-staff-name" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Position</label>
+      <select class="form-select" id="edit-staff-pos" style="width:100%"><option>Golf Shop</option><option>Outside Lead</option><option>Cart Attendant</option><option>Range Attendant</option></select>
+    </div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">4-Digit PIN</label><input class="form-input" type="text" id="edit-staff-pin" maxlength="4" style="width:100%;letter-spacing:.2em;font-size:18px"/></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-edit-staff')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEditStaff()">Save</button>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" id="modal-pref">
+  <div class="modal modal-wide">
+    <div class="modal-title" id="pref-modal-title">Staff Preferences</div>
+
+    <!-- Day preferences -->
+    <div class="pref-section">
+      <div class="pref-section-title">Preferred &amp; Avoided Days</div>
+      <p style="font-size:12px;color:var(--gray-400);margin-bottom:10px">Click a day to cycle: <span style="color:var(--green);font-weight:600">preferred</span> &rarr; <span style="color:#c0392b;font-weight:600">avoided</span> &rarr; clear. Set optional start/end times to control when on that day.</p>
+      <div class="day-toggle-row" id="pref-day-toggles"></div>
+    </div>
+
+    <!-- Total shifts per week -->
+    <div class="pref-section">
+      <div class="pref-section-title">Max Shifts Per Week</div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <label style="font-size:13px;color:var(--gray-600)">Total shifts this person should get per week:</label>
+        <input class="pos-shift-input" type="number" id="pref-total-shifts" min="0" max="7" placeholder="7"/>
+      </div>
+    </div>
+
+    <!-- Shifts per position -->
+    <div class="pref-section">
+      <div class="pref-section-title">Shifts Per Position (optional)</div>
+      <p style="font-size:12px;color:var(--gray-400);margin-bottom:10px">Leave blank to let the auto-gen decide. Set a number to control exactly how many shifts per position this person gets each week.</p>
+      <div id="pref-pos-rows"></div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-pref')">Cancel</button>
+      <button class="btn btn-danger btn-sm" onclick="clearPrefs()" style="margin-right:auto">Clear All Preferences</button>
+      <button class="btn btn-primary" onclick="savePrefs()">Save Preferences</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-add-member">
+  <div class="modal">
+    <div class="modal-title">Add Member</div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Full Name</label><input class="form-input" type="text" id="new-member-name" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Email</label><input class="form-input" type="email" id="new-member-email" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Password</label><input class="form-input" type="text" id="new-member-password" placeholder="Member123" style="width:100%"/></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-add-member')">Cancel</button>
+      <button class="btn btn-primary" onclick="addMember()">Add Member</button>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" id="modal-edit-member">
+  <div class="modal">
+    <div class="modal-title">Edit Member</div>
+    <input type="hidden" id="edit-member-id"/>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Full Name</label><input class="form-input" type="text" id="edit-member-name" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Email</label><input class="form-input" type="email" id="edit-member-email" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Password</label><input class="form-input" type="text" id="edit-member-password" style="width:100%"/></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-edit-member')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEditMember()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-add-event">
+  <div class="modal">
+    <div class="modal-title">Add Event</div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Event Name</label><input class="form-input" type="text" id="new-event-name" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Date</label><input class="form-input" type="date" id="new-event-date" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Details</label><input class="form-input" type="text" id="new-event-details" style="width:100%"/></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-add-event')">Cancel</button>
+      <button class="btn btn-primary" onclick="addEvent()">Save</button>
+    </div>
+  </div>
+</div>
+<script>
+const ADMIN_PASS='Theside123';
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const POSITIONS=['Golf Shop','Outside Lead','Cart Attendant','Range Attendant'];
+const TIER_HIGH=['Golf Shop','Outside Lead'];
+
+function posColor(p){return{'Golf Shop':'#c47a3a','Outside Lead':'#2d7a3a','Cart Attendant':'#2a6b9e','Range Attendant':'#7a4a9e'}[p]||'#888';}
+function posBg(p){return{'Golf Shop':'#fdf0e4','Outside Lead':'#e4f5e7','Cart Attendant':'#e4f0fb','Range Attendant':'#f0e8fb'}[p]||'#f5f5f5';}
+function isHighTier(p){return TIER_HIGH.includes(p);}
+function legendHTML(){return POSITIONS.map(p=>`<div class="legend-item"><div class="legend-dot" style="background:${posBg(p)};border:1px solid ${posColor(p)}"></div>${p}</div>`).join('');}
+
+let state={
+  loginType:'member',currentUser:null,isAdmin:false,currentStaffId:null,
+  weekOffset:0,tradeWeekOffset:0,activePanel:'',selectedTradeKey:null,_tradeSelected:null,
+  staff:[
+    {id:1, name:'Brian Hampson',    pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false},
+    {id:2, name:'Chris Bentrovato', pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false},
+    {id:3, name:'Nick Pietrowski',  pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false},
+    {id:4, name:'Mike Hayes',       pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false},
+    {id:5, name:'Peyton Hume',      pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
+    {id:6, name:'Jojo Cozza',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
+    {id:7, name:'Joe Center',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
+    {id:8, name:'Kevin Vita',       pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
+    {id:9, name:'Pat Clyne',        pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
+    {id:10,name:'Aiden Halligan',   pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false},
+    {id:11,name:'Meg Biche',        pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
+    {id:12,name:'Ryan Arp',         pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
+    {id:13,name:'Matt Hicks',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
+    {id:14,name:'Jason Wolfgang',   pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
+    {id:15,name:'Hayden Ossias',    pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
+    {id:16,name:'Johnny Foshee',    pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
+    {id:17,name:'Shea Molitor',     pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
+    {id:18,name:'Jack Urban',       pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
+    {id:19,name:'Cece Cohn',        pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
+    {id:20,name:'Macy Young',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
+    {id:21,name:'Hagen Foley',      pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false},
+    {id:22,name:'Drew Killian',     pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
+    {id:23,name:'Robbie Heins',     pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false},
+  ],
+  schedule:{},
+  rtoRequests:[
+    {id:1,staffId:4,staffName:'Mike Hayes',start:'2026-06-11',end:'2026-06-11',type:'Day Off',reason:'Family event',status:'approved'},
+    {id:2,staffId:6,staffName:'Jojo Cozza',start:'2026-06-15',end:'2026-06-17',type:'Vacation',reason:'Weekend trip',status:'pending'},
+  ],
+  rtoNextId:3,
+  recurringBlocks:[],
+  recurNextId:1,
+  trades:[
+    {id:1,staffId:5,staffName:'Peyton Hume',date:'2026-06-14',shift:'10-CLOSE',pos:'Cart Attendant',note:'Graduation party',status:'open',postedByTier:'low'},
+  ],
+  tradeNextId:2,
+  pickupRequests:[],
+  pickupNextId:1,
+  events:[
+    {id:1,name:'NY Creates Outing',date:'2026-06-08',details:'9:30am, REGENERON 5PM'},
+    {id:2,name:"Victory Church / Men's League",date:'2026-06-09',details:'9am'},
+    {id:3,name:'AHEPA 1230 Ladies League',date:'2026-06-10',details:'12:30pm'},
+    {id:4,name:'Friday Troop',date:'2026-06-12',details:''},
+    {id:5,name:'Saturday Troop',date:'2026-06-13',details:''},
+  ],
+  eventNextId:6,
+
+  // staffPrefs[staffId] = {
+  //   dayPrefs: [0,0,0,0,0,0,0]  // 0=neutral, 1=preferred, -1=avoided  (Sun=0..Sat=6)
+  //   maxShifts: 7,               // max shifts per week (null = no limit)
+  //   posShifts: {'Golf Shop':2}  // max shifts per position per week (null = no limit)
+  // }
+  staffPrefs:{},
+
+  // ── MEMBER PORTAL STATE ──
+  isMember:false,
+  currentMemberId:null,
+  adminSection:'staff', // 'staff' | 'members'  (admin toggle between Staff Scheduling and Member Services)
+
+  // Member accounts (default password for ALL sample members: Member123)
+  members:[
+    {id:1, name:'James Patterson', email:'jpatterson@gmail.com', password:'Member123', status:'Active'},
+    {id:2, name:'Susan Caldwell',  email:'scaldwell@gmail.com',  password:'Member123', status:'Active'},
+    {id:3, name:'Robert Chen',     email:'rchen@gmail.com',      password:'Member123', status:'Active'},
+    {id:4, name:'Linda Martinez',  email:'lmartinez@gmail.com',  password:'Member123', status:'Active'},
+    {id:5, name:'David Foster',    email:'dfoster@gmail.com',    password:'Member123', status:'Active'},
+    {id:6, name:"Karen O'Brien",   email:'kobrien@gmail.com',    password:'Member123', status:'Active'},
+    {id:7, name:'Tom Bradley',     email:'tbradley@gmail.com',   password:'Member123', status:'Active'},
+    {id:8, name:'Nancy Russo',     email:'nrusso@gmail.com',     password:'Member123', status:'Active'},
+  ],
+  memberNextId:9,
+
+  // Tee time bookings — date/time/players against a 4-player-per-slot cap
+  // type: 'member' | 'guest' | 'walkin'
+  // status: 'confirmed' | 'pending' | 'denied' | 'cancelled'
+  teeTimeBookings:[],
+  teeNextId:1,
+
+  // Dining reservations — capped at 30 per day, party size max 9
+  diningReservations:[],
+  diningNextId:1,
+
+  // Blocked tee time slots — key "date_time" -> reason string
+  blockedTeeSlots:{},
+};
+
+// Pre-load week 0 schedule
+const W0={
+  1:{1:{t:'6:30-5',p:'Golf Shop'},2:{t:'7-4',p:'Golf Shop'},3:{t:'7-4',p:'Golf Shop'},4:{t:'7-3',p:'Golf Shop'},5:{t:'2-5',p:'Golf Shop'},6:{t:'6:30-4',p:'Golf Shop'}},
+  2:{1:{t:'OFF',p:'Golf Shop'},2:{t:'10-8',p:'Golf Shop'},3:{t:'10-7',p:'Golf Shop'},4:{t:'OFF',p:'Golf Shop'},5:{t:'9-6',p:'Golf Shop'},6:{t:'10-7',p:'Golf Shop'}},
+  3:{1:{t:'730-Clinic',p:'Outside Lead'},2:{t:'10-8',p:'Outside Lead'},3:{t:'11-CLOSE',p:'Outside Lead'},4:{t:'10-7',p:'Outside Lead'},5:{t:'9-7',p:'Outside Lead'}},
+  4:{1:{t:'730-6',p:'Outside Lead'},2:{t:'11-CLOSE',p:'Outside Lead'},3:{t:'OFF',p:'Outside Lead'},4:{t:'7-12',p:'Outside Lead'},5:{t:'10-CLOSE',p:'Outside Lead'},6:{t:'11-CLOSE',p:'Outside Lead'}},
+  5:{1:{t:'OFF',p:'Cart Attendant'},2:{t:'7-4',p:'Cart Attendant'},3:{t:'11-CLOSE',p:'Cart Attendant'},4:{t:'7-4',p:'Cart Attendant'},5:{t:'OFF',p:'Cart Attendant'},6:{t:'6:30-4',p:'Cart Attendant'}},
+  6:{2:{t:'11-CLOSE',p:'Cart Attendant'},3:{t:'11-CLOSE',p:'Cart Attendant'},4:{t:'10-CLOSE',p:'Cart Attendant'},5:{t:'7-4',p:'Cart Attendant'},6:{t:'6:30-4',p:'Cart Attendant'}},
+  7:{3:{t:'11-2',p:'Cart Attendant'},6:{t:'11-7',p:'Cart Attendant'}},
+  8:{1:{t:'730-1',p:'Range Attendant'},2:{t:'7-2',p:'Range Attendant'},3:{t:'2-7',p:'Range Attendant'}},
+  9:{2:{t:'7-2',p:'Range Attendant'},3:{t:'7-2',p:'Range Attendant'}},
+  10:{1:{t:'2-CLOSE',p:'Outside Lead'},4:{t:'3-CLOSE',p:'Outside Lead'},6:{t:'6:30-2',p:'Outside Lead'}},
+  13:{1:{t:'2-CLOSE',p:'Cart Attendant'},2:{t:'2-CLOSE',p:'Cart Attendant'},5:{t:'2-CLOSE',p:'Cart Attendant'}},
+  14:{2:{t:'4-7',p:'Range Attendant'},5:{t:'4-7',p:'Range Attendant'}},
+  16:{6:{t:'4-7',p:'Range Attendant'}},17:{6:{t:'4-7',p:'Range Attendant'}},
+  18:{4:{t:'4-7',p:'Range Attendant'},6:{t:'4-7',p:'Range Attendant'}},
+  19:{3:{t:'4-7',p:'Range Attendant'}},
+  21:{1:{t:'730-10',p:'Golf Shop'},6:{t:'10-5',p:'Golf Shop'}},
+  23:{1:{t:'REGENERON',p:'Golf Shop'}},
+};
+for(const[sid,days]of Object.entries(W0))for(const[d,v]of Object.entries(days))state.schedule[`0_${sid}_${d}`]={time:v.t,pos:v.p};
+
+// ── MEMBER PORTAL UTILITIES ──
+function todayISO(){const d=new Date();d.setHours(0,0,0,0);return formatISO(d);}
+function addDaysISO(iso,n){const d=new Date(iso+'T12:00:00');d.setDate(d.getDate()+n);return formatISO(d);}
+function formatDateLong(iso){return new Date(iso+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});}
+function formatTime12(hhmm){
+  const[h,m]=hhmm.split(':').map(Number);
+  const ap=h>=12?'PM':'AM';
+  const h12=h>12?h-12:(h===0?12:h);
+  return `${h12}:${String(m).padStart(2,'0')} ${ap}`;
+}
+// Tee times: every 15 min, 7:00 AM - 3:00 PM
+const TEE_TIMES=(()=>{const a=[];for(let h=7;h<=15;h++){for(let m=0;m<60;m+=15){if(h===15&&m>0)break;a.push(h+':'+String(m).padStart(2,'0'));}}return a;})();
+// Dining times: every 30 min, 5:00 PM - 9:00 PM
+const DINING_TIMES=(()=>{const a=[];for(let h=17;h<=21;h++){for(let m=0;m<60;m+=30){if(h===21&&m>0)break;a.push(h+':'+String(m).padStart(2,'0'));}}return a;})();
+const MEMBER_BOOKING_WINDOW=14; // days
+const GUEST_BOOKING_WINDOW=2;   // days
+const DINING_DAILY_CAP=30;
+const DINING_MAX_PARTY=9;
+const TEE_SLOT_CAP=4;
+
+function memberById(id){return state.members.find(m=>m.id===id);}
+
+function getSlotBookings(date,time){
+  return state.teeTimeBookings.filter(b=>b.date===date&&b.time===time&&b.status!=='denied'&&b.status!=='cancelled');
+}
+function getSlotPlayerCount(date,time){
+  return getSlotBookings(date,time).reduce((sum,b)=>sum+b.players,0);
+}
+function isSlotBlocked(date,time){
+  return !!state.blockedTeeSlots[date+'_'+time];
+}
+function slotAvailable(date,time){
+  if(isSlotBlocked(date,time))return 0;
+  return TEE_SLOT_CAP-getSlotPlayerCount(date,time);
+}
+function teeBookingDisplayName(b){
+  if(b.type==='guest')return 'Guest: '+b.guestName.split(' ')[0]+' '+(b.guestName.split(' ')[1]||'').charAt(0)+'.';
+  if(b.type==='walkin')return 'Walk-in: '+b.guestName;
+  const m=memberById(b.memberId);
+  if(!m)return 'Member';
+  const parts=m.name.split(' ');
+  return parts[0]+' '+(parts[1]||'').charAt(0)+'.';
+}
+function getDiningCountForDate(date){
+  return state.diningReservations.filter(r=>r.date===date&&r.status!=='cancelled').length;
+}
+
+// ── SAMPLE TEE TIME & DINING DATA ──
+(function seedMemberData(){
+  const t0=todayISO(), t1=addDaysISO(t0,1), t2=addDaysISO(t0,2), t3=addDaysISO(t0,3), t5=addDaysISO(t0,5);
+
+  state.teeTimeBookings.push(
+    {id:1, date:t0, time:'8:00',  type:'member', memberId:1, players:2, status:'confirmed'}, // James Patterson
+    {id:2, date:t0, time:'8:00',  type:'member', memberId:2, players:2, status:'confirmed'}, // Susan Caldwell -> slot full 4/4
+    {id:3, date:t0, time:'9:00',  type:'member', memberId:3, players:4, status:'confirmed'}, // Robert Chen -> slot full
+    {id:4, date:t1, time:'10:00', type:'guest',  guestName:'Mark Wilson', guestEmail:'mark.wilson@email.com', guestPhone:'518-555-0142', players:2, status:'pending'},
+    {id:5, date:t2, time:'7:30',  type:'member', memberId:4, players:1, status:'confirmed'}, // Linda Martinez
+    {id:6, date:t5, time:'11:00', type:'member', memberId:5, players:3, status:'confirmed'}, // David Foster
+  );
+  state.teeNextId=7;
+
+  state.diningReservations.push(
+    {id:1, date:t0, time:'18:00', memberId:1, name:'James Patterson', partySize:4, status:'confirmed', notes:''},
+    {id:2, date:t0, time:'19:00', memberId:2, name:'Susan Caldwell',  partySize:2, status:'confirmed', notes:''},
+    {id:3, date:t1, time:'18:30', memberId:6, name:"Karen O'Brien",   partySize:6, status:'confirmed', notes:'Birthday'},
+    {id:4, date:t3, time:'19:30', memberId:7, name:'Tom Bradley',     partySize:9, status:'confirmed', notes:'Anniversary - back room if possible'},
+  );
+  state.diningNextId=5;
+
+  // One pre-blocked slot to demo admin block/unblock
+  state.blockedTeeSlots[t1+'_12:00']='Course maintenance';
+})();
+
+
+// ── UTILS ──
+function getWeekStart(wo){const t=new Date(),s=new Date(t);s.setDate(t.getDate()-t.getDay()+wo*7);s.setHours(0,0,0,0);return s;}
+function formatDate(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function formatISO(d){return d.toISOString().split('T')[0];}
+function getWeekDates(wo){const s=getWeekStart(wo);return Array.from({length:7},(_,i)=>{const d=new Date(s);d.setDate(s.getDate()+i);return d;});}
+function staffById(id){return state.staff.find(s=>s.id===id);}
+function myStaff(){return staffById(state.currentStaffId);}
+function hasRTO(sid,iso){return state.rtoRequests.some(r=>r.staffId===sid&&r.status!=='denied'&&r.start<=iso&&r.end>=iso);}
+
+function timeToMin(hhmm){if(!hhmm)return 0;const[h,m]=hhmm.split(':').map(Number);return h*60+(m||0);}
+
+function parseShiftMinutes(s){
+  if(!s||s.toUpperCase()==='OFF')return null;
+  const parts=s.toUpperCase().replace(/\s/g,'').split('-');
+  if(parts.length<2)return null;
+  function tm(raw){
+    raw=raw.replace(':','');
+    if(raw==='CLOSE')return 23*60;
+    if(raw.length===3)return parseInt(raw[0])*60+parseInt(raw.slice(1));
+    if(raw.length===4)return parseInt(raw.slice(0,2))*60+parseInt(raw.slice(2));
+    const n=parseInt(raw);if(isNaN(n))return null;
+    return n<=9?(n+12)*60:n*60;
+  }
+  const st=tm(parts[0]),en=tm(parts[1]);
+  if(st===null||en===null)return null;
+  return{start:st,end:en<=st?en+12*60:en};
+}
+
+function shiftsOverlap(a,b){
+  const pa=parseShiftMinutes(a),pb=parseShiftMinutes(b);
+  if(!pa||!pb)return false;
+  return pa.start<pb.end&&pb.start<pa.end;
+}
+
+// Recurring block helpers
+function getActiveBlocksForDay(staffId,dateISO){
+  const dow=new Date(dateISO+'T12:00:00').getDay();
+  return state.recurringBlocks.filter(b=>{
+    if(b.staffId!==staffId||b.status!=='active')return false;
+    if(!b.days.includes(dow))return false;
+    if(b.startDate&&dateISO<b.startDate)return false;
+    if(b.endDate&&dateISO>b.endDate)return false;
+    return true;
+  });
+}
+
+function isFullyBlockedByRecurring(staffId,dateISO){
+  return getActiveBlocksForDay(staffId,dateISO).some(b=>b.blockType==='allday');
+}
+
+function shiftBlockedByRecurring(staffId,dateISO,timeStr){
+  const blocks=getActiveBlocksForDay(staffId,dateISO);
+  if(!blocks.length)return false;
+  for(const b of blocks){
+    if(b.blockType==='allday')return true;
+    const p=parseShiftMinutes(timeStr);if(!p)continue;
+    const bm=timeToMin(b.time);
+    if(b.blockType==='before'&&p.start<bm)return true;
+    if(b.blockType==='after'&&p.end>bm)return true;
+  }
+  return false;
+}
+
+function getShiftsForStaffOnDate(staffId,dateISO){
+  const res=[];
+  for(let wo=-12;wo<=12;wo++){
+    const dates=getWeekDates(wo);
+    for(let i=0;i<7;i++){
+      if(formatISO(dates[i])===dateISO){
+        const c=state.schedule[`${wo}_${staffId}_${i}`];
+        if(c&&c.time&&c.time.toUpperCase()!=='OFF')res.push(c);
+        return res;
+      }
+    }
+  }
+  return res;
+}
+
+function getScheduledShiftsInRange(staffId,s,e){
+  const res=[];
+  for(let wo=-8;wo<=8;wo++)getWeekDates(wo).forEach((d,i)=>{
+    const iso=formatISO(d);
+    if(iso>=s&&iso<=e){const c=state.schedule[`${wo}_${staffId}_${i}`];if(c&&c.time&&c.time.toUpperCase()!=='OFF')res.push({date:iso,shift:c.time,pos:c.pos});}
+  });
+  return res;
+}
+
+function findWeekOffsetForDate(iso){
+  for(let wo=-12;wo<=12;wo++){const dates=getWeekDates(wo);for(let i=0;i<7;i++)if(formatISO(dates[i])===iso)return{wo,i};}
+  return null;
+}
+
+function formatTimeDisplay(hhmm){
+  if(!hhmm)return'';
+  const[h,m]=hhmm.split(':').map(Number);
+  const ap=h>=12?'pm':'am',h12=h>12?h-12:(h===0?12:h);
+  return m?`${h12}:${String(m).padStart(2,'0')}${ap}`:`${h12}${ap}`;
+}
+
+// ── LOGIN ──
+function populateStaffDropdown(){
+  const sel=document.getElementById('staff-name-select');
+  sel.innerHTML='<option value="">-- Select your name --</option>';
+  [...state.staff].filter(s=>s.status==='Active').sort((a,b)=>a.name.localeCompare(b.name)).forEach(s=>sel.innerHTML+=`<option value="${s.id}">${s.name}</option>`);
+}
+function setLoginType(t){
+  state.loginType=t;
+  // Staff login panel tabs
+  document.querySelectorAll('.staff-login-tab').forEach((el,i)=>el.classList.toggle('active',(i===0&&t==='staff')||(i===1&&t==='admin')));
+  // Show the right fields
+  document.getElementById('member-login-fields').style.display = t==='member'?'':'none';
+  document.getElementById('staff-login-fields').style.display  = t==='staff'?'':'none';
+  document.getElementById('admin-login-fields').style.display  = t==='admin'?'':'none';
+  document.getElementById('login-error').style.display='none';
+  if(t==='staff') populateStaffDropdown();
+}
+
+function toggleStaffPanel(){
+  const panel=document.getElementById('staff-login-panel');
+  const isOpen=panel.classList.toggle('open');
+  if(isOpen){
+    setLoginType('staff'); // Show staff fields when panel opens
+  } else {
+    setLoginType('member'); // Revert to member login when panel closes
+  }
+}
+function pinNext(el,n){if(el.value&&n<4)document.getElementById('pin'+n).focus();}
+function pinBack(e,n){if(e.key==='Backspace'&&!e.target.value)document.getElementById('pin'+n).focus();}
+function getPin(){return['pin0','pin1','pin2','pin3'].map(id=>document.getElementById(id).value).join('');}
+function clearPins(){['pin0','pin1','pin2','pin3'].forEach(id=>document.getElementById(id).value='');}
+
+function doLogin(){
+  const err=document.getElementById('login-error');
+  state.isMember=false;state.currentMemberId=null;
+  if(state.loginType==='admin'){
+    if(document.getElementById('admin-pass-input').value!==ADMIN_PASS){err.style.display='block';return;}
+    state.isAdmin=true;state.currentUser='Admin';state.currentStaffId=null;
+  }else if(state.loginType==='member'){
+    const email=document.getElementById('member-email-input').value.trim().toLowerCase();
+    const pass=document.getElementById('member-pass-input').value;
+    const m=state.members.find(x=>x.email.toLowerCase()===email);
+    if(!m||pass!==m.password||m.status!=='Active'){err.textContent='Incorrect email or password.';err.style.display='block';return;}
+    state.isAdmin=false;state.isMember=true;state.currentUser=m.name;state.currentMemberId=m.id;state.currentStaffId=null;
+    state.adminSection='staff';
+  }else{
+    const sid=parseInt(document.getElementById('staff-name-select').value),pin=getPin();
+    if(!sid){err.textContent='Please select your name.';err.style.display='block';return;}
+    const s=staffById(sid);
+    if(!s||pin!==s.pin){err.textContent='Incorrect PIN.';err.style.display='block';clearPins();return;}
+    state.isAdmin=s.isAdmin===true;state.currentUser=s.name;state.currentStaffId=s.id;
+    state.adminSection='staff';
+  }
+  err.style.display='none';
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app').style.display='block';
+  const roleLabel = state.isAdmin?' (Admin)':state.isMember?' (Member)':'';
+  document.getElementById('topbar-user').textContent=state.currentUser+roleLabel;
+  buildNav();
+}
+function doLogout(){
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('app').style.display='none';
+  document.getElementById('admin-pass-input').value='';
+  document.getElementById('member-email-input').value='';
+  document.getElementById('member-pass-input').value='';
+  clearPins();
+  // Close staff panel, reset to member mode
+  document.getElementById('staff-login-panel').classList.remove('open');
+  state.isAdmin=false;state.isMember=false;state.currentUser=null;state.currentStaffId=null;state.currentMemberId=null;
+  setLoginType('member');
+}
+
+// ── GUEST SCREEN TOGGLE ──
+function showGuestScreen(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('guest-screen').style.display='flex';
+  initGuestForm();
+}
+function hideGuestScreen(){
+  document.getElementById('guest-screen').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+}
+setLoginType('member'); // Default to member login on page load
+// Initialize defaults
+state.memberTeeDate = null;
+state.memberDiningDate = null;
+state.adminTeeDate = null;
+state.adminDiningDate = null;
+state.staffTeeDate = null;
+state._openWalkinKey = null;
+state._diningFormOpen = false;
+
+// ── NAV ──
+function buildNav(){
+  let tabs;
+  // Update topbar subtitle based on role
+  const titleEl=document.getElementById('topbar-title');
+  if(titleEl){
+    if(state.isMember) titleEl.textContent='Member Portal';
+    else if(state.isAdmin) titleEl.textContent='Admin Portal';
+    else titleEl.textContent='Staff Scheduling';
+  }
+  const toggle=document.getElementById('admin-section-toggle');
+  if(state.isAdmin){
+    toggle.style.display='flex';
+    toggle.innerHTML=`
+      <button class="admin-section-btn ${state.adminSection==='staff'?'active':''}" onclick="setAdminSection('staff')">Staff Scheduling</button>
+      <button class="admin-section-btn ${state.adminSection==='members'?'active':''}" onclick="setAdminSection('members')">Member Services</button>`;
+    if(state.adminSection==='members'){
+      tabs=[{id:'admin-tee-sheet',label:'Tee Sheet'},{id:'admin-dining',label:'Dining Reservations'},{id:'admin-members',label:'Members'}];
+    }else{
+      tabs=[{id:'admin-schedule',label:'Schedule Builder'},{id:'admin-approve-trades',label:'Approve Pickups'},{id:'admin-avail',label:'Staff Availability'},{id:'admin-rto',label:'Time Off Requests'},{id:'admin-staff',label:'Staff'},{id:'admin-events',label:'Event Tracker'}];
+    }
+  }else if(state.isMember){
+    toggle.style.display='none';
+    tabs=[{id:'member-tee-book',label:'Book Tee Time'},{id:'member-tee-mine',label:'My Tee Times'},{id:'member-dining-book',label:'Book a Table'},{id:'member-dining-mine',label:'My Reservations'},{id:'member-account',label:'My Account'}];
+  }else{
+    toggle.style.display='none';
+    const me=myStaff();
+    tabs=[{id:'my-schedule',label:'My Schedule'},{id:'staff-tee-sheet',label:'Tee Sheet'},{id:'rto',label:'Time Off & Availability'},{id:'trade',label:'Shift Trading'}];
+    if(me&&isHighTier(me.pos))tabs.push({id:'approve-trades',label:'Approve Pickups'});
+  }
+  document.getElementById('nav-tabs').innerHTML=tabs.map(t=>`<button class="nav-tab" data-panel="${t.id}" onclick="showPanel('${t.id}')">${t.label}</button>`).join('');
+  showPanel(tabs[0].id);
+}
+function setAdminSection(section){
+  state.adminSection=section;
+  buildNav();
+}
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.toggle('active',t.dataset.panel===id));
+  document.getElementById('panel-'+id).classList.add('active');
+  state.activePanel=id;renderPanel(id);
+}
+function renderPanel(id){
+  ({
+    'my-schedule':renderMySchedule,'rto':renderMyRTO,'trade':renderTrade,
+    'approve-trades':()=>renderApproveList('pending-trades-list'),
+    'admin-schedule':renderAdminSchedule,'admin-approve-trades':()=>renderApproveList('admin-pending-trades-list'),
+    'admin-avail':renderAdminAvail,'admin-rto':renderAdminRTO,'admin-staff':renderStaffTable,'admin-events':renderEvents,
+    'member-tee-book':renderMemberTeeBook,'member-tee-mine':renderMemberTeeMine,
+    'member-dining-book':renderMemberDiningBook,'member-dining-mine':renderMemberDiningMine,
+    'member-account':renderMemberAccount,
+    'admin-tee-sheet':renderAdminTeeSheet,'admin-dining':renderAdminDining,'admin-members':renderAdminMembers,
+    'staff-tee-sheet':renderStaffTeeSheet,
+  }[id]||function(){})();
+}
+function changeWeek(dir){state.weekOffset+=dir;renderPanel(state.activePanel);}
+function changeTradeWeek(dir){state.tradeWeekOffset+=dir;renderTradeMyShifts();document.getElementById('week-label-trade').textContent=weekLabel(state.tradeWeekOffset);}
+function weekLabel(wo){const d=getWeekDates(wo);return formatDate(d[0])+' \u2013 '+formatDate(d[6]);}
+
+// ── MY SCHEDULE ──
+function renderMySchedule(){
+  document.getElementById('week-label-my').textContent=weekLabel(state.weekOffset);
+  document.getElementById('legend-bar').innerHTML=legendHTML();
+  const dates=getWeekDates(state.weekOffset),s=myStaff(),el=document.getElementById('my-schedule-table');
+  const evBanner=buildEventsBanner(dates);
+  const heads=buildDayHeaders(dates);
+  if(!s||!el){el&&(el.innerHTML=evBanner+'<p style="color:var(--gray-400);font-size:13px;padding:12px">No schedule found.</p>');return;}
+  el.innerHTML=evBanner+`<div class="tbl-wrap"><table class="sched-tbl"><thead><tr><th style="text-align:left;padding-left:16px">Name</th>${heads}</tr></thead><tbody>${buildViewRow(s,dates,state.weekOffset)}</tbody></table></div>`;
+  const fs=document.getElementById('full-schedule-table');
+  if(fs){
+    const rows=state.staff.filter(x=>x.status==='Active').map(x=>buildViewRow(x,dates,state.weekOffset)).join('');
+    fs.innerHTML=`<div class="tbl-wrap"><table class="sched-tbl"><thead><tr><th style="text-align:left;padding-left:16px">Staff</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+}
+function buildEventsBanner(dates){
+  const evs=state.events.filter(e=>dates.some(d=>formatISO(d)===e.date));
+  if(!evs.length)return'';
+  return'<div style="margin-bottom:16px"><div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px">\u2605 Events This Week</div>'
+    +evs.map(e=>`<div class="event-row"><div class="event-date">${e.date}${e.details?' \u2014 '+e.details:''}</div><div class="event-name">${e.name}</div></div>`).join('')+'</div>';
+}
+function buildDayHeaders(dates){
+  return dates.map((d,i)=>{
+    const iso=formatISO(d),de=state.events.filter(e=>e.date===iso);
+    const dot=de.length?`<div style="font-size:9px;color:var(--gold);font-weight:600;margin-top:2px;overflow:hidden;text-overflow:ellipsis;max-width:90px">\u2605 ${de.map(e=>e.name).join(', ')}</div>`:'';
+    return`<th>${DAYS[i]}<br><span style="font-weight:400;font-size:11px">${formatDate(d)}</span>${dot}</th>`;
+  }).join('');
+}
+function buildViewRow(s,dates,wo){
+  let r=`<tr><td>${s.name}<br><span style="font-size:10px;color:var(--gray-400)">${s.pos}</span></td>`;
+  dates.forEach((d,i)=>{
+    const c=state.schedule[`${wo}_${s.id}_${i}`];
+    if(c&&c.time){
+      if(c.time.toUpperCase()==='OFF')r+=`<td><span class="shift-chip shift-off">OFF</span></td>`;
+      else{const p=c.pos||s.pos;r+=`<td><span class="shift-chip" style="background:${posBg(p)};color:${posColor(p)}">${c.time}</span><br><span style="font-size:9px;color:${posColor(p)}">${p}</span></td>`;}
+    }else r+=`<td style="color:var(--gray-200)">--</td>`;
+  });
+  return r+'</tr>';
+}
+
+// ── RTO TABS ──
+function switchRtoTab(tab){
+  document.getElementById('rto-form-oneoff').style.display=tab==='oneoff'?'':'none';
+  document.getElementById('rto-form-recurring').style.display=tab==='recurring'?'':'none';
+  const on=document.getElementById('rto-tab-oneoff'),rec=document.getElementById('rto-tab-recurring');
+  on.style.color=tab==='oneoff'?'var(--green)':'var(--gray-600)';
+  on.style.borderBottomColor=tab==='oneoff'?'var(--green)':'transparent';
+  rec.style.color=tab==='recurring'?'var(--green)':'var(--gray-600)';
+  rec.style.borderBottomColor=tab==='recurring'?'var(--green)':'transparent';
+}
+function toggleRecurTimeFields(){
+  const t=document.getElementById('recur-block-type').value,show=t!=='allday';
+  document.getElementById('recur-time-fields').style.display=show?'':'none';
+  if(show)document.getElementById('recur-time-label').textContent=t==='before'?'Not available before':'Not available after';
+}
+
+// ── SUBMIT ONE-TIME RTO ──
+function submitRTO(){
+  const start=document.getElementById('rto-start').value,end=document.getElementById('rto-end').value;
+  const errEl=document.getElementById('rto-error'),cfEl=document.getElementById('rto-conflict');
+  errEl.style.display='none';cfEl.style.display='none';
+  if(!start||!end){errEl.textContent='Please select both dates.';errEl.style.display='block';return;}
+  if(end<start){errEl.textContent='End date must be on or after start date.';errEl.style.display='block';return;}
+  const conflicts=getScheduledShiftsInRange(state.currentStaffId,start,end);
+  if(conflicts.length){
+    let msg='<strong>&#9888; Cannot submit -- you are already scheduled to work:</strong><ul style="margin-top:8px;padding-left:20px">';
+    conflicts.forEach(c=>msg+=`<li style="margin-bottom:4px">${c.date} | <strong>${c.shift}</strong> (${c.pos})</li>`);
+    msg+='</ul><p style="margin-top:8px;font-size:12px">Talk to your manager if you still need this time off.</p>';
+    cfEl.innerHTML=msg;cfEl.style.display='block';return;
+  }
+  const s=myStaff();
+  state.rtoRequests.push({id:state.rtoNextId++,staffId:state.currentStaffId,staffName:s?s.name:state.currentUser,start,end,type:document.getElementById('rto-type').value,reason:document.getElementById('rto-reason').value,status:'pending'});
+  document.getElementById('rto-start').value='';document.getElementById('rto-end').value='';document.getElementById('rto-reason').value='';
+  const m=document.getElementById('rto-success');m.style.display='block';setTimeout(()=>m.style.display='none',3000);
+  renderMyRTO();
+}
+
+// ── SUBMIT RECURRING BLOCK ──
+function submitRecurring(){
+  const errEl=document.getElementById('rto-error');errEl.style.display='none';
+  const days=[];
+  for(let i=0;i<7;i++)if(document.getElementById('rday-'+i)?.checked)days.push(i);
+  if(!days.length){errEl.textContent='Please select at least one day.';errEl.style.display='block';return;}
+  const blockType=document.getElementById('recur-block-type').value;
+  const time=document.getElementById('recur-time').value;
+  const reason=document.getElementById('recur-reason').value.trim()||'Recurring block';
+  const startDate=document.getElementById('recur-start').value;
+  const endDate=document.getElementById('recur-end').value||null;
+  if(!startDate){errEl.textContent='Please enter a start date.';errEl.style.display='block';return;}
+  const me=myStaff();
+  state.recurringBlocks.push({id:state.recurNextId++,staffId:state.currentStaffId,staffName:me?me.name:state.currentUser,days,blockType,time,reason,startDate,endDate,status:'active'});
+  for(let i=0;i<7;i++){const cb=document.getElementById('rday-'+i);if(cb)cb.checked=false;}
+  document.getElementById('recur-reason').value='';
+  document.getElementById('recur-start').value='';document.getElementById('recur-end').value='';
+  document.getElementById('recur-block-type').value='allday';
+  document.getElementById('recur-time-fields').style.display='none';
+  const m=document.getElementById('rto-success');m.style.display='block';setTimeout(()=>m.style.display='none',3000);
+  renderMyRTO();
+}
+
+// ── RENDER MY RTO LIST ──
+function renderMyRTO(){
+  const el=document.getElementById('my-rto-list');if(!el)return;
+  const myRTO=state.rtoRequests.filter(r=>r.staffId===state.currentStaffId);
+  const myRec=state.recurringBlocks.filter(b=>b.staffId===state.currentStaffId&&b.status==='active');
+  if(!myRTO.length&&!myRec.length){el.innerHTML='<div class="empty-state"><p>No requests or blocks yet.</p></div>';return;}
+  let html='';
+  if(myRec.length){
+    html+='<div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-400);margin-bottom:10px">Recurring Blocks</div>';
+    myRec.forEach(b=>{
+      const dayNames=b.days.map(d=>DAYS[d]).join(', ');
+      let td='All day';
+      if(b.blockType==='before')td='Before '+formatTimeDisplay(b.time);
+      if(b.blockType==='after')td='After '+formatTimeDisplay(b.time);
+      const dr=b.endDate?`${b.startDate} to ${b.endDate}`:`From ${b.startDate} (no end)`;
+      html+=`<div class="rto-item" style="border-left:3px solid var(--gold)"><div class="rto-info"><div class="rto-name" style="color:var(--gold)">\u21BA ${b.reason}</div><div class="rto-dates">${dayNames} &bull; ${td}</div><div class="rto-dates">${dr}</div></div><button class="btn btn-danger btn-sm" onclick="deleteRecurBlock(${b.id})">Delete</button></div>`;
+    });
+    html+='<div style="height:16px"></div>';
+  }
+  if(myRTO.length){
+    html+='<div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-400);margin-bottom:10px">One-Time Requests</div>';
+    myRTO.forEach(r=>{
+      html+=`<div class="rto-item"><div class="rto-info"><div class="rto-name">${r.type}</div><div class="rto-dates">${r.start}${r.end!==r.start?' to '+r.end:''}</div>${r.reason?`<div class="rto-reason">"${r.reason}"</div>`:''}</div><div style="display:flex;align-items:center;gap:8px"><span class="status-badge badge-${r.status}">${r.status}</span><button class="btn btn-danger btn-sm" onclick="deleteRTO(${r.id})" title="Delete">&#10005;</button></div></div>`;
+    });
+  }
+  el.innerHTML=html;
+}
+function deleteRecurBlock(id){
+  if(!confirm('Delete this recurring block? You can re-add it anytime.'))return;
+  const b=state.recurringBlocks.find(x=>x.id===id);if(b)b.status='deleted';
+  renderMyRTO();
+}
+function deleteRTO(id){
+  if(!confirm('Delete this time off request?'))return;
+  state.rtoRequests=state.rtoRequests.filter(r=>r.id!==id);
+  renderMyRTO();
+}
+
+// ── SHIFT TRADING ──
+function renderTrade(){
+  state.tradeWeekOffset=state.weekOffset;
+  const me=myStaff(),myPos=me?.pos||'';
+  const infoEl=document.getElementById('trade-role-info');
+  infoEl.innerHTML=isHighTier(myPos)
+    ?'<div class="info-box">As a lead/Golf Shop staff you can pick up any open shift. Your shifts go straight to the board.</div>'
+    :'<div class="info-box">You can pick up open shifts from Cart/Range staff. Your pickup requests need approval from a lead or manager.</div>';
+  document.getElementById('week-label-trade').textContent=weekLabel(state.tradeWeekOffset);
+  renderTradeMyShifts();renderTradeBoard();
+}
+function renderTradeMyShifts(){
+  const el=document.getElementById('my-shifts-to-trade');if(!el)return;
+  const dates=getWeekDates(state.tradeWeekOffset),sid=state.currentStaffId;
+  const shifts=[];
+  dates.forEach((d,i)=>{
+    const c=state.schedule[`${state.tradeWeekOffset}_${sid}_${i}`];
+    if(c&&c.time&&c.time.toUpperCase()!=='OFF'){
+      const posted=state.trades.some(t=>['open','pickup_pending'].includes(t.status)&&t.staffId===sid&&t.date===formatISO(d)&&t.shift===c.time);
+      shifts.push({key:`${state.tradeWeekOffset}_${sid}_${i}`,day:DAYS[i],date:formatISO(d),time:c.time,pos:c.pos||myStaff()?.pos,posted});
+    }
+  });
+  el.innerHTML='';
+  if(!shifts.length){el.innerHTML='<p style="font-size:13px;color:var(--gray-400);padding:10px 0">No shifts this week. Use arrows to find your shifts.</p>';document.getElementById('trade-note-area').style.display='none';return;}
+  shifts.forEach(sh=>{
+    const card=document.createElement('div');
+    card.className='shift-pick-card'+(state.selectedTradeKey===sh.key?' selected':'');
+    if(sh.posted)card.style.cssText='opacity:.5;cursor:not-allowed';
+    card.innerHTML=`<div><div style="font-size:14px;font-weight:500">${sh.day}, ${sh.date}</div><div style="margin-top:3px"><span class="shift-chip" style="background:${posBg(sh.pos)};color:${posColor(sh.pos)}">${sh.time}</span> <span style="font-size:12px;color:var(--gray-600)">${sh.pos}</span></div></div>${sh.posted?'<span class="status-badge badge-pending">Posted</span>':'<span style="font-size:12px;color:var(--gray-400)">Click to select &#8594;</span>'}`;
+    if(!sh.posted)card.addEventListener('click',()=>{state.selectedTradeKey=sh.key;state._tradeSelected={date:sh.date,time:sh.time,pos:sh.pos};renderTradeMyShifts();document.getElementById('trade-note-area').style.display='block';});
+    el.appendChild(card);
+  });
+}
+function postTrade(){
+  if(!state.selectedTradeKey||!state._tradeSelected)return;
+  const{date,time,pos}=state._tradeSelected,me=myStaff();
+  state.trades.push({id:state.tradeNextId++,staffId:state.currentStaffId,staffName:me?me.name:state.currentUser,date,shift:time,pos,note:document.getElementById('trade-note').value,status:'open',postedByTier:isHighTier(me?.pos||'')?'high':'low'});
+  state.selectedTradeKey=null;state._tradeSelected=null;
+  document.getElementById('trade-note').value='';document.getElementById('trade-note-area').style.display='none';
+  const m=document.getElementById('trade-success');m.style.display='block';setTimeout(()=>m.style.display='none',3000);
+  renderTradeMyShifts();renderTradeBoard();
+}
+function renderTradeBoard(){
+  const el=document.getElementById('trade-board');if(!el)return;
+  const me=myStaff(),myPos=me?.pos||'';
+  const visible=state.trades.filter(t=>{
+    if(!['open','pickup_pending'].includes(t.status))return false;
+    if(isHighTier(myPos))return true;
+    return t.postedByTier==='low';
+  });
+  if(!visible.length){el.innerHTML='<div class="empty-state"><p>No open shifts right now.</p></div>';return;}
+  el.innerHTML='';
+  visible.forEach(t=>{
+    const isOwn=t.staffId===state.currentStaffId;
+    const myPending=t.status==='pickup_pending'&&state.pickupRequests.some(p=>p.tradeId===t.id&&p.requestorId===state.currentStaffId&&p.status==='pending');
+    const canPickUp=!isOwn&&t.status==='open'&&(isHighTier(myPos)||t.postedByTier==='low');
+    let btn='';
+    if(isOwn&&t.status==='open')btn=`<button class="btn btn-danger btn-sm" data-a="cancel">Cancel</button>`;
+    else if(isOwn&&t.status==='pickup_pending')btn=`<span style="font-size:12px;color:#92400e;font-style:italic">Pickup pending approval</span>`;
+    else if(myPending)btn=`<span class="status-badge badge-pending">Your request pending</span>`;
+    else if(t.status==='pickup_pending')btn=`<span style="font-size:12px;color:var(--gray-400);font-style:italic">Pending approval</span>`;
+    else if(canPickUp)btn=`<button class="btn btn-primary btn-sm" data-a="pickup">Pick Up</button>`;
+    const div=document.createElement('div');div.className='trade-item';
+    div.innerHTML=`<div class="trade-header"><div><div style="font-size:14px;font-weight:500">${t.staffName} <span class="shift-chip" style="font-size:10px;background:${posBg(t.pos)};color:${posColor(t.pos)}">${t.pos}</span></div><div style="font-size:13px;color:var(--gray-600);margin-top:2px">${t.date} | ${t.shift}</div></div>${btn}</div>${t.note?`<div style="font-size:12px;color:var(--gray-400);font-style:italic;margin-top:4px">"${t.note}"</div>`:''}`;
+    const b=div.querySelector('button');
+    if(b)b.addEventListener('click',()=>{
+      if(b.dataset.a==='cancel'){t.status='cancelled';renderTradeBoard();renderTradeMyShifts();return;}
+      // Overlap check
+      const existing=getShiftsForStaffOnDate(state.currentStaffId,t.date);
+      const overlap=existing.find(x=>shiftsOverlap(x.time,t.shift));
+      if(overlap){alert(`Cannot pick up this shift — you are already working ${overlap.time} (${overlap.pos}) on ${t.date}, which overlaps with ${t.shift}.`);return;}
+      // Create pickup request
+      state.pickupRequests.push({id:state.pickupNextId++,tradeId:t.id,requestorId:state.currentStaffId,requestorName:state.currentUser,originalStaffId:t.staffId,originalStaffName:t.staffName,date:t.date,shift:t.shift,pos:t.pos,status:'pending'});
+      t.status='pickup_pending';
+      alert('Pickup request submitted! A lead or manager will approve it shortly.');
+      renderTradeBoard();renderTradeMyShifts();
+    });
+    el.appendChild(div);
+  });
+}
+
+// ── APPROVE PICKUP REQUESTS ──
+function renderApproveList(elId){
+  const el=document.getElementById(elId);if(!el)return;
+  const pending=state.pickupRequests.filter(p=>p.status==='pending');
+  if(!pending.length){el.innerHTML='<div class="empty-state"><p>No pickup requests waiting for approval.</p></div>';return;}
+  el.innerHTML='';
+  pending.forEach(p=>{
+    const div=document.createElement('div');div.className='trade-item';
+    div.innerHTML=`<div class="trade-header"><div><div style="font-size:14px;font-weight:500"><strong>${p.requestorName}</strong> wants to pick up <strong>${p.originalStaffName}</strong>'s shift</div><div style="margin-top:4px"><span class="shift-chip" style="background:${posBg(p.pos)};color:${posColor(p.pos)}">${p.shift}</span> <span style="font-size:12px;color:var(--gray-600);margin-left:6px">${p.pos} | ${p.date}</span></div></div><div style="display:flex;gap:6px;margin-left:12px"><button class="btn btn-primary btn-sm" data-a="approve">Approve</button><button class="btn btn-danger btn-sm" data-a="deny">Deny</button></div></div>`;
+    div.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+      const trade=state.trades.find(t=>t.id===p.tradeId);
+      if(b.dataset.a==='approve'){
+        p.status='approved';if(trade)trade.status='taken';
+        const loc=findWeekOffsetForDate(p.date);
+        if(loc){delete state.schedule[`${loc.wo}_${p.originalStaffId}_${loc.i}`];state.schedule[`${loc.wo}_${p.requestorId}_${loc.i}`]={time:p.shift,pos:p.pos};}
+      }else{p.status='denied';if(trade)trade.status='open';}
+      renderApproveList('pending-trades-list');renderApproveList('admin-pending-trades-list');renderTradeBoard();
+    }));
+    el.appendChild(div);
+  });
+}
+
+// ── ADMIN: SCHEDULE BUILDER ──
+// ── TIME PICKER STATE ──
+let _picker = null; // {key, staffId, dateISO, anchor}
+
+function closePicker(){
+  const p=document.getElementById('time-picker-popup');
+  if(p)p.remove();
+  _picker=null;
+}
+
+function openTimePicker(btn, key, staffId, dateISO, currentTime, currentPos){
+  closePicker();
+  const rto=hasRTO(staffId,dateISO);
+  const recB=isFullyBlockedByRecurring(staffId,dateISO);
+  if(rto||recB) return; // blocked — no picker
+
+  _picker={key,staffId,dateISO};
+
+  // Parse existing time
+  let startVal='', endVal='', endClose=false;
+  if(currentTime && currentTime.toUpperCase()!=='OFF'){
+    const parts=currentTime.toUpperCase().split('-');
+    startVal=fmtTimeInput(parts[0]||'');
+    if(parts[1]==='CLOSE'){endClose=true;endVal='';}
+    else endVal=fmtTimeInput(parts[1]||'');
+  }
+
+  const popup=document.createElement('div');
+  popup.className='time-picker-popup';
+  popup.id='time-picker-popup';
+  popup.innerHTML=`
+    <h4>Set Shift Time</h4>
+    <div class="tp-row">
+      <div class="tp-label">Start</div>
+      <input class="tp-time" type="time" id="tp-start" value="${startVal}"/>
+    </div>
+    <div class="tp-row">
+      <div class="tp-label">End</div>
+      <input class="tp-time" type="time" id="tp-end" value="${endVal}" ${endClose?'disabled':''}/>
+      <div class="tp-close-badge">
+        <input type="checkbox" id="tp-close" ${endClose?'checked':''} style="accent-color:var(--green);width:14px;height:14px;cursor:pointer" onchange="document.getElementById('tp-end').disabled=this.checked;if(this.checked)document.getElementById('tp-end').value=''"/>
+        <label class="tp-close-label" for="tp-close">Close</label>
+      </div>
+    </div>
+    <div class="tp-actions">
+      <button class="tp-off" onclick="savePickerOff()">OFF</button>
+      <button class="tp-clear" onclick="savePickerClear()">Clear</button>
+      <button class="tp-save" onclick="savePickerTime('${key}','${currentPos}')">Save</button>
+    </div>`;
+
+  document.body.appendChild(popup);
+
+  // Center on screen
+  popup.style.position='fixed';
+  popup.style.top='50%';
+  popup.style.left='50%';
+  popup.style.transform='translate(-50%,-50%)';
+  popup.style.zIndex='1000';
+
+  // Focus start time
+  setTimeout(()=>document.getElementById('tp-start')?.focus(),50);
+}
+
+function fmtTimeInput(raw){
+  // Convert "730" or "7:30" or "07:30" -> "07:30" for <input type=time>
+  raw=raw.replace(':','').trim();
+  if(!raw)return'';
+  let h,m;
+  if(raw.length<=2){h=parseInt(raw);m=0;}
+  else if(raw.length===3){h=parseInt(raw[0]);m=parseInt(raw.slice(1));}
+  else{h=parseInt(raw.slice(0,2));m=parseInt(raw.slice(2));}
+  if(isNaN(h))return'';
+  // Golf context: 1-9 treated as AM unless clearly PM context — keep as is, user can adjust
+  return String(h).padStart(2,'0')+':'+String(m||0).padStart(2,'0');
+}
+
+function timeInputToDisplay(hhmm){
+  // "14:00" -> "2" (pm), "07:30" -> "730", "11:00" -> "11"
+  if(!hhmm)return'';
+  const[h,m]=hhmm.split(':').map(Number);
+  const disp_h = h>12 ? h-12 : h;
+  const disp_m = m ? String(m).padStart(2,'0') : '';
+  return disp_m ? `${disp_h}:${disp_m}` : `${disp_h}`;
+}
+
+function savePickerTime(key, pos){
+  const start=document.getElementById('tp-start')?.value;
+  const endClose=document.getElementById('tp-close')?.checked;
+  const end=document.getElementById('tp-end')?.value;
+  if(!start){alert('Please enter a start time.');return;}
+  if(!endClose&&!end){alert('Please enter an end time or check Close.');return;}
+
+  const startDisp=timeInputToDisplay(start);
+  const endDisp=endClose?'CLOSE':timeInputToDisplay(end);
+  const shiftStr=`${startDisp}-${endDisp}`;
+
+  // Recurring block enforcement — check partial time blocks too
+  if(_picker && shiftBlockedByRecurring(_picker.staffId, _picker.dateISO, shiftStr)){
+    const blocks=getActiveBlocksForDay(_picker.staffId, _picker.dateISO).filter(b=>b.blockType!=='allday');
+    const blockDesc=blocks.map(b=>`${b.reason} (${b.blockType==='before'?'before':'after'} ${formatTimeDisplay(b.time)})`).join(', ');
+    alert(`Cannot schedule this shift — ${blockDesc}. The shift conflicts with a recurring availability block.`);
+    return;
+  }
+
+  if(!state.schedule[key])state.schedule[key]={time:shiftStr,pos};
+  else{state.schedule[key].time=shiftStr;state.schedule[key].pos=pos;}
+  closePicker();
+  renderAdminSchedule();
+}
+
+function savePickerOff(){
+  if(!_picker)return;
+  const key=_picker.key;
+  const sel=document.querySelector(`.builder-pos[data-key="${key}"]`);
+  const pos=sel?sel.value:(state.schedule[key]?.pos||'Golf Shop');
+  if(!state.schedule[key])state.schedule[key]={time:'OFF',pos};
+  else state.schedule[key].time='OFF';
+  closePicker();renderAdminSchedule();
+}
+
+function savePickerClear(){
+  if(!_picker)return;
+  delete state.schedule[_picker.key];
+  closePicker();renderAdminSchedule();
+}
+
+// Close picker when clicking outside
+document.addEventListener('click',e=>{
+  const p=document.getElementById('time-picker-popup');
+  if(p&&!p.contains(e.target)&&!e.target.classList.contains('cell-btn'))closePicker();
+});
+
+function renderAdminSchedule(){
+  document.getElementById('week-label-admin').textContent=weekLabel(state.weekOffset);
+  document.getElementById('admin-legend').innerHTML=legendHTML();
+  const dates=getWeekDates(state.weekOffset),weekISOs=dates.map(formatISO);
+  const evs=state.events.filter(e=>weekISOs.includes(e.date));
+  document.getElementById('events-this-week').innerHTML=evs.map(e=>`<div class="event-row"><div class="event-date">${e.date}</div><div class="event-name">${e.name}${e.details?' \u2014 '+e.details:''}</div></div>`).join('');
+  const tbl=document.getElementById('admin-schedule-table');if(!tbl)return;
+  const heads=dates.map((d,i)=>{
+    const iso=formatISO(d),de=state.events.filter(e=>e.date===iso);
+    const dot=de.length?`<div style="font-size:9px;color:var(--gold);font-weight:600;margin-top:1px">\u2605 ${de.map(e=>e.name).join(', ')}</div>`:'';
+    return`<th style="min-width:130px">${DAYS[i]}<br><span style="font-size:10px;font-weight:400">${formatDate(d)}</span>${dot}</th>`;
+  }).join('');
+  let html=`<thead><tr><th style="text-align:left;padding-left:16px;width:130px">Staff</th>${heads}</tr></thead><tbody>`;
+  state.staff.filter(s=>s.status==='Active').forEach(s=>{
+    const prefs=state.staffPrefs[s.id]||{};
+    const hasPref=prefs.maxShifts||Object.keys(prefs.posShifts||{}).length||prefs.dayPrefs?.some(d=>d!==0)||prefs.dayTimes?.some(t=>t?.start||t?.end);
+    html+=`<tr><td>${s.name}<br><span style="font-size:10px;color:var(--gray-400)">${s.pos}</span><br><button class="pref-btn" data-prefid="${s.id}" style="margin-top:4px;padding:2px 8px;font-size:10px;border:1px solid ${hasPref?'var(--gold)':'var(--gray-200)'};background:${hasPref?'var(--gold-light)':'var(--white)'};color:${hasPref?'var(--gold)':'var(--gray-400)'};border-radius:4px;cursor:pointer;font-family:DM Sans,sans-serif;font-weight:500">${hasPref?'&#9881; Prefs Set':'&#9881; Preferences'}</button></td>`;
+    dates.forEach((d,i)=>{
+      const iso=formatISO(d),key=`${state.weekOffset}_${s.id}_${i}`;
+      const cell=state.schedule[key]||{time:'',pos:s.pos};
+      const pos=cell.pos||s.pos;
+      const rto=hasRTO(s.id,iso);
+      const recBlocked=!rto&&isFullyBlockedByRecurring(s.id,iso);
+      const opts=POSITIONS.map(p=>`<option value="${p}" ${pos===p?'selected':''}>${p}</option>`).join('');
+      const t=cell.time||'';
+      const isOff=t.toUpperCase()==='OFF';
+      const hasSh=t&&!isOff;
+
+      // Cell button label and style
+      let btnClass='cell-btn', btnStyle='', btnLabel='+ Add';
+      if(rto){btnClass+=' rto-day';btnLabel='RTO';}
+      else if(recBlocked){btnClass+=' recur-blocked';btnLabel='BLOCKED';}
+      else if(isOff){btnClass+=' is-off';btnLabel='OFF';}
+      else if(hasSh){
+        btnClass+=' has-shift';
+        btnStyle=`background:${posBg(pos)};color:${posColor(pos)};border-color:${posColor(pos)}`;
+        btnLabel=t;
+      }
+
+      const clickable=!rto&&!recBlocked;
+      // Store all data as data-attributes to avoid any quote/escaping issues
+      html+=`<td>
+        <div class="builder-cell">
+          <select class="builder-pos" data-key="${key}" onchange="updateCellPos(this,'${iso}',${s.id})" style="border-color:${posColor(pos)};color:${posColor(pos)}">${opts}</select>
+          <button class="${btnClass}" style="${btnStyle}"
+            data-key="${key}"
+            data-staff="${s.id}"
+            data-iso="${iso}"
+            data-pos="${pos}"
+            ${clickable?'data-clickable="1"':'title="Cannot schedule -- blocked"'}
+          >${btnLabel}</button>
+        </div>
+      </td>`;
+    });
+    html+='</tr>';
+  });
+  // Replace table with a fresh element each time so there's never a duplicate listener
+  const newTbl = document.createElement('table');
+  newTbl.className = 'sched-tbl';
+  newTbl.id = 'admin-schedule-table';
+  newTbl.innerHTML = html + '</tbody>';
+  tbl.replaceWith(newTbl);
+
+  // Single persistent event delegation on the fresh table
+  newTbl.addEventListener('click', function(e){
+    // Preferences button
+    const prefBtn = e.target.closest('button.pref-btn');
+    if(prefBtn){
+      e.stopPropagation();
+      openPrefsModal(parseInt(prefBtn.dataset.prefid));
+      return;
+    }
+    // Cell time picker button
+    const btn = e.target.closest('button.cell-btn');
+    if(!btn || !btn.dataset.clickable) return;
+    e.stopPropagation();
+    const key     = btn.dataset.key;
+    const staffId = parseInt(btn.dataset.staff);
+    const iso     = btn.dataset.iso;
+    const pos     = btn.dataset.pos;
+    const cell    = state.schedule[key] || {time:'', pos};
+    openTimePicker(btn, key, staffId, iso, cell.time||'', pos);
+  });
+}
+
+function updateCellPos(sel, dateISO, staffId){
+  const key=sel.dataset.key;
+  if(!state.schedule[key])state.schedule[key]={time:'',pos:sel.value};
+  else state.schedule[key].pos=sel.value;
+  sel.style.borderColor=posColor(sel.value);sel.style.color=posColor(sel.value);
+  renderAdminSchedule();
+}
+function publishSchedule(){const b=document.getElementById('admin-publish-banner');if(b){b.style.display='flex';setTimeout(()=>b.style.display='none',5000);}}
+// ── STAFF PREFERENCES ──
+let _prefStaffId = null;
+
+function openPrefsModal(staffId){
+  _prefStaffId = staffId;
+  const s = staffById(staffId);
+  if(!s) return;
+  document.getElementById('pref-modal-title').textContent = s.name + ' — Preferences';
+
+  const prefs = state.staffPrefs[staffId] || {dayPrefs:[0,0,0,0,0,0,0], maxShifts:null, posShifts:{}};
+
+  // Day toggles — each day has toggle + optional time window
+  const dayRow = document.getElementById('pref-day-toggles');
+  dayRow.innerHTML = '';
+  DAYS.forEach((day, i) => {
+    const val = prefs.dayPrefs ? prefs.dayPrefs[i] : 0;
+    const times = prefs.dayTimes ? prefs.dayTimes[i] : {start:'', end:''};
+
+    // Wrapper row
+    const item = document.createElement('div');
+    item.className = 'day-toggle-item';
+
+    // Toggle button
+    const btn = document.createElement('button');
+    btn.className = 'day-toggle' + (val===1?' preferred':val===-1?' avoided':'');
+    btn.textContent = day;
+    btn.dataset.idx = i;
+    btn.dataset.val = val;
+    btn.type = 'button';
+    btn.addEventListener('click', () => {
+      const cur = parseInt(btn.dataset.val);
+      const next = cur===0 ? 1 : cur===1 ? -1 : 0;
+      btn.dataset.val = next;
+      btn.className = 'day-toggle' + (next===1?' preferred':next===-1?' avoided':'');
+      // Show time fields whenever a preference is set
+      timeFields.classList.toggle('hidden', next===0);
+    });
+
+    // Time fields
+    const timeFields = document.createElement('div');
+    timeFields.className = 'day-time-fields' + (val===0?' hidden':'');
+    timeFields.id = 'day-times-' + i;
+
+    const startLabel = document.createElement('span');
+    startLabel.className = 'day-time-label';
+    startLabel.textContent = val===-1 ? 'Not after:' : 'Start:';
+    startLabel.id = 'day-start-label-' + i;
+
+    const startInp = document.createElement('input');
+    startInp.className = 'day-time-inp';
+    startInp.type = 'time';
+    startInp.id = 'day-start-' + i;
+    startInp.value = times.start || '';
+    startInp.title = 'Start time (leave blank for any time)';
+
+    const endLabel = document.createElement('span');
+    endLabel.className = 'day-time-label';
+    endLabel.textContent = 'End:';
+
+    const endInp = document.createElement('input');
+    endInp.className = 'day-time-inp';
+    endInp.type = 'time';
+    endInp.id = 'day-end-' + i;
+    endInp.value = (times.end && times.end !== 'CLOSE') ? times.end : '';
+    endInp.disabled = times.end === 'CLOSE';
+    endInp.title = 'End time (leave blank for any time)';
+
+    // Close checkbox for end time
+    const closeWrap = document.createElement('label');
+    closeWrap.style.cssText = 'display:flex;align-items:center;gap:4px;font-size:11px;color:var(--gray-600);cursor:pointer;white-space:nowrap';
+    const closeCb = document.createElement('input');
+    closeCb.type = 'checkbox';
+    closeCb.id = 'day-end-close-' + i;
+    closeCb.style.cssText = 'accent-color:var(--green);width:13px;height:13px;cursor:pointer';
+    closeCb.checked = times.end === 'CLOSE';
+    closeCb.addEventListener('change', () => {
+      endInp.disabled = closeCb.checked;
+      if(closeCb.checked) endInp.value = '';
+    });
+    const closeSpan = document.createElement('span');
+    closeSpan.textContent = 'Close';
+    closeWrap.appendChild(closeCb);
+    closeWrap.appendChild(closeSpan);
+
+    const clearBtn = document.createElement('button');
+    clearBtn.type = 'button';
+    clearBtn.textContent = 'Clear';
+    clearBtn.style.cssText = 'font-size:10px;padding:3px 7px;border:1px solid var(--gray-200);border-radius:4px;background:var(--white);cursor:pointer;font-family:DM Sans,sans-serif;color:var(--gray-600)';
+    clearBtn.addEventListener('click', () => {
+      startInp.value=''; endInp.value=''; endInp.disabled=false; closeCb.checked=false;
+    });
+
+    timeFields.appendChild(startLabel);
+    timeFields.appendChild(startInp);
+    timeFields.appendChild(endLabel);
+    timeFields.appendChild(endInp);
+    timeFields.appendChild(closeWrap);
+    timeFields.appendChild(clearBtn);
+
+    item.appendChild(btn);
+    item.appendChild(timeFields);
+    dayRow.appendChild(item);
+  });
+
+  // Max shifts
+  document.getElementById('pref-total-shifts').value = prefs.maxShifts != null ? prefs.maxShifts : '';
+
+  // Per-position shift counts
+  const posRows = document.getElementById('pref-pos-rows');
+  posRows.innerHTML = '';
+  POSITIONS.forEach(pos => {
+    const val = prefs.posShifts ? (prefs.posShifts[pos] != null ? prefs.posShifts[pos] : '') : '';
+    const row = document.createElement('div');
+    row.className = 'pos-shift-row';
+    const dot = document.createElement('div');
+    dot.style.cssText = `width:10px;height:10px;border-radius:3px;background:${posBg(pos)};border:1px solid ${posColor(pos)};flex-shrink:0`;
+    const label = document.createElement('div');
+    label.className = 'pos-shift-label';
+    label.style.color = posColor(pos);
+    label.style.fontWeight = '500';
+    label.textContent = pos;
+    const inp = document.createElement('input');
+    inp.className = 'pos-shift-input';
+    inp.type = 'number';
+    inp.min = '0';
+    inp.max = '7';
+    inp.placeholder = '--';
+    inp.value = val;
+    inp.dataset.pos = pos;
+    inp.id = 'pref-pos-' + pos.replace(/\s/g,'_');
+    const hint = document.createElement('span');
+    hint.style.cssText = 'font-size:11px;color:var(--gray-400)';
+    hint.textContent = 'shifts/week';
+    row.appendChild(dot); row.appendChild(label); row.appendChild(inp); row.appendChild(hint);
+    posRows.appendChild(row);
+  });
+
+  document.getElementById('modal-pref').classList.add('open');
+}
+
+function savePrefs(){
+  if(_prefStaffId === null) return;
+  const dayToggles = document.querySelectorAll('#pref-day-toggles .day-toggle');
+  const dayPrefs = Array.from(dayToggles).map(b => parseInt(b.dataset.val) || 0);
+
+  // Capture time windows per day (end can be 'CLOSE' if checkbox checked)
+  const dayTimes = DAYS.map((_, i) => ({
+    start: document.getElementById('day-start-' + i)?.value || '',
+    end:   document.getElementById('day-end-close-' + i)?.checked
+             ? 'CLOSE'
+             : (document.getElementById('day-end-' + i)?.value || ''),
+  }));
+
+  const maxShiftsVal = document.getElementById('pref-total-shifts').value;
+  const maxShifts = maxShiftsVal !== '' ? parseInt(maxShiftsVal) : null;
+  const posShifts = {};
+  POSITIONS.forEach(pos => {
+    const inp = document.getElementById('pref-pos-' + pos.replace(/\s/g,'_'));
+    if(inp && inp.value !== '') posShifts[pos] = parseInt(inp.value);
+  });
+  state.staffPrefs[_prefStaffId] = {dayPrefs, dayTimes, maxShifts, posShifts};
+  closeModal('modal-pref');
+  renderAdminSchedule();
+}
+
+function clearPrefs(){
+  if(_prefStaffId === null) return;
+  delete state.staffPrefs[_prefStaffId];
+  closeModal('modal-pref');
+  renderAdminSchedule();
+}
+
+function autoGenSchedule(){
+  const dates=getWeekDates(state.weekOffset);
+
+  // Clear all existing shifts for this week before generating fresh
+  state.staff.forEach(s=>{
+    dates.forEach((_,i)=>{
+      delete state.schedule[`${state.weekOffset}_${s.id}_${i}`];
+    });
+  });
+
+  // Target staffing counts per position per day-of-week
+  // Index: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+  const TARGETS={
+    'Golf Shop':       [3, 3, 2, 2, 1, 2, 3],
+    'Outside Lead':    [1, 3, 2, 1, 3, 2, 2],
+    'Cart Attendant':  [3, 1, 3, 3, 2, 2, 2],
+    'Range Attendant': [3, 1, 3, 3, 1, 1, 1],
+  };
+  const SHIFTS={
+    'Golf Shop':       ['6:30-3','7-4','10-6','10-7','11-CLOSE','730-4'],
+    'Outside Lead':    ['7-3','7:30-6','10-8','11-CLOSE','2-CLOSE','9-7'],
+    'Cart Attendant':  ['7-4','10-CLOSE','11-CLOSE','2-CLOSE','7:30-4','11-4'],
+    'Range Attendant': ['7-3','7-2','4-7','2-7','730-1','7:30-3'],
+  };
+
+  // Track shifts assigned this week per staff member per position
+  const weekShiftCount={};   // staffId -> total shifts
+  const weekPosCount={};     // staffId -> {pos -> count}
+  state.staff.forEach(s=>{
+    weekShiftCount[s.id]=0;
+    weekPosCount[s.id]={};
+    POSITIONS.forEach(p=>weekPosCount[s.id][p]=0);
+  });
+
+  // Count any already-scheduled shifts (don't overwrite)
+  dates.forEach((d,i)=>{
+    state.staff.forEach(s=>{
+      const cell=state.schedule[`${state.weekOffset}_${s.id}_${i}`];
+      if(cell?.time&&cell.time.toUpperCase()!=='OFF'){
+        weekShiftCount[s.id]=(weekShiftCount[s.id]||0)+1;
+        weekPosCount[s.id][cell.pos]=(weekPosCount[s.id][cell.pos]||0)+1;
+      }
+    });
+  });
+
+  dates.forEach((d,i)=>{
+    const iso=formatISO(d);
+    const dow=d.getDay();
+
+    Object.keys(TARGETS).forEach(pos=>{
+      const target=TARGETS[pos][dow]||0;
+
+      // Build candidate pool for this position/day
+      let pool=state.staff.filter(s=>{
+        if(s.status!=='Active') return false;
+        const key=`${state.weekOffset}_${s.id}_${i}`;
+        if(state.schedule[key]?.time) return false; // already has a shift this day
+        if(hasRTO(s.id,iso)) return false;
+        if(isFullyBlockedByRecurring(s.id,iso)) return false;
+
+        const prefs=state.staffPrefs[s.id]||{};
+
+        // Hard check: is this day explicitly avoided for this person?
+        if(prefs.dayPrefs && prefs.dayPrefs[dow]===-1) return false;
+
+        // Hard check: has person hit their total weekly shift max?
+        if(prefs.maxShifts!=null && weekShiftCount[s.id]>=prefs.maxShifts) return false;
+
+        // Hard check: has person hit their per-position shift max?
+        if(prefs.posShifts && prefs.posShifts[pos]!=null && weekPosCount[s.id][pos]>=(prefs.posShifts[pos])) return false;
+
+        // If day has a time window set, we'll filter shifts to that window after pool selection
+        // (handled below when picking shift time)
+
+        // Staff must work this position (their primary pos, or no pos restriction)
+        if(s.pos!==pos) return false;
+
+        return true;
+      });
+
+      // Sort pool: preferred days first, then neutral
+      pool.sort((a,b)=>{
+        const pa=(state.staffPrefs[a.id]?.dayPrefs||[])[dow]||0;
+        const pb=(state.staffPrefs[b.id]?.dayPrefs||[])[dow]||0;
+        return pb-pa; // higher = preferred = comes first
+      });
+
+      // Shuffle within same-priority groups for variety
+      const preferred=pool.filter(s=>((state.staffPrefs[s.id]?.dayPrefs||[])[dow]||0)===1);
+      const neutral  =pool.filter(s=>((state.staffPrefs[s.id]?.dayPrefs||[])[dow]||0)===0);
+      function shuffle(arr){for(let j=arr.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[arr[j],arr[k]]=[arr[k],arr[j]];} return arr;}
+      pool=[...shuffle(preferred),...shuffle(neutral)].slice(0,target);
+
+      const shifts=SHIFTS[pos]||['7-3'];
+      pool.forEach(s=>{
+        const key=`${state.weekOffset}_${s.id}_${i}`;
+        const sprefs=state.staffPrefs[s.id]||{};
+        const dayTime=sprefs.dayTimes?sprefs.dayTimes[dow]:null;
+        // Pick a shift fitting the person's preferred time window AND not recurring-blocked
+        const shift=shifts.find(sh=>{
+          if(shiftBlockedByRecurring(s.id,iso,sh)) return false;
+          if(!dayTime||(!dayTime.start&&!dayTime.end)) return true;
+          const sp=parseShiftMinutes(sh); if(!sp) return true;
+          if(dayTime.start&&sp.start<timeToMin(dayTime.start)) return false;
+          if(dayTime.end){
+              const dEnd = dayTime.end==='CLOSE' ? 23*60 : timeToMin(dayTime.end);
+              if(sp.end>dEnd) return false;
+            }
+          return true;
+        })||shifts.find(sh=>!shiftBlockedByRecurring(s.id,iso,sh))||shifts[0];
+        state.schedule[key]={time:shift,pos};
+        weekShiftCount[s.id]++;
+        weekPosCount[s.id][pos]=(weekPosCount[s.id][pos]||0)+1;
+      });
+    });
+
+    // Flag RTO / blocked as OFF
+    state.staff.filter(s=>s.status==='Active').forEach(s=>{
+      const key=`${state.weekOffset}_${s.id}_${i}`;
+      if(state.schedule[key]?.time) return;
+      if(hasRTO(s.id,iso)||isFullyBlockedByRecurring(s.id,iso)){
+        state.schedule[key]={time:'OFF',pos:s.pos};
+      }
+    });
+  });
+
+  renderAdminSchedule();
+  alert('Schedule generated! Preferences, shift limits, and blocks are all respected. Review before publishing.');
+}
+
+// ── ADMIN: AVAILABILITY VIEW (shows recurring blocks) ──
+function renderAdminAvail(){
+  const el=document.getElementById('admin-avail-view');if(!el)return;
+  let html='';
+  state.staff.filter(s=>s.status==='Active').forEach(s=>{
+    const blocks=state.recurringBlocks.filter(b=>b.staffId===s.id&&b.status==='active');
+    html+=`<div class="card" style="margin-bottom:12px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div><div style="font-size:14px;font-weight:500">${s.name}</div><div style="font-size:12px;color:var(--gray-400)">${s.pos}</div></div></div>`;
+    if(blocks.length){
+      html+='<div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);margin-bottom:6px">Recurring Blocks</div>';
+      blocks.forEach(b=>{
+        const dayNames=b.days.map(d=>DAYS[d]).join(', ');
+        let td='All day';
+        if(b.blockType==='before')td='Before '+formatTimeDisplay(b.time);
+        if(b.blockType==='after')td='After '+formatTimeDisplay(b.time);
+        html+=`<div style="font-size:12px;padding:6px 10px;background:var(--gold-light);border-left:3px solid var(--gold);border-radius:0 5px 5px 0;margin-bottom:4px"><strong>${b.reason}</strong> &bull; ${dayNames} &bull; ${td}<br><span style="color:var(--gray-400)">${b.startDate}${b.endDate?' to '+b.endDate:' (no end)'}</span></div>`;
+      });
+    }else{
+      html+='<div style="font-size:12px;color:var(--gray-400);font-style:italic">No recurring blocks set.</div>';
+    }
+    html+='</div>';
+  });
+  el.innerHTML=html||'<div class="empty-state"><p>No staff found.</p></div>';
+}
+
+// ── ADMIN: RTO ──
+function renderAdminRTO(){
+  const el=document.getElementById('admin-rto-list'),st=document.getElementById('rto-stats');if(!el)return;
+  const pend=state.rtoRequests.filter(r=>r.status==='pending').length;
+  const appr=state.rtoRequests.filter(r=>r.status==='approved').length;
+  const deni=state.rtoRequests.filter(r=>r.status==='denied').length;
+  st.innerHTML=`<div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value" style="color:#92400e">${pend}</div></div><div class="stat-card"><div class="stat-label">Approved</div><div class="stat-value" style="color:#065f46">${appr}</div></div><div class="stat-card"><div class="stat-label">Denied</div><div class="stat-value" style="color:#991b1b">${deni}</div></div><div class="stat-card"><div class="stat-label">Total</div><div class="stat-value">${state.rtoRequests.length}</div></div>`;
+  if(!state.rtoRequests.length){el.innerHTML='<div class="empty-state"><p>No requests.</p></div>';return;}
+  el.innerHTML=[...state.rtoRequests].reverse().map(r=>`<div class="rto-item"><div class="rto-info"><div class="rto-name">${r.staffName} \u2014 ${r.type}</div><div class="rto-dates">${r.start}${r.end!==r.start?' to '+r.end:''}</div>${r.reason?`<div class="rto-reason">"${r.reason}"</div>`:''}</div><div class="rto-actions"><span class="status-badge badge-${r.status}" style="margin-right:8px">${r.status}</span>${r.status==='pending'?`<button class="btn btn-primary btn-sm" onclick="respondRTO(${r.id},'approved')">Approve</button><button class="btn btn-danger btn-sm" onclick="respondRTO(${r.id},'denied')">Deny</button>`:''}</div></div>`).join('');
+}
+function respondRTO(id,status){const r=state.rtoRequests.find(x=>x.id===id);if(r){r.status=status;renderAdminRTO();}}
+
+// ── ADMIN: STAFF ──
+function renderStaffTable(){
+  const tb=document.getElementById('staff-tbody');if(!tb)return;
+  tb.innerHTML=state.staff.map(s=>`<tr><td>${s.name}${s.isAdmin?'<span class="status-badge badge-needsapproval" style="margin-left:6px;font-size:10px">Admin</span>':''}</td><td><span class="shift-chip" style="background:${posBg(s.pos)};color:${posColor(s.pos)};font-size:11px">${s.pos}</span></td><td style="letter-spacing:.2em;font-family:monospace">${s.pin}</td><td><span class="status-badge ${s.status==='Active'?'badge-approved':'badge-denied'}">${s.status}</span></td><td style="white-space:nowrap"><button class="btn btn-secondary btn-sm" onclick="openEditStaffModal(${s.id})">Edit</button> <button class="btn ${s.isAdmin?'btn-warn':'btn-gold'} btn-sm" onclick="toggleAdminRole(${s.id})">${s.isAdmin?'Remove Admin':'Make Admin'}</button> <button class="btn btn-secondary btn-sm" onclick="toggleStatus(${s.id})">${s.status==='Active'?'Deactivate':'Activate'}</button> <button class="btn btn-danger btn-sm" onclick="removeStaff(${s.id})">Remove</button></td></tr>`).join('');
+}
+function toggleStatus(id){const s=staffById(id);if(s){s.status=s.status==='Active'?'Inactive':'Active';renderStaffTable();}}
+function toggleAdminRole(id){const s=staffById(id);if(s){s.isAdmin=!s.isAdmin;renderStaffTable();}}
+function removeStaff(id){if(!confirm('Remove this staff member?'))return;state.staff=state.staff.filter(s=>s.id!==id);renderStaffTable();populateStaffDropdown();}
+function openAddStaffModal(){document.getElementById('modal-add-staff').classList.add('open');}
+function addStaffMember(){
+  const name=document.getElementById('new-staff-name').value.trim(),pos=document.getElementById('new-staff-pos').value,pin=document.getElementById('new-staff-pin').value.trim()||'1234';
+  if(!name)return;
+  const id=Date.now();state.staff.push({id,name,pos,pin,status:'Active',isAdmin:false});
+  document.getElementById('new-staff-name').value='';document.getElementById('new-staff-pin').value='';
+  closeModal('modal-add-staff');renderStaffTable();populateStaffDropdown();
+}
+function openEditStaffModal(id){
+  const s=staffById(id);if(!s)return;
+  document.getElementById('edit-staff-id').value=id;document.getElementById('edit-staff-name').value=s.name;
+  document.getElementById('edit-staff-pos').value=s.pos;document.getElementById('edit-staff-pin').value=s.pin;
+  document.getElementById('modal-edit-staff').classList.add('open');
+}
+function saveEditStaff(){
+  const id=parseInt(document.getElementById('edit-staff-id').value),s=staffById(id);if(!s)return;
+  s.name=document.getElementById('edit-staff-name').value.trim()||s.name;
+  s.pos=document.getElementById('edit-staff-pos').value;
+  s.pin=document.getElementById('edit-staff-pin').value.trim()||s.pin;
+  closeModal('modal-edit-staff');renderStaffTable();populateStaffDropdown();
+}
+
+// ── ADMIN: EVENTS ──
+function renderEvents(){
+  const el=document.getElementById('events-list');if(!el)return;
+  if(!state.events.length){el.innerHTML='<div class="empty-state"><p>No events.</p></div>';return;}
+  el.innerHTML=[...state.events].sort((a,b)=>a.date.localeCompare(b.date)).map(e=>`<div class="event-row" style="display:flex;align-items:center;justify-content:space-between"><div><div class="event-date">${e.date}</div><div class="event-name">${e.name}${e.details?' \u2014 '+e.details:''}</div></div><button class="btn btn-danger btn-sm" onclick="removeEvent(${e.id})">Remove</button></div>`).join('');
+}
+function openAddEventModal(){document.getElementById('modal-add-event').classList.add('open');}
+function addEvent(){
+  const name=document.getElementById('new-event-name').value.trim(),date=document.getElementById('new-event-date').value,details=document.getElementById('new-event-details').value.trim();
+  if(!name||!date)return;
+  state.events.push({id:state.eventNextId++,name,date,details});
+  ['new-event-name','new-event-date','new-event-details'].forEach(id=>document.getElementById(id).value='');
+  closeModal('modal-add-event');renderEvents();
+}
+function removeEvent(id){state.events=state.events.filter(e=>e.id!==id);renderEvents();}
+
+// ══════════════════════════════════════════
+// MEMBER PORTAL — TEE TIMES
+// ══════════════════════════════════════════
+function safeKey(date,time){return (date+'_'+time).replace(/[:\-]/g,'');}
+
+function onMemberTeeDateChange(){
+  state.memberTeeDate=document.getElementById('member-tee-date').value;
+  renderMemberTeeBook();
+}
+
+function renderMemberTeeBook(){
+  const min=todayISO(), max=addDaysISO(min,MEMBER_BOOKING_WINDOW);
+  if(!state.memberTeeDate) state.memberTeeDate=min;
+  if(state.memberTeeDate<min) state.memberTeeDate=min;
+  if(state.memberTeeDate>max) state.memberTeeDate=max;
+  const inp=document.getElementById('member-tee-date');
+  inp.min=min;inp.max=max;inp.value=state.memberTeeDate;
+
+  document.getElementById('member-tee-success').style.display='none';
+  document.getElementById('member-tee-error').style.display='none';
+
+  const date=state.memberTeeDate;
+  const me=memberById(state.currentMemberId);
+
+  // Build block-schedule grid
+  let html=`<table class="tee-grid">
+    <thead><tr>
+      <th>Tee Time</th>
+      <th>&#9654; Player 1</th>
+      <th>&#9654; Player 2</th>
+      <th>&#9654; Player 3</th>
+      <th>&#9654; Player 4</th>
+    </tr></thead><tbody>`;
+
+  let lastHour=-1;
+  TEE_TIMES.forEach(time=>{
+    const hour=parseInt(time.split(':')[0]);
+    const blocked=isSlotBlocked(date,time);
+
+    // Hour divider row
+    if(hour!==lastHour){
+      lastHour=hour;
+      const hd=new Date('2000-01-01T'+time.padStart(5,'0')+':00');
+      const hLabel=hd.toLocaleTimeString('en-US',{hour:'numeric',hour12:true});
+      html+=`<tr class="hour-divider"><td colspan="5">${hLabel}</td></tr>`;
+    }
+
+    if(blocked){
+      html+=`<tr class="blocked-row">
+        <td>${formatTime12(time)}</td>
+        <td colspan="4"><div class="slot-blocked">Course Closed</div></td>
+      </tr>`;
+      return;
+    }
+
+    // Build the 4 player slots
+    // Expand bookings into individual player seats
+    const bookings=getSlotBookings(date,time);
+    const seats=[]; // each entry: {type, name, isMe, isPending}
+    bookings.forEach(b=>{
+      const isMe=b.type==='member'&&b.memberId===state.currentMemberId;
+      let name='';
+      if(b.type==='member'){const m=memberById(b.memberId);name=m?m.name.split(' ')[0]+' '+(m.name.split(' ')[1]||'').charAt(0)+'.':'Member';}
+      else if(b.type==='guest'||b.type==='walkin'){name=b.guestName?b.guestName.split(' ')[0]+' '+(b.guestName.split(' ')[1]||'').charAt(0)+'.':'Guest';}
+      for(let p=0;p<b.players;p++) seats.push({name,isMe,isPending:b.status==='pending',type:b.type});
+    });
+
+    // Fill to 4 slots
+    const avail=TEE_SLOT_CAP-seats.length;
+    let rowCls='';
+    let cells='<td>'+formatTime12(time)+'</td>';
+    for(let s=0;s<TEE_SLOT_CAP;s++){
+      if(seats[s]){
+        const seat=seats[s];
+        let chipCls='slot-booked'+(seat.isPending&&seat.type==='guest'?' guest-slot':seat.isPending?' pending-slot':seat.type==='walkin'?' guest-slot':'')+(seat.isMe?' slot-mine':'');
+        let subLabel=seat.isPending&&seat.isMe?'Pending Approval':seat.isPending?'Pending':seat.type==='guest'?'Guest (Pending)':seat.type==='walkin'?'Walk-in':seat.isMe?'You':'';
+        cells+=`<td><div class="${chipCls}"><div class="slot-name">${seat.name}</div>${subLabel?`<div class="slot-sub">${subLabel}</div>`:''}</div></td>`;
+      } else {
+        // Empty slot — show "Add Player" button if any availability
+        if(avail>0){
+          cells+=`<td><button class="slot-add" data-action="book-tee" data-date="${date}" data-time="${time}" data-players="1">+ Add Player</button></td>`;
+        } else {
+          cells+=`<td><div class="slot-empty">&mdash;</div></td>`;
+        }
+      }
+    }
+    html+=`<tr${rowCls}>${cells}</tr>`;
+  });
+
+  html+='</tbody></table>';
+  document.getElementById('member-tee-sheet').innerHTML=html;
+}
+
+function bookTeeTime(date,time,players){
+  const errEl=document.getElementById('member-tee-error'), succEl=document.getElementById('member-tee-success');
+  errEl.style.display='none';succEl.style.display='none';
+
+  const avail=slotAvailable(date,time);
+  if(players<1||players>avail){
+    errEl.textContent='Sorry, that tee time no longer has enough open spots. Please choose another.';
+    errEl.style.display='block';
+    renderMemberTeeBook();
+    return;
+  }
+  state.teeTimeBookings.push({id:state.teeNextId++,date,time,type:'member',memberId:state.currentMemberId,players,status:'pending'});
+  const msg=`\u231b Request submitted for ${formatDateLong(date)} at ${formatTime12(time)} (${players} player${players>1?'s':''}). Your spot is held and will be confirmed by the club shortly.`;
+  renderMemberTeeBook(); // re-render first (clears messages), then show success
+  succEl.textContent=msg;
+  succEl.style.display='block';
+}
+
+function renderMemberTeeMine(){
+  const el=document.getElementById('member-tee-mine-list');
+  const mine=state.teeTimeBookings
+    .filter(b=>b.type==='member'&&b.memberId===state.currentMemberId)
+    .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  if(!mine.length){el.innerHTML='<div class="empty-state"><p>No tee times booked yet. Head to "Book Tee Time" to reserve your spot.</p></div>';return;}
+  el.innerHTML=mine.map(b=>{
+    const canCancel=b.status!=='cancelled'&&b.date>=todayISO();
+    const badgeClass=b.status==='cancelled'?'badge-denied':b.status==='pending'?'badge-pending':'badge-approved';
+    return `<div class="booking-list-item">
+      <div class="booking-info">
+        <div class="booking-date">${formatDateLong(b.date)} at ${formatTime12(b.time)}</div>
+        <div class="booking-meta">${b.players} player${b.players>1?'s':''}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="status-badge ${badgeClass}">${b.status}</span>
+        ${canCancel?`<button class="btn btn-danger btn-sm" data-action="cancel-tee" data-id="${b.id}">Cancel</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function cancelTeeBooking(id){
+  const b=state.teeTimeBookings.find(x=>x.id===id);
+  if(b)b.status='cancelled';
+  renderMemberTeeMine();
+}
+
+// ══════════════════════════════════════════
+// MEMBER PORTAL — DINING
+// ══════════════════════════════════════════
+function renderMemberDiningBook(){
+  const min=todayISO();
+  const inp=document.getElementById('member-dining-date');
+  if(!state.memberDiningDate) state.memberDiningDate=min;
+  if(state.memberDiningDate<min) state.memberDiningDate=min;
+  inp.min=min;inp.value=state.memberDiningDate;
+  state.memberDiningDate=inp.value;
+
+  document.getElementById('member-dining-success').style.display='none';
+  document.getElementById('member-dining-error').style.display='none';
+
+  // Populate time and party dropdowns
+  const timeSel=document.getElementById('member-dining-time');
+  timeSel.innerHTML=DINING_TIMES.map(t=>`<option value="${t}">${formatTime12(t)}</option>`).join('');
+
+  const partySel=document.getElementById('member-dining-party');
+  let opts='';for(let i=1;i<=DINING_MAX_PARTY;i++)opts+=`<option value="${i}">${i}</option>`;
+  partySel.innerHTML=opts;
+}
+
+function bookDining(){
+  const errEl=document.getElementById('member-dining-error'), succEl=document.getElementById('member-dining-success');
+  errEl.style.display='none';succEl.style.display='none';
+
+  const date=document.getElementById('member-dining-date').value;
+  const time=document.getElementById('member-dining-time').value;
+  const party=parseInt(document.getElementById('member-dining-party').value||'1');
+  const notes=document.getElementById('member-dining-notes').value.trim();
+
+  if(!date||!time){errEl.textContent='Please choose a date and time.';errEl.style.display='block';return;}
+  if(getDiningCountForDate(date)>=DINING_DAILY_CAP){
+    errEl.textContent='Sorry, we are fully booked for this date (30/30). Please call the club or choose another date.';
+    errEl.style.display='block';
+    return;
+  }
+  const m=memberById(state.currentMemberId);
+  state.diningReservations.push({id:state.diningNextId++,date,time,memberId:state.currentMemberId,name:m?m.name:state.currentUser,partySize:party,status:'confirmed',notes});
+  document.getElementById('member-dining-notes').value='';
+  const dMsg=`\u2713 Table reserved for ${formatDateLong(date)} at ${formatTime12(time)} (party of ${party}).`;
+  renderMemberDiningBook(); // re-render first (clears messages), then show success
+  succEl.textContent=dMsg;
+  succEl.style.display='block';
+}
+
+function renderMemberDiningMine(){
+  const el=document.getElementById('member-dining-mine-list');
+  const mine=state.diningReservations
+    .filter(r=>r.memberId===state.currentMemberId)
+    .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  if(!mine.length){el.innerHTML='<div class="empty-state"><p>No reservations yet. Head to "Book a Table" to reserve.</p></div>';return;}
+  el.innerHTML=mine.map(r=>{
+    const canCancel=r.status!=='cancelled'&&r.date>=todayISO();
+    const badgeClass=r.status==='cancelled'?'badge-denied':'badge-approved';
+    return `<div class="booking-list-item">
+      <div class="booking-info">
+        <div class="booking-date">${formatDateLong(r.date)} at ${formatTime12(r.time)}</div>
+        <div class="booking-meta">Party of ${r.partySize}${r.notes?' &bull; '+r.notes:''}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="status-badge ${badgeClass}">${r.status}</span>
+        ${canCancel?`<button class="btn btn-danger btn-sm" data-action="cancel-dining" data-id="${r.id}">Cancel</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function cancelDiningReservation(id){
+  const r=state.diningReservations.find(x=>x.id===id);
+  if(r)r.status='cancelled';
+  renderMemberDiningMine();
+}
+
+// ══════════════════════════════════════════
+// MEMBER PORTAL — ACCOUNT
+// ══════════════════════════════════════════
+function renderMemberAccount(){
+  const m=memberById(state.currentMemberId);
+  const el=document.getElementById('member-account-card');
+  if(!m){el.innerHTML='';return;}
+  const teeCount=state.teeTimeBookings.filter(b=>b.memberId===m.id&&b.status!=='cancelled').length;
+  const diningCount=state.diningReservations.filter(r=>r.memberId===m.id&&r.status!=='cancelled').length;
+  el.innerHTML=`
+    <div class="card-title">Account Information</div>
+    <div style="font-size:17px;font-weight:600;color:var(--text);margin-bottom:4px">${m.name}</div>
+    <div style="font-size:13px;color:var(--gray-600);margin-bottom:18px">${m.email}</div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Tee Times Booked</div><div class="stat-value">${teeCount}</div></div>
+      <div class="stat-card"><div class="stat-label">Dining Reservations</div><div class="stat-value">${diningCount}</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--gray-400);margin-top:18px">To update your account information or reset your password, please contact the club office.</p>
+  `;
+}
+
+// ══════════════════════════════════════════
+// GUEST BOOKING (no account)
+// ══════════════════════════════════════════
+function initGuestForm(){
+  const min=todayISO(), max=addDaysISO(min,GUEST_BOOKING_WINDOW);
+  const dateInp=document.getElementById('guest-date');
+  dateInp.min=min;dateInp.max=max;dateInp.value=min;
+
+  document.getElementById('guest-success').style.display='none';
+  document.getElementById('guest-error').style.display='none';
+  document.getElementById('guest-form-wrap').style.display='block';
+  document.getElementById('guest-name').value='';
+  document.getElementById('guest-email').value='';
+  document.getElementById('guest-phone').value='';
+
+  onGuestDateChange();
+}
+
+function onGuestDateChange(){
+  const date=document.getElementById('guest-date').value;
+  const timeSel=document.getElementById('guest-time');
+  const available=TEE_TIMES.filter(t=>slotAvailable(date,t)>0);
+  if(!available.length){
+    timeSel.innerHTML='<option value="">No times available on this date</option>';
+  } else {
+    timeSel.innerHTML=available.map(t=>{
+      const a=slotAvailable(date,t);
+      return `<option value="${t}">${formatTime12(t)} (${a} spot${a!==1?'s':''} left)</option>`;
+    }).join('');
+  }
+  onGuestTimeChange();
+}
+
+function onGuestTimeChange(){
+  const date=document.getElementById('guest-date').value;
+  const time=document.getElementById('guest-time').value;
+  const playersSel=document.getElementById('guest-players');
+  if(!time){playersSel.innerHTML='<option value="1">1</option>';return;}
+  const avail=slotAvailable(date,time);
+  let opts='';for(let i=1;i<=Math.max(avail,1);i++)opts+=`<option value="${i}">${i} player${i>1?'s':''}</option>`;
+  playersSel.innerHTML=opts;
+}
+
+function submitGuestBooking(){
+  const errEl=document.getElementById('guest-error'), succEl=document.getElementById('guest-success');
+  errEl.style.display='none';succEl.style.display='none';
+
+  const name=document.getElementById('guest-name').value.trim();
+  const email=document.getElementById('guest-email').value.trim();
+  const phone=document.getElementById('guest-phone').value.trim();
+  const date=document.getElementById('guest-date').value;
+  const time=document.getElementById('guest-time').value;
+  const players=parseInt(document.getElementById('guest-players').value||'1');
+
+  if(!name||!email||!phone){
+    errEl.textContent='Please fill in your name, email, and phone number.';
+    errEl.style.display='block';return;
+  }
+  if(!time){
+    errEl.textContent='No tee times are available on this date. Please try another date.';
+    errEl.style.display='block';return;
+  }
+  const avail=slotAvailable(date,time);
+  if(players<1||players>avail){
+    errEl.textContent='Sorry, that time no longer has enough spots. Please choose another time.';
+    errEl.style.display='block';
+    onGuestDateChange();
+    return;
+  }
+
+  state.teeTimeBookings.push({id:state.teeNextId++,date,time,type:'guest',guestName:name,guestEmail:email,guestPhone:phone,players,status:'pending'});
+
+  document.getElementById('guest-form-wrap').style.display='none';
+  succEl.innerHTML=`&#10003; Thanks, ${name.split(' ')[0]}! Your request for ${formatDateLong(date)} at ${formatTime12(time)} (${players} player${players>1?'s':''}) is pending approval. We'll email <strong>${email}</strong> once it's confirmed.`;
+  succEl.style.display='block';
+}
+
+// ══════════════════════════════════════════
+// STAFF — TEE SHEET (read-only, Excel-style)
+// ══════════════════════════════════════════
+function renderStaffTeeSheet(){
+  if(!state.staffTeeDate) state.staffTeeDate=todayISO();
+  const inp=document.getElementById('staff-tee-date');
+  inp.value=state.staffTeeDate;
+  const date=state.staffTeeDate;
+
+  const dayName=new Date(date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+
+  let lastHour=-1;
+  let html=`<thead><tr>
+    <th style="text-align:left;padding-left:14px">${dayName}</th>
+    <th>&#9654; Player 1</th>
+    <th>&#9654; Player 2</th>
+    <th>&#9654; Player 3</th>
+    <th>&#9654; Player 4</th>
+  </tr></thead><tbody>`;
+
+  TEE_TIMES.forEach(time=>{
+    const hour=parseInt(time.split(':')[0]);
+    const blocked=isSlotBlocked(date,time);
+    const bookings=getSlotBookings(date,time);
+
+    // Hour separator row
+    if(hour!==lastHour){
+      lastHour=hour;
+      const hd=new Date('2000-01-01T'+time.padStart(5,'0')+':00');
+      const hLabel=hd.toLocaleTimeString('en-US',{hour:'numeric',hour12:true});
+      html+=`<tr class="ts-hour-sep"><td colspan="5" style="padding:4px 14px;font-size:11px">${hLabel}</td></tr>`;
+    }
+
+    if(blocked){
+      const reason=state.blockedTeeSlots[date+'_'+time]||'Closed';
+      html+=`<tr><td>${formatTime12(time)}</td>
+        <td colspan="4"><div class="ts-cell-blocked">${reason}</div></td>
+      </tr>`;
+      return;
+    }
+
+    // Build 4 seats
+    const seats=[];
+    bookings.forEach(b=>{
+      let name='', sub='';
+      if(b.type==='member'){
+        const m=memberById(b.memberId);
+        name=m?m.name:'Member';
+        sub=b.status==='pending'?'Pending Approval':'Confirmed';
+      } else {
+        name=b.guestName||'Guest';
+        sub=b.status==='pending'?'Guest Request':'Guest (Confirmed)';
+      }
+      for(let i=0;i<b.players;i++) seats.push({name,sub,type:b.type,status:b.status});
+    });
+
+    let cells=`<td>${formatTime12(time)}</td>`;
+    for(let s=0;s<TEE_SLOT_CAP;s++){
+      if(seats[s]){
+        const seat=seats[s];
+        let cls='ts-cell-confirmed';
+        if(seat.status==='pending'&&seat.type==='guest') cls='ts-cell-guest';
+        else if(seat.status==='pending') cls='ts-cell-pending';
+        cells+=`<td><div class="${cls}">
+          <div class="ts-cell-name">${seat.name}</div>
+          <div class="ts-cell-sub">${seat.sub}</div>
+        </div></td>`;
+      } else {
+        cells+=`<td><div class="ts-cell-empty"></div></td>`;
+      }
+    }
+    html+=`<tr>${cells}</tr>`;
+  });
+
+  html+='</tbody>';
+  document.getElementById('staff-tee-table').innerHTML=html;
+}
+
+// ══════════════════════════════════════════
+// ADMIN — TEE SHEET
+// ══════════════════════════════════════════
+function renderAdminTeeSheet(){
+  const inp=document.getElementById('admin-tee-date');
+  if(!state.adminTeeDate) state.adminTeeDate=todayISO();
+  inp.value=state.adminTeeDate;
+  state.adminTeeDate=inp.value;
+  const date=state.adminTeeDate;
+
+  let totalPlayers=0;
+  TEE_TIMES.forEach(t=>{totalPlayers+=getSlotPlayerCount(date,t);});
+  const pendingCount=state.teeTimeBookings.filter(b=>b.date===date&&b.status==='pending').length;
+
+  document.getElementById('admin-tee-summary').innerHTML=`
+    <div class="day-summary-pill">${formatDateLong(date)}</div>
+    <div class="day-summary-pill"><strong>${totalPlayers}</strong> players booked</div>
+    <div class="day-summary-pill ${pendingCount?'warn':''}"><strong>${pendingCount}</strong> pending guest request${pendingCount!==1?'s':''}</div>
+  `;
+
+  const sheet=document.getElementById('admin-tee-sheet');
+  let html='';
+  TEE_TIMES.forEach(time=>{
+    const bookings=getSlotBookings(date,time);
+    const count=getSlotPlayerCount(date,time);
+    const blocked=isSlotBlocked(date,time);
+    const avail=slotAvailable(date,time);
+    const key=safeKey(date,time);
+
+    let badgeClass='open', badgeText='Open';
+    if(blocked){badgeClass='blocked';badgeText='Blocked';}
+    else if(avail===0){badgeClass='full';badgeText='Full';}
+    else if(count>0){badgeClass='partial';badgeText=`${count}/${TEE_SLOT_CAP}`;}
+
+    let chips='';
+    bookings.forEach(b=>{
+      let label='';
+      let statusBadge='';
+      if(b.type==='guest'){
+        label=`Guest: ${b.guestName} (${b.guestEmail})`;
+        if(b.status==='pending') statusBadge='<span class="status-badge badge-pending" style="margin-left:6px">pending</span>';
+      } else if(b.type==='walkin'){
+        label=`Walk-in: ${b.guestName}`;
+      } else {
+        const m=memberById(b.memberId);
+        label=m?m.name:'Member';
+      }
+      let actions='';
+      if(b.status==='pending'){
+        actions=`<button class="btn btn-primary btn-sm" data-action="approve-tee" data-id="${b.id}">Approve</button> <button class="btn btn-danger btn-sm" data-action="deny-tee" data-id="${b.id}">Deny</button>`;
+      } else {
+        actions=`<button class="btn btn-danger btn-sm" data-action="admin-cancel-tee" data-id="${b.id}">Cancel</button>`;
+      }
+      chips+=`<div class="tee-booking-chip" style="display:flex;width:100%;justify-content:space-between;align-items:center;margin:3px 0">
+        <span>${label} &mdash; ${b.players} player${b.players>1?'s':''}${statusBadge}</span>
+        <span style="display:flex;gap:4px;flex-shrink:0;margin-left:8px">${actions}</span>
+      </div>`;
+    });
+    if(!chips) chips='<span style="color:var(--gray-400);font-size:12px">No bookings</span>';
+
+    const blockTitle=blocked?(state.blockedTeeSlots[date+'_'+time]||'Blocked'):'';
+    const blockBtn=`<button class="btn btn-secondary btn-sm" data-action="toggle-block" data-date="${date}" data-time="${time}" title="${blockTitle}">${blocked?'Unblock':'Block'}</button>`;
+    const walkinBtn=!blocked?`<button class="btn btn-secondary btn-sm" data-action="toggle-walkin" data-date="${date}" data-time="${time}">+ Walk-in</button>`:'';
+
+    let walkinOpts='';
+    for(let i=1;i<=Math.max(avail,1);i++) walkinOpts+=`<option value="${i}">${i}</option>`;
+
+    const formOpen = state._openWalkinKey===(date+'_'+time);
+
+    html+=`<div class="tee-row" style="flex-wrap:wrap">
+      <div class="tee-time">${formatTime12(time)}</div>
+      <div class="tee-badge ${badgeClass}">${badgeText}</div>
+      <div class="tee-names" style="display:flex;flex-direction:column;gap:0;min-width:260px">${chips}</div>
+      <div class="tee-action">${blockBtn}${walkinBtn}</div>
+      <div class="inline-form ${formOpen?'open':''}" id="walkin-${key}">
+        <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" id="walkin-name-${key}" placeholder="Walk-in name"/></div>
+        <div class="form-group"><label class="form-label">Players</label><select class="form-select" id="walkin-players-${key}">${walkinOpts}</select></div>
+        <button class="btn btn-primary btn-sm" data-action="add-walkin" data-date="${date}" data-time="${time}">Add</button>
+      </div>
+    </div>`;
+  });
+  sheet.innerHTML=html;
+}
+
+function approveTeeBooking(id){
+  const b=state.teeTimeBookings.find(x=>x.id===id);
+  if(b)b.status='confirmed';
+  renderAdminTeeSheet();
+}
+function denyTeeBooking(id){
+  const b=state.teeTimeBookings.find(x=>x.id===id);
+  if(b)b.status='denied';
+  renderAdminTeeSheet();
+}
+function adminCancelTeeBooking(id){
+  const b=state.teeTimeBookings.find(x=>x.id===id);
+  if(b)b.status='cancelled';
+  renderAdminTeeSheet();
+}
+function toggleBlockSlot(date,time){
+  const key=date+'_'+time;
+  if(state.blockedTeeSlots[key]) delete state.blockedTeeSlots[key];
+  else state.blockedTeeSlots[key]='Blocked by admin';
+  renderAdminTeeSheet();
+}
+function toggleWalkinForm(date,time){
+  const key=date+'_'+time;
+  state._openWalkinKey = state._openWalkinKey===key ? null : key;
+  renderAdminTeeSheet();
+}
+function addWalkin(date,time){
+  const key=safeKey(date,time);
+  const name=document.getElementById('walkin-name-'+key).value.trim();
+  const players=parseInt(document.getElementById('walkin-players-'+key).value||'1');
+  if(!name)return;
+  const avail=slotAvailable(date,time);
+  if(players<1||players>avail)return;
+  state.teeTimeBookings.push({id:state.teeNextId++,date,time,type:'walkin',guestName:name,players,status:'confirmed'});
+  state._openWalkinKey=null;
+  renderAdminTeeSheet();
+}
+
+// ══════════════════════════════════════════
+// ADMIN — DINING
+// ══════════════════════════════════════════
+function renderAdminDining(){
+  const inp=document.getElementById('admin-dining-date');
+  if(!state.adminDiningDate) state.adminDiningDate=todayISO();
+  inp.value=state.adminDiningDate;
+  state.adminDiningDate=inp.value;
+  const date=state.adminDiningDate;
+
+  const count=getDiningCountForDate(date);
+  const warn=count>=DINING_DAILY_CAP;
+  document.getElementById('admin-dining-summary').innerHTML=`
+    <div class="day-summary-pill">${formatDateLong(date)}</div>
+    <div class="day-summary-pill ${warn?'warn':''}"><strong>${count}/${DINING_DAILY_CAP}</strong> reservations</div>
+  `;
+
+  const tbl=document.getElementById('admin-dining-table');
+  const rows=state.diningReservations.filter(r=>r.date===date).sort((a,b)=>a.time.localeCompare(b.time));
+  let html=`<thead><tr><th style="text-align:left;padding-left:16px">Time</th><th>Name</th><th>Party</th><th>Notes</th><th>Status</th><th>Actions</th></tr></thead><tbody>`;
+  if(!rows.length){
+    html+=`<tr><td colspan="6"><div class="empty-state"><p>No reservations for this date.</p></div></td></tr>`;
+  } else {
+    rows.forEach(r=>{
+      const badgeClass=r.status==='cancelled'?'badge-denied':'badge-approved';
+      html+=`<tr>
+        <td style="text-align:left;padding-left:16px">${formatTime12(r.time)}</td>
+        <td>${r.name}</td>
+        <td>${r.partySize}</td>
+        <td style="font-size:11px;color:var(--gray-400)">${r.notes||'--'}</td>
+        <td><span class="status-badge ${badgeClass}">${r.status}</span></td>
+        <td>${r.status!=='cancelled'?`<button class="btn btn-danger btn-sm" data-action="admin-cancel-dining" data-id="${r.id}">Cancel</button>`:''}</td>
+      </tr>`;
+    });
+  }
+  tbl.innerHTML=html+'</tbody>';
+
+  const timeSel=document.getElementById('admin-dining-time');
+  timeSel.innerHTML=DINING_TIMES.map(t=>`<option value="${t}">${formatTime12(t)}</option>`).join('');
+  const partySel=document.getElementById('admin-dining-party');
+  let opts='';for(let i=1;i<=DINING_MAX_PARTY;i++)opts+=`<option value="${i}">${i}</option>`;
+  partySel.innerHTML=opts;
+
+  document.getElementById('admin-dining-form').classList.toggle('open', !!state._diningFormOpen);
+}
+
+function toggleDiningForm(){
+  state._diningFormOpen=!state._diningFormOpen;
+  renderAdminDining();
+}
+
+function addDiningManual(){
+  const date=state.adminDiningDate;
+  if(getDiningCountForDate(date)>=DINING_DAILY_CAP){
+    alert('This date is already at the 30-reservation cap.');
+    return;
+  }
+  const name=document.getElementById('admin-dining-name').value.trim();
+  const time=document.getElementById('admin-dining-time').value;
+  const party=parseInt(document.getElementById('admin-dining-party').value||'1');
+  const notes=document.getElementById('admin-dining-notes').value.trim();
+  if(!name){alert('Please enter a name.');return;}
+  state.diningReservations.push({id:state.diningNextId++,date,time,memberId:null,name,partySize:party,status:'confirmed',notes});
+  document.getElementById('admin-dining-name').value='';
+  document.getElementById('admin-dining-notes').value='';
+  state._diningFormOpen=false;
+  renderAdminDining();
+}
+
+function adminCancelDining(id){
+  const r=state.diningReservations.find(x=>x.id===id);
+  if(r)r.status='cancelled';
+  renderAdminDining();
+}
+
+// ══════════════════════════════════════════
+// ADMIN — MEMBER ACCOUNTS
+// ══════════════════════════════════════════
+function renderAdminMembers(){
+  const tb=document.getElementById('member-tbody');
+  tb.innerHTML=state.members.map(m=>{
+    const teeCount=state.teeTimeBookings.filter(b=>b.memberId===m.id&&b.status!=='cancelled').length;
+    const diningCount=state.diningReservations.filter(r=>r.memberId===m.id&&r.status!=='cancelled').length;
+    return `<tr>
+      <td>${m.name}</td>
+      <td>${m.email}</td>
+      <td style="font-family:monospace;font-size:12px">${m.password}</td>
+      <td><span class="status-badge ${m.status==='Active'?'badge-approved':'badge-denied'}">${m.status}</span></td>
+      <td style="white-space:nowrap">
+        <button class="btn btn-secondary btn-sm" onclick="openEditMemberModal(${m.id})">Edit</button>
+        <button class="btn btn-secondary btn-sm" onclick="toggleMemberStatus(${m.id})">${m.status==='Active'?'Deactivate':'Activate'}</button>
+        <button class="btn btn-danger btn-sm" onclick="removeMember(${m.id})">Remove</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+function toggleMemberStatus(id){const m=memberById(id);if(m){m.status=m.status==='Active'?'Inactive':'Active';renderAdminMembers();}}
+function removeMember(id){
+  if(!confirm('Remove this member account? This cannot be undone.'))return;
+  state.members=state.members.filter(m=>m.id!==id);
+  renderAdminMembers();
+}
+function openAddMemberModal(){
+  document.getElementById('new-member-name').value='';
+  document.getElementById('new-member-email').value='';
+  document.getElementById('new-member-password').value='';
+  document.getElementById('modal-add-member').classList.add('open');
+}
+function addMember(){
+  const name=document.getElementById('new-member-name').value.trim();
+  const email=document.getElementById('new-member-email').value.trim();
+  const password=document.getElementById('new-member-password').value.trim()||'Member123';
+  if(!name||!email){alert('Please enter a name and email.');return;}
+  if(state.members.some(m=>m.email.toLowerCase()===email.toLowerCase())){alert('A member with this email already exists.');return;}
+  state.members.push({id:state.memberNextId++,name,email,password,status:'Active'});
+  closeModal('modal-add-member');
+  renderAdminMembers();
+}
+function openEditMemberModal(id){
+  const m=memberById(id);if(!m)return;
+  document.getElementById('edit-member-id').value=id;
+  document.getElementById('edit-member-name').value=m.name;
+  document.getElementById('edit-member-email').value=m.email;
+  document.getElementById('edit-member-password').value=m.password;
+  document.getElementById('modal-edit-member').classList.add('open');
+}
+function saveEditMember(){
+  const id=parseInt(document.getElementById('edit-member-id').value);
+  const m=memberById(id);if(!m)return;
+  m.name=document.getElementById('edit-member-name').value.trim()||m.name;
+  m.email=document.getElementById('edit-member-email').value.trim()||m.email;
+  m.password=document.getElementById('edit-member-password').value.trim()||m.password;
+  closeModal('modal-edit-member');
+  renderAdminMembers();
+}
+
+// ══════════════════════════════════════════
+// GLOBAL DELEGATED CLICK HANDLER (#app)
+// Handles all dynamically-rendered member/admin booking controls
+// ══════════════════════════════════════════
+document.getElementById('app').addEventListener('click', function(e){
+  const t=e.target.closest('[data-action]');
+  if(!t) return;
+  const action=t.dataset.action;
+  const id=t.dataset.id?parseInt(t.dataset.id):null;
+  const date=t.dataset.date, time=t.dataset.time;
+
+  switch(action){
+    case 'book-tee': {
+      // data-players is always 1 per click on the block schedule
+      const players=parseInt(t.dataset.players||'1');
+      bookTeeTime(date,time,players);
+      break;
+    }
+    case 'cancel-tee': cancelTeeBooking(id); break;
+    case 'cancel-dining': cancelDiningReservation(id); break;
+    case 'approve-tee': approveTeeBooking(id); break;
+    case 'deny-tee': denyTeeBooking(id); break;
+    case 'admin-cancel-tee': adminCancelTeeBooking(id); break;
+    case 'toggle-block': toggleBlockSlot(date,time); break;
+    case 'toggle-walkin': toggleWalkinForm(date,time); break;
+    case 'add-walkin': addWalkin(date,time); break;
+    case 'admin-cancel-dining': adminCancelDining(id); break;
+  }
+});
+
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-backdrop').forEach(b=>b.addEventListener('click',e=>{if(e.target===b)b.classList.remove('open');}));
+</script></body></html>
