@@ -221,13 +221,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 .nav-tab.active{color:var(--green);border-bottom-color:var(--green);font-weight:600;}
 
 /* ── ADMIN SECTION TOGGLE ── */
-.admin-section-toggle{display:flex;gap:8px;margin-bottom:14px;}
+.admin-section-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;
+  background:var(--gray-100);border-radius:10px;padding:4px;width:fit-content;}
 .admin-section-btn{
-  padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;
-  border:1.5px solid var(--gray-200);background:var(--white);color:var(--gray-600);
-  font-family:'DM Sans',sans-serif;transition:all .12s;
+  padding:8px 18px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;
+  border:none;background:transparent;color:var(--gray-600);
+  font-family:'DM Sans',sans-serif;transition:all .15s;letter-spacing:.01em;
 }
-.admin-section-btn.active{background:var(--green);border-color:var(--green);color:var(--white);}
+.admin-section-btn:hover{background:rgba(255,255,255,.7);color:var(--text);}
+.admin-section-btn.active{background:var(--white);color:var(--green);
+  box-shadow:0 1px 4px rgba(0,0,0,.12);}
 
 /* ── MAIN CONTENT ── */
 .main-content{padding:32px 28px;max-width:1340px;margin:0 auto;}
@@ -297,6 +300,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 .cell-btn.is-off{background:#fee;color:#c0392b;border-color:#f5c6cb;font-weight:600;}
 .cell-btn.rto-day{border-color:#e74c3c!important;background:#fff5f5;color:#c0392b;cursor:default;}
 .cell-btn.recur-blocked{border-color:#e67e22!important;background:#fff8f0;color:#b7650a;cursor:default;}
+.cell-btn.recur-partial{border-color:#e67e22!important;background:#fffbf0;color:#b7650a;font-size:10px;cursor:pointer;}
 .pref-btn{}
 
 /* ── TIME PICKER ── */
@@ -512,6 +516,126 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 .ts-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-600);}
 .ts-legend-dot{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
 .ts-date-bar{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
+
+/* ── PERMISSIONS MODAL ── */
+.perm-modal{width:640px;}
+.perm-preset-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.perm-preset-btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--gray-200);background:var(--white);font-family:'DM Sans',sans-serif;transition:all .15s;text-align:left;}
+.perm-preset-btn:hover{border-color:var(--green);background:var(--green-pale);}
+.perm-preset-btn .pbl{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.perm-preset-btn .pbd{display:block;font-size:10px;color:var(--gray-400);margin-top:1px;font-weight:400;}
+.perm-group{margin-bottom:16px;}
+.perm-group-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--gray-200);}
+.perm-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;margin-bottom:4px;transition:background .1s;}
+.perm-row:hover{background:var(--off-white);}
+.perm-row.locked{opacity:.5;cursor:not-allowed;}
+.perm-label{font-size:13px;color:var(--text);}
+.perm-lock{font-size:10px;color:var(--gray-400);margin-left:6px;}
+/* Toggle switch */
+.toggle-wrap{position:relative;width:42px;height:24px;flex-shrink:0;}
+.toggle-wrap input{opacity:0;width:0;height:0;position:absolute;}
+.toggle-slider{position:absolute;inset:0;background:var(--gray-200);border-radius:24px;cursor:pointer;transition:background .2s;}
+.toggle-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.toggle-wrap input:checked+.toggle-slider{background:var(--green);}
+.toggle-wrap input:checked+.toggle-slider:before{transform:translateX(18px);}
+.toggle-wrap input:disabled+.toggle-slider{cursor:not-allowed;}
+
+/* ── LOGIN PANEL DUAL-VIEW ── */
+.lv-section{transition:opacity .15s;}
+.staff-back-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-400);cursor:pointer;margin-bottom:20px;font-weight:500;text-decoration:none;transition:color .12s;}
+.staff-back-link:hover{color:var(--green);}
+.staff-seg{display:flex;background:var(--gray-100);border-radius:10px;padding:4px;gap:3px;margin-bottom:22px;}
+.staff-seg-btn{flex:1;padding:9px 8px;border:none;background:transparent;border-radius:7px;font-size:12px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;color:var(--gray-600);transition:all .15s;white-space:nowrap;text-align:center;}
+.staff-seg-btn:hover{background:rgba(255,255,255,.7);color:var(--text);}
+.staff-seg-btn.active{background:var(--white);color:var(--green);box-shadow:0 1px 4px rgba(0,0,0,.12);}
+
+/* ── UNIFIED TEE SHEET GRID (admin + staff) ── */
+.tsg-wrap{background:var(--white);border:1px solid var(--gray-200);border-radius:12px;overflow:auto;max-height:80vh;box-shadow:var(--shadow-sm);}
+.tsg{width:100%;border-collapse:collapse;min-width:680px;}
+.tsg-header{background:var(--green-deep);color:var(--white);}
+.tsg-header th{padding:11px 14px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border:none;text-align:center;position:sticky;top:0;z-index:3;}
+.tsg-header th:first-child{text-align:left;width:110px;border-right:1px solid rgba(255,255,255,.15);}
+.tsg-header th:last-child{width:90px;} /* actions col */
+.tsg-hour-sep{background:#dce8f5;border-top:2px solid #90a0b4;border-bottom:1px solid #b8cfe4;}
+.tsg-hour-sep td{padding:4px 14px;font-size:11px;font-weight:700;color:var(--green);text-align:right;letter-spacing:.05em;}
+.tsg-row{border-bottom:1px solid var(--gray-200);}
+.tsg-row:hover{background:var(--off-white);}
+.tsg-row.back-row{background:#fafbfc;}
+.tsg-row.back-row:hover{background:var(--off-white);}
+.tsg-time{padding:6px 10px 6px 14px;font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;border-right:2px solid var(--gray-200);text-align:right;font-variant-numeric:tabular-nums;vertical-align:middle;}
+.tsg-time .back-label{font-size:10px;color:var(--gray-400);font-weight:600;letter-spacing:.04em;}
+.tsg-cell{padding:4px 6px;border-right:1px solid var(--gray-200);height:42px;vertical-align:middle;position:relative;min-width:140px;}
+.tsg-booked{height:100%;background:#e8f5e2;border-left:3px solid #4a8c3f;padding:5px 8px;display:flex;flex-direction:column;justify-content:center;border-radius:2px;}
+.tsg-booked.pending-cell{background:#fff8e0;border-left-color:var(--gold);}
+.tsg-booked.guest-cell{background:#e0eaff;border-left-color:#3b5bdb;}
+.tsg-booked.walkin-cell{background:#f0ebe8;border-left-color:#c47a3a;}
+.tsg-booked-name{font-size:12px;font-weight:600;color:var(--text);line-height:1.2;}
+.tsg-booked-sub{font-size:10px;color:var(--gray-400);line-height:1.2;}
+.tsg-cancel{position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:#fee2e2;border:none;color:#991b1b;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;line-height:1;}
+.tsg-cancel:hover{background:#fca5a5;}
+.tsg-blocked{height:100%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.05em;}
+.tsg-actions{padding:4px 8px;border-left:1px solid var(--gray-200);vertical-align:middle;white-space:nowrap;text-align:center;}
+.tsg-add-btn{background:var(--green-deep);color:var(--white);border:none;border-radius:6px;width:28px;height:28px;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .12s;}
+.tsg-add-btn:hover{background:var(--green);}
+.tsg-block-btn{background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;display:block;width:100%;margin-bottom:4px;transition:all .12s;}
+.tsg-block-btn:hover{background:var(--gray-200);}
+.tsg-block-btn.is-blocked{background:#fee2e2;color:#991b1b;border-color:#fca5a5;}
+.tsg-inline-form{background:var(--green-pale);border-top:1px dashed var(--green-mid);}
+.tsg-inline-form td{padding:8px 12px;}
+.tsg-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;align-items:center;font-size:12px;color:var(--gray-600);}
+.tsg-legend-item{display:flex;align-items:center;gap:6px;}
+.tsg-legend-dot{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
+
+/* ── WALK-IN AUTOCOMPLETE ── */
+.walkin-ac-wrap{position:relative;display:inline-block;}
+.walkin-dropdown{position:absolute;top:calc(100% + 2px);left:0;min-width:240px;background:var(--white);border:1px solid var(--gray-200);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:200;overflow:hidden;max-height:220px;overflow-y:auto;}
+.walkin-dropdown-item{padding:9px 14px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--gray-100);color:var(--text);display:flex;align-items:center;gap:8px;}
+.walkin-dropdown-item:hover{background:var(--green-pale);color:var(--green-deep);}
+.walkin-dropdown-item:last-child{border-bottom:none;}
+.walkin-dropdown-member-badge{font-size:10px;background:#e8f5e2;color:#2d7a3a;padding:1px 6px;border-radius:8px;font-weight:600;}
+.walkin-guest-label{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--gray-600);cursor:pointer;white-space:nowrap;padding:6px 0;}
+.walkin-guest-label input[type=checkbox]{width:15px;height:15px;accent-color:var(--green);cursor:pointer;}
+
+/* ── PRINT STYLES ── */
+.print-btn{background:var(--white);color:var(--text);border:1.5px solid var(--gray-200);border-radius:8px;padding:7px 16px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .12s;}
+.print-btn:hover{border-color:var(--green);color:var(--green);}
+@media print {
+  /* Show only the tee sheet table */
+  body *{visibility:hidden;}
+  .print-region,
+  .print-region *{visibility:visible;}
+  .print-region{position:absolute;top:0;left:0;width:100%;}
+  /* Typography scale-down for print */
+  .tsg-header th{font-size:7pt !important;padding:4pt 6pt !important;}
+  .tsg-time{font-size:7pt !important;padding:3pt 6pt !important;}
+  .tsg-cell{min-width:0 !important;height:22pt !important;padding:2pt 4pt !important;}
+  .tsg-booked{padding:2pt 4pt !important;}
+  .tsg-booked-name{font-size:7pt !important;}
+  .tsg-booked-sub{font-size:6pt !important;}
+  .tsg-hour-sep td{font-size:7pt !important;padding:2pt 8pt !important;}
+  .tsg-wrap{max-height:none !important;overflow:visible !important;border:none !important;box-shadow:none !important;}
+  .tsg-cancel,.tsg-add-btn,.tsg-block-btn,.tsg-actions{display:none !important;}
+  /* Page breaks to fit 3 pages: 7AM-11AM, 11AM-3PM, 3PM-7PM */
+  .print-break-before{page-break-before:always !important;}
+  @page{size:letter landscape;margin:0.4in;}
+}
+/* ── SCHEDULE SETTINGS MODAL ── */
+.sched-settings-modal{width:min(96vw,860px);max-height:90vh;overflow-y:auto;}
+.sched-settings-grid{border-collapse:collapse;width:100%;font-size:12px;margin-bottom:16px;}
+.sched-settings-grid th{background:var(--green-deep);color:var(--white);padding:8px 10px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.06em;border:1px solid var(--green);}
+.sched-settings-grid th:first-child{text-align:left;padding-left:14px;min-width:130px;}
+.sched-settings-grid td{border:1px solid var(--gray-200);padding:4px 6px;text-align:center;vertical-align:middle;}
+.sched-settings-grid td:first-child{text-align:left;padding-left:14px;font-size:11px;color:var(--gray-600);font-weight:500;background:var(--off-white);}
+.sched-settings-grid tr.period-header td{background:var(--gray-100);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--gray-500);padding:5px 14px;border-top:2px solid var(--gray-200);}
+.sched-settings-grid .period-morning{color:var(--green-deep);}
+.sched-settings-grid .period-afternoon{color:#9a6b0a;}
+.slot-count{width:44px;padding:4px 6px;border:1px solid var(--gray-200);border-radius:6px;text-align:center;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;color:var(--text);}
+.slot-count:focus{outline:2px solid var(--green);border-color:var(--green);}
+.day-total-row td{font-size:10px;color:var(--gray-400);padding:3px 6px;border:1px solid var(--gray-200);text-align:center;background:#fafbfc;}
+.copy-day-btn{font-size:10px;background:none;border:1px solid var(--gray-200);border-radius:5px;padding:2px 7px;cursor:pointer;color:var(--gray-600);font-family:'DM Sans',sans-serif;margin-top:3px;display:block;width:100%;transition:all .12s;}
+.copy-day-btn:hover{background:var(--green-pale);color:var(--green-deep);border-color:var(--green);}
+.sched-copy-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.sched-copy-divider{font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
 </style></head><body>
 <!-- LOGIN -->
 <div id="login-screen">
@@ -538,65 +662,90 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 
   <!-- RIGHT MEMBER LOGIN PANEL -->
   <div class="login-panel">
+    <!-- Logo — always visible -->
     <div class="login-panel-logo">
       <img src="https://images.squarespace-cdn.com/content/v1/673b483ae0b0f257f0ab3203/08ce9a50-bf0a-4c44-9ccd-29c5cb453f6b/normanside-arrowhead-logo.png?format=200w"
         alt="Normanside Country Club" style="height:36px;object-fit:contain;"
         onerror="this.parentElement.innerHTML='Normanside Country Club'"/>
     </div>
-    <div class="login-panel-title">Member Portal</div>
-    <div class="login-panel-sub">Sign in with your membership email and password</div>
 
-    <!-- Member fields (default shown) -->
-    <div id="member-login-fields">
-      <label class="login-label" for="member-email-input">Email Address</label>
-      <input class="login-field" id="member-email-input" type="email" placeholder="yourname@email.com" autocomplete="email"/>
-      <label class="login-label" for="member-pass-input">Password</label>
-      <input class="login-field" id="member-pass-input" type="password" placeholder="••••••••"
-        autocomplete="current-password"
-        onkeydown="if(event.key==='Enter')doLogin()"/>
-    </div>
-
-    <!-- Staff fields (hidden until corner link clicked) -->
-    <div id="staff-login-fields" style="display:none">
-      <label class="login-label">Your Name</label>
-      <select class="login-field" id="staff-name-select" style="margin-bottom:14px"><option value="">-- Select your name --</option></select>
-      <label class="login-label">4-Digit PIN</label>
-      <div class="pin-row" style="justify-content:flex-start;margin-bottom:14px">
-        <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin0" oninput="pinNext(this,1)"/>
-        <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin1" oninput="pinNext(this,2)" onkeydown="pinBack(event,0)"/>
-        <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin2" oninput="pinNext(this,3)" onkeydown="pinBack(event,1)"/>
-        <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin3" onkeydown="pinBack(event,2)" onkeyup="if(this.value)doLogin()"/>
+    <!-- ── VIEW: MEMBER (default) ── -->
+    <div id="lv-member" class="lv-section">
+      <div class="login-panel-title">Member Portal</div>
+      <div class="login-panel-sub">Sign in with your membership email and password</div>
+      <div id="member-login-fields">
+        <label class="login-label" for="member-email-input">Email Address</label>
+        <input class="login-field" id="member-email-input" type="email" placeholder="yourname@email.com" autocomplete="email"/>
+        <label class="login-label" for="member-pass-input">Password</label>
+        <input class="login-field" id="member-pass-input" type="password" placeholder="••••••••"
+          autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
       </div>
+      <button class="login-submit" onclick="doLogin()">Sign In</button>
+      <div class="login-error-msg" id="login-error" style="display:none">Incorrect email or password. Please try again.</div>
+      <div class="login-guest-link" id="guest-link-wrap">
+        <span>Not a member? </span>
+        <a onclick="showGuestScreen()">Request a Tee Time as a Guest &rarr;</a>
+      </div>
+      <a class="staff-login-corner" onclick="switchLoginView('staff')">
+        Staff &amp; Admin Login &rsaquo;
+      </a>
     </div>
 
-    <!-- Admin fields (hidden until corner link clicked) -->
-    <div id="admin-login-fields" style="display:none">
-      <label class="login-label">Admin Password</label>
-      <input class="login-field" id="admin-pass-input" type="password" placeholder="••••••••"
-        onkeydown="if(event.key==='Enter')doLogin()"/>
+    <!-- ── VIEW: STAFF / ADMIN ── -->
+    <div id="lv-staff" class="lv-section" style="display:none">
+      <a class="staff-back-link" onclick="switchLoginView('member')">&larr; Back to Member Portal</a>
+      <div class="login-panel-title" style="margin-bottom:6px">Staff &amp; Admin</div>
+      <div class="login-panel-sub" style="margin-bottom:20px">Select your role to sign in</div>
+
+      <!-- Three-way segment: Golf Staff | Restaurant Staff | Admin -->
+      <div class="staff-seg">
+        <button class="staff-seg-btn active" id="seg-golf" onclick="setLoginType('golf')">⛳ Golf Staff</button>
+        <button class="staff-seg-btn" id="seg-restaurant" onclick="setLoginType('restaurant')">🍽 Restaurant Staff</button>
+        <button class="staff-seg-btn" id="seg-admin" onclick="setLoginType('admin')">Admin</button>
+      </div>
+
+      <!-- Golf staff fields -->
+      <div id="golf-login-fields">
+        <label class="login-label">Your Name</label>
+        <select class="login-field" id="golf-staff-select" style="margin-bottom:14px"><option value="">-- Select your name --</option></select>
+        <label class="login-label">4-Digit PIN</label>
+        <div class="pin-row" style="justify-content:flex-start;margin-bottom:14px">
+          <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin0" oninput="pinNext(this,1)"/>
+          <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin1" oninput="pinNext(this,2)" onkeydown="pinBack(event,0)"/>
+          <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin2" oninput="pinNext(this,3)" onkeydown="pinBack(event,1)"/>
+          <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin3" onkeydown="pinBack(event,2)" onkeyup="if(this.value)doLogin()"/>
+        </div>
+      </div>
+
+      <!-- Restaurant staff fields -->
+      <div id="restaurant-login-fields" style="display:none">
+        <label class="login-label">Your Name</label>
+        <select class="login-field" id="rest-staff-select" style="margin-bottom:14px"><option value="">-- Select your name --</option></select>
+        <label class="login-label">4-Digit PIN</label>
+        <div class="pin-row" style="justify-content:flex-start;margin-bottom:14px">
+          <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin0r" oninput="pinNext(this,'1r')"/>
+          <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin1r" oninput="pinNext(this,'2r')" onkeydown="pinBack(event,'0r')"/>
+          <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin2r" oninput="pinNext(this,'3r')" onkeydown="pinBack(event,'1r')"/>
+          <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" id="pin3r" onkeydown="pinBack(event,'2r')" onkeyup="if(this.value)doLogin()"/>
+        </div>
+      </div>
+
+      <!-- Admin fields -->
+      <div id="admin-login-fields" style="display:none">
+        <label class="login-label">Admin Password</label>
+        <input class="login-field" id="admin-pass-input" type="password" placeholder="••••••••"
+          onkeydown="if(event.key==='Enter')doLogin()"/>
+      </div>
+
+      <button class="login-submit" onclick="doLogin()">Sign In</button>
+      <div class="login-error-msg" id="login-error-staff" style="display:none">Incorrect PIN or password.</div>
     </div>
 
-    <button class="login-submit" id="login-btn" onclick="doLogin()">Sign In</button>
-    <div class="login-error-msg" id="login-error">Incorrect email or password. Please try again.</div>
-
-    <div class="login-guest-link" id="guest-link-wrap">
-      <span>Not a member? </span>
-      <a onclick="showGuestScreen()">Request a Tee Time as a Guest &rarr;</a>
-    </div>
-
-    <!-- Staff & Admin corner link -->
-    <a class="staff-login-corner" onclick="toggleStaffPanel()">
-      Staff &amp; Admin Login &rsaquo;
-    </a>
-  </div>
-
-  <!-- Floating staff/admin panel -->
-  <div class="staff-login-panel" id="staff-login-panel">
-    <div class="staff-login-panel-title">Staff &amp; Admin</div>
-    <div class="staff-login-panel-sub">For Normanside staff and administrators only</div>
-    <div class="staff-login-tabs">
-      <button class="staff-login-tab active" onclick="setLoginType('staff')">Staff</button>
-      <button class="staff-login-tab" onclick="setLoginType('admin')">Admin</button>
+    <!-- Hidden legacy fields kept for JS compatibility -->
+    <div style="display:none">
+      <select id="staff-name-select"></select>
+      <div id="staff-login-fields"></div>
+      <div id="member-login-fields-dup"></div>
     </div>
   </div>
 
@@ -802,17 +951,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
         </div>
       </div>
       <div class="ts-date-bar">
-        <input class="tee-date-input" type="date" id="staff-tee-date" onchange="state.staffTeeDate=this.value;renderStaffTeeSheet()"/>
-        <div class="ts-legend">
-          <div class="ts-legend-item"><div class="ts-legend-dot" style="background:#e0eedc;border-left:3px solid #4a8c3f"></div>Confirmed</div>
-          <div class="ts-legend-item"><div class="ts-legend-dot" style="background:#fff8e0;border-left:3px solid #c9a84c"></div>Pending Approval</div>
-          <div class="ts-legend-item"><div class="ts-legend-dot" style="background:#e0eaff;border-left:3px solid #3b5bdb"></div>Guest Request</div>
-          <div class="ts-legend-item"><div class="ts-legend-dot" style="background:#f0f0f0"></div>Closed</div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input class="tee-date-input" type="date" id="staff-tee-date" onchange="state.staffTeeDate=this.value;renderStaffTeeSheet()"/>
+          <button class="print-btn" onclick="printTeeSheet()">🖨 Print</button>
+        </div>
+        <div class="tsg-legend">
+          <div class="tsg-legend-item"><div class="tsg-legend-dot" style="background:#e8f5e2;border-left:3px solid #4a8c3f"></div>Member</div>
+          <div class="tsg-legend-item"><div class="tsg-legend-dot" style="background:#fff8e0;border-left:3px solid #c9a84c"></div>Pending</div>
+          <div class="tsg-legend-item"><div class="tsg-legend-dot" style="background:#e0eaff;border-left:3px solid #3b5bdb"></div>Guest</div>
+          <div class="tsg-legend-item"><div class="tsg-legend-dot" style="background:#f0ebe8;border-left:3px solid #c47a3a"></div>Walk-in</div>
+          <div class="tsg-legend-item"><div class="tsg-legend-dot" style="background:#f0f0f0"></div>Closed &bull; F = Front 9 &bull; B = Back 9</div>
         </div>
       </div>
-      <div class="ts-wrap">
-        <table class="ts-table" id="staff-tee-table"></table>
-      </div>
+      <div class="tsg-wrap"><table class="tsg" id="staff-tee-table"></table></div>
     </div>
 
     <!-- ADMIN: SCHEDULE BUILDER -->
@@ -825,6 +976,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
             <div class="week-label" id="week-label-admin"></div>
             <button class="week-nav-btn" onclick="changeWeek(1)">&#8594;</button>
           </div>
+          <button class="btn btn-secondary" onclick="openScheduleSettings()" title="Configure staffing targets for auto-generate">&#9881; Settings</button>
           <button class="btn btn-secondary" onclick="autoGenSchedule()">&#9889; Auto-Generate</button>
           <button class="btn btn-gold" onclick="publishSchedule()">&#10003; Publish Schedule</button>
         </div>
@@ -876,6 +1028,36 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
         <button class="btn btn-primary" onclick="openAddEventModal()">+ Add Event</button>
       </div>
       <div id="events-list"></div>
+    </div>
+
+    <!-- ADMIN: OVERVIEW DASHBOARD -->
+    <div class="panel" id="panel-admin-overview">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Club Overview</div>
+          <div class="section-subtitle" id="overview-date-label"></div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="renderAdminOverview()">&#8635; Refresh</button>
+      </div>
+      <div class="stats-row" id="overview-stats" style="margin-bottom:24px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+        <div class="card">
+          <div class="card-title">⛳ Pending Tee Time Approvals</div>
+          <div id="overview-pending-tee"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">🍽 Tonight's Dining</div>
+          <div id="overview-dining-today"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">📋 Pending Time Off Requests</div>
+          <div id="overview-pending-rto"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">👥 Member Accounts</div>
+          <div id="overview-members"></div>
+        </div>
+      </div>
     </div>
 
     <!-- ═══════ MEMBER SERVICES PANELS ═══════ -->
@@ -934,18 +1116,36 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
     <!-- ADMIN: TEE SHEET -->
     <div class="panel" id="panel-admin-tee-sheet">
       <div class="section-header">
-        <div class="section-title">Tee Sheet</div>
-        <input class="tee-date-input" type="date" id="admin-tee-date" onchange="state.adminTeeDate=this.value;renderAdminTeeSheet()"/>
+        <div>
+          <div class="section-title">⛳ Tee Sheet</div>
+          <div class="section-subtitle">Manage bookings, approve requests, add walk-ins, block slots</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input class="tee-date-input" type="date" id="admin-tee-date" onchange="state.adminTeeDate=this.value;renderAdminTeeSheet()"/>
+          <button class="print-btn" onclick="printTeeSheet()">🖨 Print</button>
+        </div>
+      </div>
+      <!-- Pending approvals — shown only for users with golfTeeSheet permission -->
+      <div id="admin-tee-pending-wrap" style="display:none;margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:#92400e;display:flex;align-items:center;gap:6px">
+            <span id="admin-pending-count-badge" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:20px;padding:2px 10px;font-size:12px"></span>
+            Pending Tee Time Requests
+          </div>
+        </div>
+        <div id="admin-tee-pending-list"></div>
       </div>
       <div class="day-summary" id="admin-tee-summary"></div>
-      <div style="font-size:12px;color:var(--gray-400);margin-bottom:10px">Approve or deny guest requests, cancel bookings, block slots (maintenance/tournaments), or add a walk-in.</div>
-      <div class="tee-sheet" id="admin-tee-sheet"></div>
+      <div class="tsg-wrap"><table class="tsg" id="admin-tee-sheet"></table></div>
     </div>
 
     <!-- ADMIN: DINING -->
     <div class="panel" id="panel-admin-dining">
       <div class="section-header">
-        <div class="section-title">Dining Reservations</div>
+        <div>
+          <div class="section-title">🍽 Restaurant — Reservation Management</div>
+          <div class="section-subtitle">View, add, and cancel dining reservations &bull; Max 30 per night &bull; Party size up to 9</div>
+        </div>
         <input class="tee-date-input" type="date" id="admin-dining-date" onchange="state.adminDiningDate=this.value;renderAdminDining()"/>
       </div>
       <div class="day-summary" id="admin-dining-summary"></div>
@@ -963,13 +1163,68 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
     <!-- ADMIN: MEMBERS -->
     <div class="panel" id="panel-admin-members">
       <div class="section-header">
-        <div class="section-title">Member Accounts</div>
+        <div>
+          <div class="section-title">🔑 Member Account Management</div>
+          <div class="section-subtitle">Add, edit, deactivate or remove member accounts &bull; Only active accounts can log in</div>
+        </div>
         <button class="btn btn-primary" onclick="openAddMemberModal()">+ Add Member</button>
       </div>
       <div class="tbl-wrap">
         <table class="sched-tbl">
-          <thead><tr><th style="text-align:left;padding-left:16px">Name</th><th>Email</th><th>Password</th><th>Status</th><th>Actions</th></tr></thead>
+          <thead><tr><th style="text-align:left;padding-left:16px">Name</th><th>Email</th><th>Bag Room</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody id="member-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RESTAURANT: SCHEDULE BUILDER (reuses admin-schedule panel via context) -->
+    <div class="panel" id="panel-admin-rest-schedule">
+      <div class="section-header">
+        <div>
+          <div class="section-title">🍽 Restaurant Schedule Builder</div>
+          <div class="section-subtitle">Build and manage the restaurant staff schedule</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div class="week-nav">
+            <button class="week-nav-btn" onclick="changeWeek(-1)">&#8249;</button>
+            <span class="week-label" id="week-label-rest-admin"></span>
+            <button class="week-nav-btn" onclick="changeWeek(1)">&#8250;</button>
+          </div>
+          <button class="btn btn-secondary" onclick="autoGenRestSchedule()">Auto-Generate</button>
+        </div>
+      </div>
+      <div id="rest-legend-bar" class="legend-bar"></div>
+      <div class="tbl-wrap" style="overflow-x:auto">
+        <table class="sched-tbl" id="rest-schedule-table"></table>
+      </div>
+    </div>
+
+    <!-- RESTAURANT: APPROVE PICKUPS -->
+    <div class="panel" id="panel-admin-rest-trades">
+      <div class="section-header"><div class="section-title">🍽 Restaurant — Approve Pickups</div></div>
+      <div id="admin-rest-trades-list"></div>
+    </div>
+
+    <!-- RESTAURANT: TIME OFF REQUESTS -->
+    <div class="panel" id="panel-admin-rest-rto">
+      <div class="section-header"><div class="section-title">🍽 Restaurant — Time Off Requests</div></div>
+      <div class="stats-row" id="rest-rto-stats" style="margin-bottom:18px"></div>
+      <div id="admin-rest-rto-list"></div>
+    </div>
+
+    <!-- RESTAURANT: STAFF TABLE -->
+    <div class="panel" id="panel-admin-rest-staff">
+      <div class="section-header">
+        <div>
+          <div class="section-title">🍽 Restaurant Staff</div>
+          <div class="section-subtitle">Manage restaurant staff accounts and permissions</div>
+        </div>
+        <button class="btn btn-primary" onclick="openAddRestStaffModal()">+ Add Staff</button>
+      </div>
+      <div class="tbl-wrap">
+        <table class="sched-tbl">
+          <thead><tr><th style="text-align:left;padding-left:16px">Name</th><th>Position</th><th>PIN</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="rest-staff-tbody"></tbody>
         </table>
       </div>
     </div>
@@ -1007,6 +1262,31 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
     </div>
   </div>
 </div>
+<div class="modal-backdrop" id="modal-schedule-settings">
+  <div class="modal sched-settings-modal">
+    <div class="modal-title">&#9881; Schedule Builder Settings</div>
+    <p style="font-size:13px;color:var(--gray-600);margin-bottom:18px">Set how many staff per position you want working each morning and afternoon for each day. Auto-Generate will use these targets while still respecting each person's individual preferences, RTO, and recurring blocks.</p>
+
+    <!-- Copy shortcuts -->
+    <div class="sched-copy-divider">Quick Copy</div>
+    <div class="sched-copy-row">
+      <button class="btn btn-secondary btn-sm" onclick="copySchedDay(1,[2,3,4,5])">Copy Mon → Tue–Fri</button>
+      <button class="btn btn-secondary btn-sm" onclick="copySchedDay(6,[0])">Copy Sat → Sun</button>
+      <button class="btn btn-secondary btn-sm" onclick="copySchedDay(1,[0,2,3,4,5,6])">Copy Mon → All Days</button>
+      <button class="btn btn-secondary btn-sm" onclick="copySchedDay(6,[0,1,2,3,4,5])">Copy Sat → All Days</button>
+      <button class="btn btn-danger btn-sm" onclick="resetSchedSettings()">&#8635; Reset Defaults</button>
+    </div>
+
+    <!-- Main grid -->
+    <table class="sched-settings-grid" id="sched-settings-table"></table>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-schedule-settings')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSchedSettings()">Save Settings</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-backdrop" id="modal-pref">
   <div class="modal modal-wide">
     <div class="modal-title" id="pref-modal-title">Staff Preferences</div>
@@ -1061,9 +1341,74 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
     <div class="form-group" style="margin-bottom:12px"><label class="form-label">Full Name</label><input class="form-input" type="text" id="edit-member-name" style="width:100%"/></div>
     <div class="form-group" style="margin-bottom:12px"><label class="form-label">Email</label><input class="form-input" type="email" id="edit-member-email" style="width:100%"/></div>
     <div class="form-group" style="margin-bottom:12px"><label class="form-label">Password</label><input class="form-input" type="text" id="edit-member-password" style="width:100%"/></div>
+    <div style="border-top:1px solid var(--gray-200);padding-top:14px;margin-top:6px">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-400);margin-bottom:10px">Bag Room Storage</div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-bottom:10px">
+        <input type="checkbox" id="edit-member-bag-na" onchange="toggleBagRoomInput()" style="width:15px;height:15px;accent-color:var(--green)"/>
+        N/A — Does not store bag at club
+      </label>
+      <div id="edit-member-bag-field">
+        <label class="form-label">Bag Location</label>
+        <input class="form-input" type="text" id="edit-member-bag-slot" placeholder="e.g. A-7, C-12" style="width:100%;text-transform:uppercase"/>
+        <div style="font-size:11px;color:var(--gray-400);margin-top:4px">Sections A–E, slots 1–15. Will appear on tee sheet when member tees off.</div>
+      </div>
+    </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('modal-edit-member')">Cancel</button>
       <button class="btn btn-primary" onclick="saveEditMember()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-permissions">
+  <div class="modal perm-modal">
+    <div class="modal-title" id="perm-modal-staff-name">Staff Permissions</div>
+    <input type="hidden" id="perm-staff-id"/>
+
+    <!-- Preset buttons -->
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-400);margin-bottom:8px">Quick Set Role</div>
+    <div class="perm-preset-row" id="perm-presets"></div>
+
+    <!-- Permission toggles grouped by category -->
+    <div id="perm-groups"></div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-permissions')">Cancel</button>
+      <button class="btn btn-primary" onclick="savePermissions()">Save Permissions</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-add-rest-staff">
+  <div class="modal">
+    <div class="modal-title">Add Restaurant Staff</div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Full Name</label><input class="form-input" type="text" id="new-rest-name" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Position</label>
+      <select class="form-select" id="new-rest-pos" style="width:100%">
+        <option>Bartender</option><option>Hostess</option><option>Waiter</option><option>Kitchen</option>
+      </select>
+    </div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">PIN</label><input class="form-input" type="text" id="new-rest-pin" placeholder="1234" style="width:100%"/></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-add-rest-staff')">Cancel</button>
+      <button class="btn btn-primary" onclick="addRestStaff()">Add Staff</button>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" id="modal-edit-rest-staff">
+  <div class="modal">
+    <div class="modal-title">Edit Restaurant Staff</div>
+    <input type="hidden" id="edit-rest-id"/>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Full Name</label><input class="form-input" type="text" id="edit-rest-name" style="width:100%"/></div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">Position</label>
+      <select class="form-select" id="edit-rest-pos" style="width:100%">
+        <option>Bartender</option><option>Hostess</option><option>Waiter</option><option>Kitchen</option>
+      </select>
+    </div>
+    <div class="form-group" style="margin-bottom:12px"><label class="form-label">PIN</label><input class="form-input" type="text" id="edit-rest-pin" style="width:100%"/></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-edit-rest-staff')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEditRestStaff()">Save Changes</button>
     </div>
   </div>
 </div>
@@ -1083,11 +1428,100 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 <script>
 const ADMIN_PASS='Theside123';
 const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const POSITIONS=['Golf Shop','Outside Lead','Cart Attendant','Range Attendant'];
+const GOLF_POSITIONS=['Golf Shop','Outside Lead','Cart Attendant','Range Attendant'];
+const REST_POSITIONS=['Bartender','Hostess','Waiter','Kitchen'];
+const POSITIONS=GOLF_POSITIONS; // default for backward compat
 const TIER_HIGH=['Golf Shop','Outside Lead'];
 
-function posColor(p){return{'Golf Shop':'#c47a3a','Outside Lead':'#2d7a3a','Cart Attendant':'#2a6b9e','Range Attendant':'#7a4a9e'}[p]||'#888';}
-function posBg(p){return{'Golf Shop':'#fdf0e4','Outside Lead':'#e4f5e7','Cart Attendant':'#e4f0fb','Range Attendant':'#f0e8fb'}[p]||'#f5f5f5';}
+// Permission flags — split into Golf side and Restaurant side
+const PERM_KEYS=[
+  // Always on (locked)
+  {key:'viewSchedule',          label:'View My Schedule',                       group:'My Portal',      side:'both'},
+  {key:'submitRTO',             label:'Submit Time Off & Blocks',                group:'My Portal',      side:'both'},
+  {key:'tradePicking',          label:'Shift Trading',                           group:'My Portal',      side:'both'},
+  // Golf side
+  {key:'golfApprovePickups',    label:'Approve Shift Pickup Requests',           group:'⛳ Golf',         side:'golf'},
+  {key:'golfScheduleBuilder',   label:'Schedule Builder',                        group:'⛳ Golf',         side:'golf'},
+  {key:'golfApproveRTO',        label:'Approve / Deny Time Off Requests',        group:'⛳ Golf',         side:'golf'},
+  {key:'golfManageStaff',       label:'Manage Golf Staff & Permissions',         group:'⛳ Golf',         side:'golf'},
+  {key:'golfEventTracker',      label:'Event Tracker',                           group:'⛳ Golf',         side:'golf'},
+  {key:'golfTeeSheet',          label:'Admin Tee Sheet (approve, block, walk-ins)',group:'⛳ Golf',       side:'golf'},
+  // Restaurant side
+  {key:'restApprovePickups',    label:'Approve Shift Pickup Requests',           group:'🍽 Restaurant',   side:'restaurant'},
+  {key:'restScheduleBuilder',   label:'Schedule Builder',                        group:'🍽 Restaurant',   side:'restaurant'},
+  {key:'restApproveRTO',        label:'Approve / Deny Time Off Requests',        group:'🍽 Restaurant',   side:'restaurant'},
+  {key:'restManageStaff',       label:'Manage Restaurant Staff & Permissions',   group:'🍽 Restaurant',   side:'restaurant'},
+  {key:'restDining',            label:'Manage Dining Reservations',              group:'🍽 Restaurant',   side:'restaurant'},
+  // Administration
+  {key:'memberAdmin',           label:'Manage Member Accounts',                  group:'Administration',  side:'both'},
+  {key:'viewOverview',          label:'Overview Dashboard',                      group:'Administration',  side:'both'},
+];
+
+const PERM_PRESETS={
+  golfBasic:{
+    label:'Golf — Basic',
+    desc:'Cart, Range — schedule, time off, trading',
+    color:'var(--gray-400)',
+    side:'golf',
+    perms:{viewSchedule:true,submitRTO:true,tradePicking:true,golfApprovePickups:false,golfScheduleBuilder:false,golfApproveRTO:false,golfManageStaff:false,golfEventTracker:false,golfTeeSheet:false,restApprovePickups:false,restScheduleBuilder:false,restApproveRTO:false,restManageStaff:false,restDining:false,memberAdmin:false,viewOverview:false},
+  },
+  golfLead:{
+    label:'Golf — Lead',
+    desc:'Golf Shop, Outside Lead — adds approve pickups',
+    color:'#2a6b9e',
+    side:'golf',
+    perms:{viewSchedule:true,submitRTO:true,tradePicking:true,golfApprovePickups:true,golfScheduleBuilder:false,golfApproveRTO:false,golfManageStaff:false,golfEventTracker:false,golfTeeSheet:false,restApprovePickups:false,restScheduleBuilder:false,restApproveRTO:false,restManageStaff:false,restDining:false,memberAdmin:false,viewOverview:false},
+  },
+  golfManager:{
+    label:'Golf — Manager',
+    desc:'Head Pro — full golf control, no restaurant',
+    color:'var(--green)',
+    side:'golf',
+    perms:{viewSchedule:true,submitRTO:true,tradePicking:true,golfApprovePickups:true,golfScheduleBuilder:true,golfApproveRTO:true,golfManageStaff:true,golfEventTracker:true,golfTeeSheet:true,restApprovePickups:false,restScheduleBuilder:false,restApproveRTO:false,restManageStaff:false,restDining:false,memberAdmin:false,viewOverview:true},
+  },
+  restBasic:{
+    label:'Restaurant — Basic',
+    desc:'Waiter, Kitchen — schedule, time off, trading',
+    color:'#9e2a2a',
+    side:'restaurant',
+    perms:{viewSchedule:true,submitRTO:true,tradePicking:true,golfApprovePickups:false,golfScheduleBuilder:false,golfApproveRTO:false,golfManageStaff:false,golfEventTracker:false,golfTeeSheet:false,restApprovePickups:false,restScheduleBuilder:false,restApproveRTO:false,restManageStaff:false,restDining:false,memberAdmin:false,viewOverview:false},
+  },
+  restManager:{
+    label:'Restaurant — Manager',
+    desc:'Full restaurant control, no golf',
+    color:'#9e6b2a',
+    side:'restaurant',
+    perms:{viewSchedule:true,submitRTO:true,tradePicking:true,golfApprovePickups:false,golfScheduleBuilder:false,golfApproveRTO:false,golfManageStaff:false,golfEventTracker:false,golfTeeSheet:false,restApprovePickups:true,restScheduleBuilder:true,restApproveRTO:true,restManageStaff:true,restDining:true,memberAdmin:false,viewOverview:true},
+  },
+  fullAdmin:{
+    label:'Full Admin',
+    desc:'Everything — golf + restaurant + members',
+    color:'var(--gold-mid)',
+    side:'both',
+    perms:{viewSchedule:true,submitRTO:true,tradePicking:true,golfApprovePickups:true,golfScheduleBuilder:true,golfApproveRTO:true,golfManageStaff:true,golfEventTracker:true,golfTeeSheet:true,restApprovePickups:true,restScheduleBuilder:true,restApproveRTO:true,restManageStaff:true,restDining:true,memberAdmin:true,viewOverview:true},
+  },
+};
+
+function defaultPerms(pos,side){
+  if(side==='restaurant') return {...PERM_PRESETS.restBasic.perms};
+  if(pos==='Golf Shop'||pos==='Outside Lead') return {...PERM_PRESETS.golfLead.perms};
+  return {...PERM_PRESETS.golfBasic.perms};
+}
+
+function getPerms(staffId,isRest=false){
+  const roster=isRest?state.restaurantStaff:state.staff;
+  const s=roster.find(x=>x.id===staffId);
+  if(!s) return {...PERM_PRESETS.golfBasic.perms};
+  if(!s.permissions) s.permissions=defaultPerms(s.pos,s.side||'golf');
+  return s.permissions;
+}
+
+function staffByIdFull(id){
+  return state.staff.find(s=>s.id===id)||state.restaurantStaff.find(s=>s.id===id);
+}
+
+function posColor(p){return{'Golf Shop':'#c47a3a','Outside Lead':'#2d7a3a','Cart Attendant':'#2a6b9e','Range Attendant':'#7a4a9e','Bartender':'#9e2a2a','Hostess':'#9e6b2a','Waiter':'#2a7a6b','Kitchen':'#555555'}[p]||'#888';}
+function posBg(p){return{'Golf Shop':'#fdf0e4','Outside Lead':'#e4f5e7','Cart Attendant':'#e4f0fb','Range Attendant':'#f0e8fb','Bartender':'#fde8e8','Hostess':'#fdf3e8','Waiter':'#e8f5f2','Kitchen':'#f0f0f0'}[p]||'#f5f5f5';}
 function isHighTier(p){return TIER_HIGH.includes(p);}
 function legendHTML(){return POSITIONS.map(p=>`<div class="legend-item"><div class="legend-dot" style="background:${posBg(p)};border:1px solid ${posColor(p)}"></div>${p}</div>`).join('');}
 
@@ -1095,30 +1529,43 @@ let state={
   loginType:'member',currentUser:null,isAdmin:false,currentStaffId:null,
   weekOffset:0,tradeWeekOffset:0,activePanel:'',selectedTradeKey:null,_tradeSelected:null,
   staff:[
-    {id:1, name:'Brian Hampson',    pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false},
-    {id:2, name:'Chris Bentrovato', pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false},
-    {id:3, name:'Nick Pietrowski',  pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false},
-    {id:4, name:'Mike Hayes',       pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false},
-    {id:5, name:'Peyton Hume',      pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
-    {id:6, name:'Jojo Cozza',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
-    {id:7, name:'Joe Center',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
-    {id:8, name:'Kevin Vita',       pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
-    {id:9, name:'Pat Clyne',        pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
-    {id:10,name:'Aiden Halligan',   pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false},
-    {id:11,name:'Meg Biche',        pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
-    {id:12,name:'Ryan Arp',         pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
-    {id:13,name:'Matt Hicks',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
-    {id:14,name:'Jason Wolfgang',   pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
-    {id:15,name:'Hayden Ossias',    pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
-    {id:16,name:'Johnny Foshee',    pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
-    {id:17,name:'Shea Molitor',     pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
-    {id:18,name:'Jack Urban',       pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
-    {id:19,name:'Cece Cohn',        pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false},
-    {id:20,name:'Macy Young',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
-    {id:21,name:'Hagen Foley',      pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false},
-    {id:22,name:'Drew Killian',     pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false},
-    {id:23,name:'Robbie Heins',     pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false},
+    {id:1, name:'Brian Hampson',    pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false,side:'golf',permissions:{viewSchedule:true,submitRTO:true,tradePicking:true,golfApprovePickups:true,golfScheduleBuilder:true,golfApproveRTO:true,golfManageStaff:true,golfEventTracker:true,golfTeeSheet:true,restApprovePickups:false,restScheduleBuilder:false,restApproveRTO:false,restManageStaff:false,restDining:false,memberAdmin:false,viewOverview:true}},
+    {id:2, name:'Chris Bentrovato', pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:3, name:'Nick Pietrowski',  pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:4, name:'Mike Hayes',       pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:5, name:'Peyton Hume',      pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:6, name:'Jojo Cozza',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:7, name:'Joe Center',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:8, name:'Kevin Vita',       pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:9, name:'Pat Clyne',        pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:10,name:'Aiden Halligan',   pos:'Outside Lead',   pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:11,name:'Meg Biche',        pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:12,name:'Ryan Arp',         pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:13,name:'Matt Hicks',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:14,name:'Jason Wolfgang',   pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:15,name:'Hayden Ossias',    pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:16,name:'Johnny Foshee',    pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:17,name:'Shea Molitor',     pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:18,name:'Jack Urban',       pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:19,name:'Cece Cohn',        pos:'Range Attendant',pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:20,name:'Macy Young',       pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:21,name:'Hagen Foley',      pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:22,name:'Drew Killian',     pos:'Cart Attendant', pin:'1234',status:'Active',isAdmin:false,side:'golf'},
+    {id:23,name:'Robbie Heins',     pos:'Golf Shop',      pin:'1234',status:'Active',isAdmin:false,side:'golf'},
   ],
+  restaurantStaff:[
+    {id:101,name:'Sarah Mitchell',  pos:'Hostess',   pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:102,name:'Tom Gallagher',   pos:'Bartender', pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:103,name:'Emily Rosario',   pos:'Waiter',    pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:104,name:'James Carter',    pos:'Waiter',    pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:105,name:'Lisa Nguyen',     pos:'Waiter',    pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:106,name:'Marco DiLorenzo', pos:'Kitchen',   pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:107,name:'Amy Chen',        pos:'Kitchen',   pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:108,name:'Derek Brown',     pos:'Bartender', pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:109,name:'Rachel Evans',    pos:'Hostess',   pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+    {id:110,name:'Carlos Mendez',   pos:'Kitchen',   pin:'1234',status:'Active',side:'restaurant',isAdmin:false},
+  ],
+  restaurantStaffNextId:111,
   schedule:{},
   rtoRequests:[
     {id:1,staffId:4,staffName:'Mike Hayes',start:'2026-06-11',end:'2026-06-11',type:'Day Off',reason:'Family event',status:'approved'},
@@ -1142,6 +1589,18 @@ let state={
   ],
   eventNextId:6,
 
+  // Schedule builder template — controls auto-gen targets per position per time-of-day per day
+  // dayIndex 0=Sun,1=Mon,...,6=Sat  |  each day has morning:{} and afternoon:{}
+  scheduleTemplate:{
+    0:{morning:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+    1:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+    2:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+    3:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+    4:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+    5:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+    6:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':3,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':3,'Range Attendant':2}},
+  },
+
   // staffPrefs[staffId] = {
   //   dayPrefs: [0,0,0,0,0,0,0]  // 0=neutral, 1=preferred, -1=avoided  (Sun=0..Sat=6)
   //   maxShifts: 7,               // max shifts per week (null = no limit)
@@ -1156,16 +1615,58 @@ let state={
 
   // Member accounts (default password for ALL sample members: Member123)
   members:[
-    {id:1, name:'James Patterson', email:'jpatterson@gmail.com', password:'Member123', status:'Active'},
-    {id:2, name:'Susan Caldwell',  email:'scaldwell@gmail.com',  password:'Member123', status:'Active'},
-    {id:3, name:'Robert Chen',     email:'rchen@gmail.com',      password:'Member123', status:'Active'},
-    {id:4, name:'Linda Martinez',  email:'lmartinez@gmail.com',  password:'Member123', status:'Active'},
-    {id:5, name:'David Foster',    email:'dfoster@gmail.com',    password:'Member123', status:'Active'},
-    {id:6, name:"Karen O'Brien",   email:'kobrien@gmail.com',    password:'Member123', status:'Active'},
-    {id:7, name:'Tom Bradley',     email:'tbradley@gmail.com',   password:'Member123', status:'Active'},
-    {id:8, name:'Nancy Russo',     email:'nrusso@gmail.com',     password:'Member123', status:'Active'},
+    {id:1,  name:'James Patterson',  email:'jpatterson@gmail.com', password:'Member123', status:'Active', bagSlot:'B-4'},
+    {id:2,  name:'Susan Caldwell',   email:'scaldwell@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:3,  name:'Robert Chen',      email:'rchen@gmail.com',      password:'Member123', status:'Active', bagSlot:'A-11'},
+    {id:4,  name:'Linda Martinez',   email:'lmartinez@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:5,  name:'David Foster',     email:'dfoster@gmail.com',    password:'Member123', status:'Active', bagSlot:'C-7'},
+    {id:6,  name:"Karen O'Brien",    email:'kobrien@gmail.com',    password:'Member123', status:'Active', bagSlot:null},
+    {id:7,  name:'Tom Bradley',      email:'tbradley@gmail.com',   password:'Member123', status:'Active', bagSlot:null},
+    {id:8,  name:'Nancy Russo',      email:'nrusso@gmail.com',     password:'Member123', status:'Active', bagSlot:'D-2'},
+    {id:9,  name:'George Whitfield', email:'gwhitfield@gmail.com', password:'Member123', status:'Active', bagSlot:'A-3'},
+    {id:10, name:'Patricia Sloane',  email:'psloane@gmail.com',    password:'Member123', status:'Active', bagSlot:null},
+    {id:11, name:'Richard Donovan',  email:'rdonovan@gmail.com',   password:'Member123', status:'Active', bagSlot:'E-9'},
+    {id:12, name:'Carol Witherspoon',email:'cwitherspoon@gmail.com',password:'Member123', status:'Active', bagSlot:null},
+    {id:13, name:'Frank Battaglia',  email:'fbattaglia@gmail.com', password:'Member123', status:'Active', bagSlot:'C-2'},
+    {id:14, name:'Helen Kowalski',   email:'hkowalski@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:15, name:'Walter Crane',     email:'wcrane@gmail.com',     password:'Member123', status:'Active', bagSlot:'B-12'},
+    {id:16, name:'Dorothy Simmons',  email:'dsimmons@gmail.com',   password:'Member123', status:'Active', bagSlot:null},
+    {id:17, name:'Harold Vega',      email:'hvega@gmail.com',      password:'Member123', status:'Active', bagSlot:'D-6'},
+    {id:18, name:'Evelyn Thornton',  email:'ethornton@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:19, name:'Philip Garrett',   email:'pgarrett@gmail.com',   password:'Member123', status:'Active', bagSlot:'A-8'},
+    {id:20, name:'Ruth Pemberton',   email:'rpemberton@gmail.com', password:'Member123', status:'Active', bagSlot:null},
+    {id:21, name:'Arthur Weston',    email:'aweston@gmail.com',    password:'Member123', status:'Active', bagSlot:'E-1'},
+    {id:22, name:'Mildred Haynes',   email:'mhaynes@gmail.com',    password:'Member123', status:'Active', bagSlot:null},
+    {id:23, name:'Raymond Coulter',  email:'rcoulter@gmail.com',   password:'Member123', status:'Active', bagSlot:'B-8'},
+    {id:24, name:'Lorraine Mercer',  email:'lmercer@gmail.com',    password:'Member123', status:'Active', bagSlot:null},
+    {id:25, name:'Howard Strickland',email:'hstrickland@gmail.com',password:'Member123', status:'Active', bagSlot:'C-14'},
+    {id:26, name:'Betty Ashworth',   email:'bashworth@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:27, name:'Ernest Blackwell', email:'eblackwell@gmail.com', password:'Member123', status:'Active', bagSlot:'D-11'},
+    {id:28, name:'Shirley Langford', email:'slangford@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:29, name:'Clarence Sutton',  email:'csutton@gmail.com',    password:'Member123', status:'Active', bagSlot:'A-5'},
+    {id:30, name:'Gloria Dickson',   email:'gdickson@gmail.com',   password:'Member123', status:'Active', bagSlot:null},
+    {id:31, name:'Eugene Phelps',    email:'ephelps@gmail.com',    password:'Member123', status:'Active', bagSlot:'A-2'},
+    {id:32, name:'Frances Morrow',   email:'fmorrow@gmail.com',    password:'Member123', status:'Active', bagSlot:null},
+    {id:33, name:'Herbert Compton',  email:'hcompton@gmail.com',   password:'Member123', status:'Active', bagSlot:'B-9'},
+    {id:34, name:'Alice Fitzgerald', email:'afitzgerald@gmail.com',password:'Member123', status:'Active', bagSlot:null},
+    {id:35, name:'Clifford Napier',  email:'cnapier@gmail.com',    password:'Member123', status:'Active', bagSlot:'E-3'},
+    {id:36, name:'Edna Whitmore',    email:'ewhitmore@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:37, name:'Chester Holbrook', email:'cholbrook@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:38, name:'Beatrice Ingram',  email:'bingram@gmail.com',    password:'Member123', status:'Active', bagSlot:null},
+    {id:39, name:'Lester Calloway',  email:'lcalloway@gmail.com',  password:'Member123', status:'Active', bagSlot:'C-10'},
+    {id:40, name:'Gertrude Tanner',  email:'gtanner@gmail.com',    password:'Member123', status:'Active', bagSlot:null},
+    {id:41, name:'Alvin Sherwood',   email:'asherwood@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:42, name:'Mabel Covington',  email:'mcovington@gmail.com', password:'Member123', status:'Active', bagSlot:null},
+    {id:43, name:'Willard Dempsey',  email:'wdempsey@gmail.com',   password:'Member123', status:'Active', bagSlot:'D-15'},
+    {id:44, name:'Viola Hutchinson', email:'vhutchinson@gmail.com',password:'Member123', status:'Active', bagSlot:null},
+    {id:45, name:'Bernard Loomis',   email:'bloomis@gmail.com',    password:'Member123', status:'Active', bagSlot:null},
+    {id:46, name:'Lucille Parrish',  email:'lparrish@gmail.com',   password:'Member123', status:'Active', bagSlot:null},
+    {id:47, name:'Harvey Gleason',   email:'hgleason@gmail.com',   password:'Member123', status:'Active', bagSlot:null},
+    {id:48, name:'Pauline Stanton',  email:'pstanton@gmail.com',   password:'Member123', status:'Active', bagSlot:null},
+    {id:49, name:'Milton Prescott',  email:'mprescott@gmail.com',  password:'Member123', status:'Active', bagSlot:null},
+    {id:50, name:'Nora Gallagher',   email:'ngallagher@gmail.com', password:'Member123', status:'Active', bagSlot:null},
   ],
-  memberNextId:9,
+  memberNextId:51,
 
   // Tee time bookings — date/time/players against a 4-player-per-slot cap
   // type: 'member' | 'guest' | 'walkin'
@@ -1214,7 +1715,7 @@ function formatTime12(hhmm){
   return `${h12}:${String(m).padStart(2,'0')} ${ap}`;
 }
 // Tee times: every 15 min, 7:00 AM - 3:00 PM
-const TEE_TIMES=(()=>{const a=[];for(let h=7;h<=15;h++){for(let m=0;m<60;m+=15){if(h===15&&m>0)break;a.push(h+':'+String(m).padStart(2,'0'));}}return a;})();
+const TEE_TIMES=(()=>{const a=[];for(let h=7;h<=19;h++){for(let m=0;m<60;m+=15){if(h===19&&m>0)break;a.push(h+':'+String(m).padStart(2,'0'));}}return a;})(); // 7 AM to 7 PM
 // Dining times: every 30 min, 5:00 PM - 9:00 PM
 const DINING_TIMES=(()=>{const a=[];for(let h=17;h<=21;h++){for(let m=0;m<60;m+=30){if(h===21&&m>0)break;a.push(h+':'+String(m).padStart(2,'0'));}}return a;})();
 const MEMBER_BOOKING_WINDOW=14; // days
@@ -1225,18 +1726,18 @@ const TEE_SLOT_CAP=4;
 
 function memberById(id){return state.members.find(m=>m.id===id);}
 
-function getSlotBookings(date,time){
-  return state.teeTimeBookings.filter(b=>b.date===date&&b.time===time&&b.status!=='denied'&&b.status!=='cancelled');
+function getSlotBookings(date,time,side='front'){
+  return state.teeTimeBookings.filter(b=>b.date===date&&b.time===time&&(b.side||'front')===side&&b.status!=='denied'&&b.status!=='cancelled');
 }
-function getSlotPlayerCount(date,time){
-  return getSlotBookings(date,time).reduce((sum,b)=>sum+b.players,0);
+function getSlotPlayerCount(date,time,side='front'){
+  return getSlotBookings(date,time,side).reduce((sum,b)=>sum+b.players,0);
 }
-function isSlotBlocked(date,time){
-  return !!state.blockedTeeSlots[date+'_'+time];
+function isSlotBlocked(date,time,side='front'){
+  return !!(state.blockedTeeSlots[date+'_'+time+'_'+side]||state.blockedTeeSlots[date+'_'+time]);
 }
-function slotAvailable(date,time){
-  if(isSlotBlocked(date,time))return 0;
-  return TEE_SLOT_CAP-getSlotPlayerCount(date,time);
+function slotAvailable(date,time,side='front'){
+  if(isSlotBlocked(date,time,side))return 0;
+  return TEE_SLOT_CAP-getSlotPlayerCount(date,time,side);
 }
 function teeBookingDisplayName(b){
   if(b.type==='guest')return 'Guest: '+b.guestName.split(' ')[0]+' '+(b.guestName.split(' ')[1]||'').charAt(0)+'.';
@@ -1255,9 +1756,9 @@ function getDiningCountForDate(date){
   const t0=todayISO(), t1=addDaysISO(t0,1), t2=addDaysISO(t0,2), t3=addDaysISO(t0,3), t5=addDaysISO(t0,5);
 
   state.teeTimeBookings.push(
-    {id:1, date:t0, time:'8:00',  type:'member', memberId:1, players:2, status:'confirmed'}, // James Patterson
-    {id:2, date:t0, time:'8:00',  type:'member', memberId:2, players:2, status:'confirmed'}, // Susan Caldwell -> slot full 4/4
-    {id:3, date:t0, time:'9:00',  type:'member', memberId:3, players:4, status:'confirmed'}, // Robert Chen -> slot full
+    {id:1, date:t0, time:'8:00',  type:'member', memberId:1, players:2, status:'confirmed', side:'front'}, // James Patterson
+    {id:2, date:t0, time:'8:00',  type:'member', memberId:2, players:2, status:'confirmed', side:'front'}, // Susan Caldwell -> slot full 4/4
+    {id:3, date:t0, time:'9:00',  type:'member', memberId:3, players:4, status:'confirmed', side:'front'}, // Robert Chen -> slot full
     {id:4, date:t1, time:'10:00', type:'guest',  guestName:'Mark Wilson', guestEmail:'mark.wilson@email.com', guestPhone:'518-555-0142', players:2, status:'pending'},
     {id:5, date:t2, time:'7:30',  type:'member', memberId:4, players:1, status:'confirmed'}, // Linda Martinez
     {id:6, date:t5, time:'11:00', type:'member', memberId:5, players:3, status:'confirmed'}, // David Foster
@@ -1276,6 +1777,282 @@ function getDiningCountForDate(date){
   state.blockedTeeSlots[t1+'_12:00']='Course maintenance';
 })();
 
+// ══════════════════════════════════════════════════════════
+// COMPREHENSIVE DEMO DATA — tee times, schedules, RTO, trades
+// ══════════════════════════════════════════════════════════
+(function seedDemoData(){
+  function iso(d){const dt=new Date();dt.setDate(dt.getDate()+d);return dt.toISOString().split('T')[0];}
+  const t=iso(0),t1=iso(1),t2=iso(2),t3=iso(3),t7=iso(7),t8=iso(8),t9=iso(9);
+
+  // ── 50+ TEE TIME BOOKINGS across multiple days ──
+  const tb=[
+    // TODAY — front 9
+    {date:t,time:'7:00', side:'front',type:'member',memberId:9, players:2,status:'confirmed'},
+    {date:t,time:'7:15', side:'front',type:'member',memberId:11,players:2,status:'confirmed'},
+    {date:t,time:'7:30', side:'front',type:'member',memberId:15,players:4,status:'confirmed'},
+    {date:t,time:'8:00', side:'front',type:'member',memberId:21,players:2,status:'confirmed'},
+    {date:t,time:'8:30', side:'front',type:'guest', guestName:'Mark Wilson',guestEmail:'mwilson@email.com',guestPhone:'518-555-0101',players:2,status:'confirmed'},
+    {date:t,time:'9:00', side:'front',type:'member',memberId:25,players:4,status:'confirmed'},
+    {date:t,time:'9:30', side:'front',type:'member',memberId:27,players:2,status:'confirmed'},
+    {date:t,time:'10:00',side:'front',type:'member',memberId:17,players:3,status:'confirmed'},
+    {date:t,time:'10:30',side:'front',type:'walkin', guestName:'Walk-in Group A',players:4,status:'confirmed'},
+    {date:t,time:'11:00',side:'front',type:'member',memberId:29,players:2,status:'confirmed'},
+    {date:t,time:'12:00',side:'front',type:'member',memberId:13,players:4,status:'confirmed'},
+    {date:t,time:'13:00',side:'front',type:'member',memberId:33,players:2,status:'confirmed'},
+    {date:t,time:'14:00',side:'front',type:'walkin', guestName:'Phone-in: J. Heller',players:2,status:'confirmed'},
+    {date:t,time:'15:00',side:'front',type:'member',memberId:23,players:3,status:'confirmed'},
+    {date:t,time:'16:00',side:'front',type:'member',memberId:35,players:2,status:'confirmed'},
+    // TODAY — back 9
+    {date:t,time:'7:00', side:'back', type:'member',memberId:37,players:4,status:'confirmed'},
+    {date:t,time:'7:30', side:'back', type:'member',memberId:39,players:2,status:'confirmed'},
+    {date:t,time:'8:00', side:'back', type:'guest', guestName:'Chris Newport',guestEmail:'cnewport@email.com',guestPhone:'518-555-0303',players:1,status:'pending'},
+    {date:t,time:'9:00', side:'back', type:'member',memberId:41,players:4,status:'confirmed'},
+    {date:t,time:'10:00',side:'back', type:'member',memberId:43,players:2,status:'confirmed'},
+    {date:t,time:'11:00',side:'back', type:'walkin', guestName:'Walk-in B-9',players:2,status:'confirmed'},
+    {date:t,time:'13:00',side:'back', type:'member',memberId:45,players:4,status:'confirmed'},
+    // TOMORROW
+    {date:t1,time:'7:00', side:'front',type:'member',memberId:1, players:2,status:'confirmed'},
+    {date:t1,time:'7:30', side:'front',type:'member',memberId:3, players:4,status:'confirmed'},
+    {date:t1,time:'8:00', side:'front',type:'member',memberId:5, players:2,status:'confirmed'},
+    {date:t1,time:'8:30', side:'front',type:'member',memberId:19,players:3,status:'confirmed'},
+    {date:t1,time:'9:00', side:'front',type:'guest', guestName:'Tom Kessler',guestEmail:'tkessler@email.com',guestPhone:'518-555-0404',players:3,status:'confirmed'},
+    {date:t1,time:'9:30', side:'front',type:'member',memberId:6, players:4,status:'confirmed'},
+    {date:t1,time:'10:00',side:'front',type:'member',memberId:7, players:2,status:'confirmed'},
+    {date:t1,time:'11:00',side:'front',type:'member',memberId:47,players:4,status:'confirmed'},
+    {date:t1,time:'12:00',side:'front',type:'walkin', guestName:'M. Corrigan',players:2,status:'confirmed'},
+    {date:t1,time:'14:00',side:'front',type:'member',memberId:49,players:3,status:'confirmed'},
+    {date:t1,time:'7:15', side:'front',type:'member',memberId:31,players:2,status:'pending'},
+    {date:t1,time:'9:00', side:'back', type:'guest', guestName:'Pat Hughes',guestEmail:'phughes@email.com',guestPhone:'518-555-0505',players:2,status:'pending'},
+    {date:t1,time:'7:00', side:'back', type:'member',memberId:10,players:4,status:'confirmed'},
+    {date:t1,time:'8:00', side:'back', type:'member',memberId:12,players:2,status:'confirmed'},
+    {date:t1,time:'10:00',side:'back', type:'member',memberId:14,players:3,status:'confirmed'},
+    // DAY AFTER TOMORROW
+    {date:t2,time:'7:00', side:'front',type:'member',memberId:16,players:4,status:'confirmed'},
+    {date:t2,time:'8:00', side:'front',type:'member',memberId:18,players:2,status:'confirmed'},
+    {date:t2,time:'9:00', side:'front',type:'member',memberId:20,players:4,status:'confirmed'},
+    {date:t2,time:'10:00',side:'front',type:'member',memberId:22,players:2,status:'confirmed'},
+    {date:t2,time:'11:00',side:'front',type:'guest', guestName:'Sandra Burns',guestEmail:'sburns@email.com',guestPhone:'518-555-0606',players:3,status:'confirmed'},
+    {date:t2,time:'13:00',side:'front',type:'member',memberId:24,players:2,status:'confirmed'},
+    {date:t2,time:'8:15', side:'front',type:'member',memberId:37,players:2,status:'pending'},
+    {date:t2,time:'7:00', side:'back', type:'member',memberId:26,players:4,status:'confirmed'},
+    {date:t2,time:'9:00', side:'back', type:'member',memberId:28,players:2,status:'confirmed'},
+    // 3 DAYS OUT
+    {date:t3,time:'7:00', side:'front',type:'member',memberId:30,players:2,status:'confirmed'},
+    {date:t3,time:'8:00', side:'front',type:'member',memberId:32,players:4,status:'confirmed'},
+    {date:t3,time:'9:00', side:'back', type:'member',memberId:34,players:2,status:'confirmed'},
+    {date:t3,time:'14:00',side:'front',type:'walkin', guestName:'Evening Walk-in',players:1,status:'confirmed'},
+    {date:t3,time:'7:30', side:'front',type:'guest', guestName:'Golf Outing Group',guestEmail:'outing@company.com',guestPhone:'518-555-0707',players:4,status:'pending'},
+    // NEXT WEEK
+    {date:t7,time:'7:00', side:'front',type:'member',memberId:1, players:2,status:'confirmed'},
+    {date:t7,time:'7:00', side:'back', type:'member',memberId:9, players:4,status:'confirmed'},
+    {date:t7,time:'8:00', side:'front',type:'member',memberId:11,players:2,status:'confirmed'},
+    {date:t7,time:'9:00', side:'front',type:'member',memberId:13,players:4,status:'confirmed'},
+    {date:t7,time:'10:00',side:'back', type:'guest', guestName:'Bill Samuels',guestEmail:'bsamuels@email.com',guestPhone:'518-555-0808',players:2,status:'confirmed'},
+    {date:t8,time:'7:30', side:'front',type:'member',memberId:3, players:2,status:'confirmed'},
+    {date:t8,time:'8:30', side:'front',type:'member',memberId:5, players:4,status:'confirmed'},
+    {date:t8,time:'9:30', side:'back', type:'member',memberId:7, players:3,status:'confirmed'},
+    {date:t9,time:'7:00', side:'front',type:'member',memberId:15,players:4,status:'confirmed'},
+    {date:t9,time:'8:00', side:'front',type:'member',memberId:17,players:2,status:'confirmed'},
+  ];
+  tb.forEach(b=>state.teeTimeBookings.push({id:state.teeNextId++,...b}));
+
+  // ── DINING RESERVATIONS ──
+  const dr=[
+    {date:t,  time:'18:00',name:'James Patterson',  partySize:4,notes:'Anniversary',memberId:1, status:'confirmed'},
+    {date:t,  time:'18:30',name:'Robert Chen Party', partySize:2,notes:'',memberId:3, status:'confirmed'},
+    {date:t,  time:'19:00',name:'The Caldwell Table',partySize:6,notes:'Birthday',memberId:2, status:'confirmed'},
+    {date:t,  time:'19:00',name:'Whitfield Group',   partySize:3,notes:'',memberId:9, status:'confirmed'},
+    {date:t,  time:'19:30',name:'Martinez Family',   partySize:5,notes:'',memberId:4, status:'confirmed'},
+    {date:t,  time:'20:00',name:'Foster Party',      partySize:4,notes:'Golf outing dinner',memberId:5, status:'confirmed'},
+    {date:t,  time:'20:00',name:'Phone-in: Thompson',partySize:3,notes:'Call-in',memberId:null,status:'confirmed'},
+    {date:t1, time:'17:30',name:"O'Brien Table",     partySize:2,notes:'Early dinner',memberId:6, status:'confirmed'},
+    {date:t1, time:'18:00',name:'Bradley Group',     partySize:7,notes:'Retirement party',memberId:7, status:'confirmed'},
+    {date:t1, time:'18:30',name:'Russo Party',       partySize:4,notes:'',memberId:8, status:'confirmed'},
+    {date:t1, time:'19:00',name:'Donovan Table',     partySize:2,notes:'',memberId:11,status:'confirmed'},
+    {date:t1, time:'19:30',name:'Weston Group',      partySize:6,notes:'Company dinner',memberId:21,status:'confirmed'},
+    {date:t2, time:'18:00',name:'Chen Family',       partySize:3,notes:'',memberId:3, status:'confirmed'},
+    {date:t2, time:'19:00',name:'Strickland Group',  partySize:5,notes:'',memberId:25,status:'confirmed'},
+    {date:t2, time:'20:00',name:'Garrett Party',     partySize:2,notes:'',memberId:19,status:'confirmed'},
+    {date:t3, time:'18:00',name:'Vega Table',        partySize:4,notes:'',memberId:17,status:'confirmed'},
+    {date:t3, time:'19:30',name:'Pemberton Anniversary',partySize:6,notes:'Special occasion',memberId:20,status:'confirmed'},
+  ];
+  dr.forEach(r=>state.diningReservations.push({id:state.diningNextId++,...r}));
+
+  // ── 2 WEEKS OF GOLF STAFF SCHEDULE ──
+  const sched={
+    // Brian (1) Golf Shop Mon-Sat both weeks
+    '0_1_1':{time:'8-4',pos:'Golf Shop'},'0_1_2':{time:'8-4',pos:'Golf Shop'},'0_1_3':{time:'8-4',pos:'Golf Shop'},
+    '0_1_4':{time:'8-4',pos:'Golf Shop'},'0_1_5':{time:'8-4',pos:'Golf Shop'},'0_1_6':{time:'7-3',pos:'Golf Shop'},
+    '1_1_1':{time:'8-4',pos:'Golf Shop'},'1_1_2':{time:'8-4',pos:'Golf Shop'},'1_1_3':{time:'8-4',pos:'Golf Shop'},
+    '1_1_4':{time:'8-4',pos:'Golf Shop'},'1_1_5':{time:'8-4',pos:'Golf Shop'},'1_1_6':{time:'7-3',pos:'Golf Shop'},
+    // Chris (2) Golf Shop Tue-Sat
+    '0_2_2':{time:'9-5',pos:'Golf Shop'},'0_2_3':{time:'9-5',pos:'Golf Shop'},'0_2_4':{time:'9-5',pos:'Golf Shop'},
+    '0_2_5':{time:'9-5',pos:'Golf Shop'},'0_2_6':{time:'8-4',pos:'Golf Shop'},
+    '1_2_2':{time:'9-5',pos:'Golf Shop'},'1_2_3':{time:'9-5',pos:'Golf Shop'},'1_2_4':{time:'9-5',pos:'Golf Shop'},
+    '1_2_5':{time:'9-5',pos:'Golf Shop'},'1_2_6':{time:'8-4',pos:'Golf Shop'},
+    // Nick (3) Outside Lead Mon-Fri+Sat
+    '0_3_1':{time:'6-2',pos:'Outside Lead'},'0_3_2':{time:'6-2',pos:'Outside Lead'},'0_3_3':{time:'6-2',pos:'Outside Lead'},
+    '0_3_5':{time:'6-2',pos:'Outside Lead'},'0_3_6':{time:'6-2',pos:'Outside Lead'},
+    '1_3_1':{time:'6-2',pos:'Outside Lead'},'1_3_2':{time:'6-2',pos:'Outside Lead'},'1_3_4':{time:'6-2',pos:'Outside Lead'},
+    '1_3_5':{time:'6-2',pos:'Outside Lead'},'1_3_6':{time:'6-2',pos:'Outside Lead'},
+    // Mike (4) Outside Lead alternating
+    '0_4_0':{time:'7-3',pos:'Outside Lead'},'0_4_1':{time:'7-3',pos:'Outside Lead'},
+    '0_4_3':{time:'7-3',pos:'Outside Lead'},'0_4_5':{time:'7-3',pos:'Outside Lead'},'0_4_6':{time:'7-3',pos:'Outside Lead'},
+    '1_4_0':{time:'7-3',pos:'Outside Lead'},'1_4_2':{time:'7-3',pos:'Outside Lead'},
+    '1_4_3':{time:'7-3',pos:'Outside Lead'},'1_4_5':{time:'7-3',pos:'Outside Lead'},'1_4_6':{time:'7-3',pos:'Outside Lead'},
+    // Aiden (10) Outside Lead weekends+mid
+    '0_10_0':{time:'7-3',pos:'Outside Lead'},'0_10_2':{time:'7-3',pos:'Outside Lead'},
+    '0_10_4':{time:'7-3',pos:'Outside Lead'},'0_10_6':{time:'7-3',pos:'Outside Lead'},
+    '1_10_0':{time:'7-3',pos:'Outside Lead'},'1_10_1':{time:'7-3',pos:'Outside Lead'},
+    '1_10_3':{time:'7-3',pos:'Outside Lead'},'1_10_6':{time:'7-3',pos:'Outside Lead'},
+    // Peyton (5) Cart Mon/Tue/Wed/Sat both weeks
+    '0_5_1':{time:'7-3',pos:'Cart Attendant'},'0_5_2':{time:'7-3',pos:'Cart Attendant'},
+    '0_5_3':{time:'7-3',pos:'Cart Attendant'},'0_5_6':{time:'7-3',pos:'Cart Attendant'},
+    '1_5_0':{time:'7-3',pos:'Cart Attendant'},'1_5_1':{time:'7-3',pos:'Cart Attendant'},
+    '1_5_4':{time:'7-3',pos:'Cart Attendant'},'1_5_6':{time:'7-3',pos:'Cart Attendant'},
+    // Jojo (6) Cart W/Th/F/Sa/Su
+    '0_6_0':{time:'8-4',pos:'Cart Attendant'},'0_6_3':{time:'8-4',pos:'Cart Attendant'},
+    '0_6_4':{time:'8-4',pos:'Cart Attendant'},'0_6_5':{time:'8-4',pos:'Cart Attendant'},'0_6_6':{time:'8-4',pos:'Cart Attendant'},
+    '1_6_2':{time:'8-4',pos:'Cart Attendant'},'1_6_3':{time:'8-4',pos:'Cart Attendant'},
+    '1_6_5':{time:'8-4',pos:'Cart Attendant'},'1_6_6':{time:'8-4',pos:'Cart Attendant'},
+    // Joe (7) Cart M/F/Sa/Su
+    '0_7_0':{time:'10-CLOSE',pos:'Cart Attendant'},'0_7_1':{time:'10-CLOSE',pos:'Cart Attendant'},
+    '0_7_5':{time:'10-CLOSE',pos:'Cart Attendant'},'0_7_6':{time:'10-CLOSE',pos:'Cart Attendant'},
+    '1_7_0':{time:'10-CLOSE',pos:'Cart Attendant'},'1_7_3':{time:'10-CLOSE',pos:'Cart Attendant'},
+    '1_7_5':{time:'10-CLOSE',pos:'Cart Attendant'},'1_7_6':{time:'10-CLOSE',pos:'Cart Attendant'},
+    // Kevin (8) Range Tue/Thu/Sat — has MWF block
+    '0_8_2':{time:'10-4',pos:'Range Attendant'},'0_8_4':{time:'10-4',pos:'Range Attendant'},'0_8_6':{time:'9-3',pos:'Range Attendant'},
+    '1_8_1':{time:'10-4',pos:'Range Attendant'},'1_8_3':{time:'10-4',pos:'Range Attendant'},'1_8_6':{time:'9-3',pos:'Range Attendant'},
+    // Pat (9) Range M/W/F/Su — Fri all-day block so only Sun+Mon+Wed
+    '0_9_0':{time:'9-3',pos:'Range Attendant'},'0_9_1':{time:'9-3',pos:'Range Attendant'},'0_9_3':{time:'9-3',pos:'Range Attendant'},
+    '1_9_0':{time:'9-3',pos:'Range Attendant'},'1_9_2':{time:'9-3',pos:'Range Attendant'},'1_9_6':{time:'9-3',pos:'Range Attendant'},
+    // Meg (11) Cart M/Tu/Th/Sat
+    '0_11_1':{time:'7-3',pos:'Cart Attendant'},'0_11_2':{time:'7-3',pos:'Cart Attendant'},
+    '0_11_4':{time:'7-3',pos:'Cart Attendant'},'0_11_6':{time:'7-3',pos:'Cart Attendant'},
+    '1_11_0':{time:'7-3',pos:'Cart Attendant'},'1_11_2':{time:'7-3',pos:'Cart Attendant'},
+    '1_11_5':{time:'7-3',pos:'Cart Attendant'},'1_11_6':{time:'7-3',pos:'Cart Attendant'},
+    // Ryan Arp (12) Range W/Sa/Su
+    '0_12_0':{time:'10-4',pos:'Range Attendant'},'0_12_3':{time:'10-4',pos:'Range Attendant'},'0_12_6':{time:'9-3',pos:'Range Attendant'},
+    '1_12_0':{time:'10-4',pos:'Range Attendant'},'1_12_2':{time:'10-4',pos:'Range Attendant'},'1_12_5':{time:'10-4',pos:'Range Attendant'},
+    // Matt (13) Cart M/W/F/Sa — Mon morning block
+    '0_13_1':{time:'11-CLOSE',pos:'Cart Attendant'},'0_13_3':{time:'11-CLOSE',pos:'Cart Attendant'},
+    '0_13_5':{time:'11-CLOSE',pos:'Cart Attendant'},'0_13_6':{time:'11-CLOSE',pos:'Cart Attendant'},
+    '1_13_1':{time:'11-CLOSE',pos:'Cart Attendant'},'1_13_2':{time:'11-CLOSE',pos:'Cart Attendant'},
+    '1_13_5':{time:'11-CLOSE',pos:'Cart Attendant'},'1_13_6':{time:'11-CLOSE',pos:'Cart Attendant'},
+    // Jason (14) Range Tu/Th/Su — Sun all-day block so Tu/Th only
+    '0_14_2':{time:'10-4',pos:'Range Attendant'},'0_14_4':{time:'10-4',pos:'Range Attendant'},
+    '1_14_1':{time:'10-4',pos:'Range Attendant'},'1_14_3':{time:'10-4',pos:'Range Attendant'},'1_14_5':{time:'10-4',pos:'Range Attendant'},
+    // Hayden (15) Cart M/Th/F/Su
+    '0_15_0':{time:'7-3',pos:'Cart Attendant'},'0_15_1':{time:'7-3',pos:'Cart Attendant'},
+    '0_15_4':{time:'7-3',pos:'Cart Attendant'},'0_15_5':{time:'7-3',pos:'Cart Attendant'},
+    '1_15_0':{time:'7-3',pos:'Cart Attendant'},'1_15_2':{time:'7-3',pos:'Cart Attendant'},
+    '1_15_4':{time:'7-3',pos:'Cart Attendant'},'1_15_6':{time:'7-3',pos:'Cart Attendant'},
+    // Johnny (16) Range M/W/Sa
+    '0_16_1':{time:'9-3',pos:'Range Attendant'},'0_16_3':{time:'9-3',pos:'Range Attendant'},'0_16_6':{time:'9-3',pos:'Range Attendant'},
+    '1_16_1':{time:'9-3',pos:'Range Attendant'},'1_16_4':{time:'9-3',pos:'Range Attendant'},'1_16_6':{time:'9-3',pos:'Range Attendant'},
+    // Shea (17) Range Tu/Th/Sa/Su
+    '0_17_0':{time:'10-4',pos:'Range Attendant'},'0_17_2':{time:'10-4',pos:'Range Attendant'},
+    '0_17_4':{time:'10-4',pos:'Range Attendant'},'0_17_6':{time:'9-3',pos:'Range Attendant'},
+    '1_17_0':{time:'10-4',pos:'Range Attendant'},'1_17_3':{time:'10-4',pos:'Range Attendant'},
+    '1_17_5':{time:'10-4',pos:'Range Attendant'},'1_17_6':{time:'9-3',pos:'Range Attendant'},
+    // Jack (18) Range M/F/Sa
+    '0_18_1':{time:'10-4',pos:'Range Attendant'},'0_18_5':{time:'10-4',pos:'Range Attendant'},'0_18_6':{time:'9-3',pos:'Range Attendant'},
+    '1_18_2':{time:'10-4',pos:'Range Attendant'},'1_18_4':{time:'10-4',pos:'Range Attendant'},'1_18_6':{time:'9-3',pos:'Range Attendant'},
+    // Cece (19) Range W/Th/Su
+    '0_19_0':{time:'10-4',pos:'Range Attendant'},'0_19_3':{time:'10-4',pos:'Range Attendant'},'0_19_4':{time:'10-4',pos:'Range Attendant'},
+    '1_19_1':{time:'10-4',pos:'Range Attendant'},'1_19_3':{time:'10-4',pos:'Range Attendant'},'1_19_5':{time:'10-4',pos:'Range Attendant'},
+    // Macy (20) Cart Tu/W/Sa/Su
+    '0_20_0':{time:'8-4',pos:'Cart Attendant'},'0_20_2':{time:'8-4',pos:'Cart Attendant'},
+    '0_20_3':{time:'8-4',pos:'Cart Attendant'},'0_20_6':{time:'8-4',pos:'Cart Attendant'},
+    '1_20_0':{time:'8-4',pos:'Cart Attendant'},'1_20_2':{time:'8-4',pos:'Cart Attendant'},
+    '1_20_4':{time:'8-4',pos:'Cart Attendant'},'1_20_6':{time:'8-4',pos:'Cart Attendant'},
+    // Hagen (21) Golf Shop M/Tu/W afternoon
+    '0_21_1':{time:'12-8',pos:'Golf Shop'},'0_21_2':{time:'12-8',pos:'Golf Shop'},'0_21_3':{time:'12-8',pos:'Golf Shop'},
+    '1_21_1':{time:'12-8',pos:'Golf Shop'},'1_21_2':{time:'12-8',pos:'Golf Shop'},'1_21_4':{time:'12-8',pos:'Golf Shop'},
+    // Drew (22) Cart Th/F/Sa/Su
+    '0_22_0':{time:'10-CLOSE',pos:'Cart Attendant'},'0_22_4':{time:'10-CLOSE',pos:'Cart Attendant'},
+    '0_22_5':{time:'10-CLOSE',pos:'Cart Attendant'},'0_22_6':{time:'10-CLOSE',pos:'Cart Attendant'},
+    '1_22_0':{time:'10-CLOSE',pos:'Cart Attendant'},'1_22_3':{time:'10-CLOSE',pos:'Cart Attendant'},
+    '1_22_5':{time:'10-CLOSE',pos:'Cart Attendant'},'1_22_6':{time:'10-CLOSE',pos:'Cart Attendant'},
+    // Robbie (23) Golf Shop F/Sa/Su
+    '0_23_0':{time:'7-3',pos:'Golf Shop'},'0_23_5':{time:'10-6',pos:'Golf Shop'},'0_23_6':{time:'10-6',pos:'Golf Shop'},
+    '1_23_0':{time:'7-3',pos:'Golf Shop'},'1_23_5':{time:'10-6',pos:'Golf Shop'},'1_23_6':{time:'10-6',pos:'Golf Shop'},
+  };
+  Object.assign(state.schedule, sched);
+
+  // ── RECURRING BLOCKS (range/cart staff — classes, second jobs) ──
+  state.recurringBlocks.push(
+    {id:200,staffId:8,staffName:'Kevin Vita',days:[1,3,5],blockType:'before',time:'13:00',reason:'Morning classes at HVCC',startDate:iso(-30),endDate:null,status:'active'},
+    {id:201,staffId:9,staffName:'Pat Clyne',days:[5],blockType:'allday',time:'',reason:'Second job — Fridays',startDate:iso(-60),endDate:null,status:'active'},
+    {id:202,staffId:12,staffName:'Ryan Arp',days:[2,4],blockType:'before',time:'14:00',reason:'SUNY Albany class 12-2pm',startDate:iso(-14),endDate:null,status:'active'},
+    {id:203,staffId:14,staffName:'Jason Wolfgang',days:[0],blockType:'allday',time:'',reason:'Family commitments — Sundays',startDate:iso(-90),endDate:null,status:'active'},
+    {id:204,staffId:13,staffName:'Matt Hicks',days:[1],blockType:'before',time:'11:00',reason:'Morning training',startDate:iso(-7),endDate:null,status:'active'},
+    {id:205,staffId:17,staffName:'Shea Molitor',days:[6],blockType:'after',time:'16:00',reason:'Evening commitments Saturdays',startDate:iso(-21),endDate:null,status:'active'},
+    {id:206,staffId:19,staffName:'Cece Cohn',days:[2],blockType:'after',time:'14:00',reason:'Nursing school — Tuesdays',startDate:iso(-10),endDate:null,status:'active'}
+  );
+  state.blockNextId=300;
+
+  // ── RTO REQUESTS ──
+  state.rtoRequests.push(
+    {id:300,staffId:8, staffName:'Kevin Vita',   start:iso(5), end:iso(7), type:'Vacation',  reason:'Family trip to Maine',        status:'pending'},
+    {id:301,staffId:9, staffName:'Pat Clyne',    start:iso(3), end:iso(3), type:'Day Off',   reason:'Doctor appointment',          status:'approved'},
+    {id:302,staffId:12,staffName:'Ryan Arp',     start:iso(8), end:iso(9), type:'Personal',  reason:'Moving to new apartment',     status:'pending'},
+    {id:303,staffId:14,staffName:'Jason Wolfgang',start:iso(4),end:iso(4), type:'Day Off',   reason:'Graduation ceremony',         status:'approved'},
+    {id:304,staffId:16,staffName:'Johnny Foshee',start:iso(6), end:iso(6), type:'Sick Day',  reason:'',                            status:'pending'},
+    {id:305,staffId:17,staffName:'Shea Molitor', start:iso(2), end:iso(2), type:'Day Off',   reason:'Doctor — can cover if needed',status:'denied'},
+    {id:306,staffId:18,staffName:'Jack Urban',   start:iso(10),end:iso(12),type:'Vacation',  reason:'Beach trip with family',      status:'pending'},
+    {id:307,staffId:19,staffName:'Cece Cohn',    start:iso(1), end:iso(1), type:'Day Off',   reason:'Exam day — Nursing school',   status:'approved'},
+    {id:308,staffId:13,staffName:'Matt Hicks',   start:iso(7), end:iso(7), type:'Day Off',   reason:'Personal day',                status:'pending'},
+    {id:309,staffId:5, staffName:'Peyton Hume',  start:iso(14),end:iso(16),type:'Vacation',  reason:'Family vacation — beach',     status:'pending'}
+  );
+  state.rtoNextId=400;
+
+  // ── SHIFT TRADES (range/cart staff posting drops) ──
+  state.trades.push(
+    {id:200,staffId:8, staffName:'Kevin Vita',    date:iso(6),shift:'10-4',     pos:'Range Attendant',postedByTier:'low',status:'open'},
+    {id:201,staffId:9, staffName:'Pat Clyne',     date:iso(4),shift:'9-3',      pos:'Range Attendant',postedByTier:'low',status:'pickup_pending'},
+    {id:202,staffId:12,staffName:'Ryan Arp',      date:iso(5),shift:'10-4',     pos:'Range Attendant',postedByTier:'low',status:'open'},
+    {id:203,staffId:13,staffName:'Matt Hicks',    date:iso(3),shift:'11-CLOSE', pos:'Cart Attendant', postedByTier:'low',status:'taken'},
+    {id:204,staffId:17,staffName:'Shea Molitor',  date:iso(9),shift:'10-4',     pos:'Range Attendant',postedByTier:'low',status:'open'},
+    {id:205,staffId:19,staffName:'Cece Cohn',     date:iso(5),shift:'10-4',     pos:'Range Attendant',postedByTier:'low',status:'open'},
+    {id:206,staffId:11,staffName:'Meg Biche',     date:iso(6),shift:'7-3',      pos:'Cart Attendant', postedByTier:'low',status:'open'},
+    {id:207,staffId:15,staffName:'Hayden Ossias', date:iso(8),shift:'7-3',      pos:'Cart Attendant', postedByTier:'low',status:'open'},
+    {id:208,staffId:20,staffName:'Macy Young',    date:iso(7),shift:'8-4',      pos:'Cart Attendant', postedByTier:'low',status:'open'}
+  );
+  state.tradeNextId=300;
+
+  // ── PICKUP REQUESTS (one pending, one already approved) ──
+  state.pickupRequests.push(
+    {id:200,tradeId:201,requestorId:16,requestorName:'Johnny Foshee',originalStaffId:9,originalStaffName:'Pat Clyne',date:iso(4),shift:'9-3',pos:'Range Attendant',status:'pending'},
+    {id:201,tradeId:203,requestorId:14,requestorName:'Jason Wolfgang',originalStaffId:13,originalStaffName:'Matt Hicks',date:iso(3),shift:'11-CLOSE',pos:'Cart Attendant',status:'approved'}
+  );
+  state.pickupNextId=300;
+
+  // ── RESTAURANT SCHEDULE — Week 0 ──
+  const rSched={
+    'r0_101_1':{time:'5-CLOSE',pos:'Hostess'},'r0_101_5':{time:'5-CLOSE',pos:'Hostess'},'r0_101_6':{time:'5-CLOSE',pos:'Hostess'},
+    'r0_102_2':{time:'4-CLOSE',pos:'Bartender'},'r0_102_3':{time:'4-CLOSE',pos:'Bartender'},'r0_102_5':{time:'4-CLOSE',pos:'Bartender'},'r0_102_6':{time:'4-CLOSE',pos:'Bartender'},
+    'r0_103_1':{time:'5-CLOSE',pos:'Waiter'},'r0_103_3':{time:'5-CLOSE',pos:'Waiter'},'r0_103_5':{time:'5-CLOSE',pos:'Waiter'},'r0_103_6':{time:'5-CLOSE',pos:'Waiter'},
+    'r0_104_2':{time:'5-CLOSE',pos:'Waiter'},'r0_104_4':{time:'5-CLOSE',pos:'Waiter'},'r0_104_6':{time:'5-CLOSE',pos:'Waiter'},
+    'r0_105_1':{time:'5-CLOSE',pos:'Waiter'},'r0_105_2':{time:'5-CLOSE',pos:'Waiter'},'r0_105_5':{time:'5-CLOSE',pos:'Waiter'},
+    'r0_106_3':{time:'3-CLOSE',pos:'Kitchen'},'r0_106_4':{time:'3-CLOSE',pos:'Kitchen'},'r0_106_5':{time:'3-CLOSE',pos:'Kitchen'},'r0_106_6':{time:'3-CLOSE',pos:'Kitchen'},
+    'r0_107_1':{time:'3-CLOSE',pos:'Kitchen'},'r0_107_2':{time:'3-CLOSE',pos:'Kitchen'},'r0_107_4':{time:'3-CLOSE',pos:'Kitchen'},
+    'r0_108_1':{time:'4-CLOSE',pos:'Bartender'},'r0_108_2':{time:'4-CLOSE',pos:'Bartender'},'r0_108_4':{time:'4-CLOSE',pos:'Bartender'},
+    'r0_109_3':{time:'5-CLOSE',pos:'Hostess'},'r0_109_4':{time:'5-CLOSE',pos:'Hostess'},'r0_109_6':{time:'5-CLOSE',pos:'Hostess'},
+    'r0_110_1':{time:'3-CLOSE',pos:'Kitchen'},'r0_110_3':{time:'3-CLOSE',pos:'Kitchen'},'r0_110_5':{time:'3-CLOSE',pos:'Kitchen'},
+    'r1_101_1':{time:'5-CLOSE',pos:'Hostess'},'r1_101_4':{time:'5-CLOSE',pos:'Hostess'},'r1_101_6':{time:'5-CLOSE',pos:'Hostess'},
+    'r1_102_2':{time:'4-CLOSE',pos:'Bartender'},'r1_102_4':{time:'4-CLOSE',pos:'Bartender'},'r1_102_5':{time:'4-CLOSE',pos:'Bartender'},'r1_102_6':{time:'4-CLOSE',pos:'Bartender'},
+    'r1_103_1':{time:'5-CLOSE',pos:'Waiter'},'r1_103_2':{time:'5-CLOSE',pos:'Waiter'},'r1_103_6':{time:'5-CLOSE',pos:'Waiter'},
+    'r1_104_3':{time:'5-CLOSE',pos:'Waiter'},'r1_104_5':{time:'5-CLOSE',pos:'Waiter'},'r1_104_6':{time:'5-CLOSE',pos:'Waiter'},
+    'r1_106_2':{time:'3-CLOSE',pos:'Kitchen'},'r1_106_4':{time:'3-CLOSE',pos:'Kitchen'},'r1_106_5':{time:'3-CLOSE',pos:'Kitchen'},'r1_106_6':{time:'3-CLOSE',pos:'Kitchen'},
+    'r1_107_1':{time:'3-CLOSE',pos:'Kitchen'},'r1_107_3':{time:'3-CLOSE',pos:'Kitchen'},'r1_107_5':{time:'3-CLOSE',pos:'Kitchen'},
+    'r1_108_1':{time:'4-CLOSE',pos:'Bartender'},'r1_108_3':{time:'4-CLOSE',pos:'Bartender'},'r1_108_5':{time:'4-CLOSE',pos:'Bartender'},
+    'r1_109_2':{time:'5-CLOSE',pos:'Hostess'},'r1_109_5':{time:'5-CLOSE',pos:'Hostess'},'r1_109_6':{time:'5-CLOSE',pos:'Hostess'},
+    'r1_110_1':{time:'3-CLOSE',pos:'Kitchen'},'r1_110_4':{time:'3-CLOSE',pos:'Kitchen'},'r1_110_6':{time:'3-CLOSE',pos:'Kitchen'},
+  };
+  Object.assign(state.schedule, rSched);
+})();
+
 
 // ── UTILS ──
 function getWeekStart(wo){const t=new Date(),s=new Date(t);s.setDate(t.getDate()-t.getDay()+wo*7);s.setHours(0,0,0,0);return s;}
@@ -1283,7 +2060,7 @@ function formatDate(d){return d.toLocaleDateString('en-US',{month:'short',day:'n
 function formatISO(d){return d.toISOString().split('T')[0];}
 function getWeekDates(wo){const s=getWeekStart(wo);return Array.from({length:7},(_,i)=>{const d=new Date(s);d.setDate(s.getDate()+i);return d;});}
 function staffById(id){return state.staff.find(s=>s.id===id);}
-function myStaff(){return staffById(state.currentStaffId);}
+function myStaff(){return staffById(state.currentStaffId)||state.restaurantStaff?.find(s=>s.id===state.currentStaffId);}
 function hasRTO(sid,iso){return state.rtoRequests.some(r=>r.staffId===sid&&r.status!=='denied'&&r.start<=iso&&r.end>=iso);}
 
 function timeToMin(hhmm){if(!hhmm)return 0;const[h,m]=hhmm.split(':').map(Number);return h*60+(m||0);}
@@ -1378,58 +2155,120 @@ function formatTimeDisplay(hhmm){
 
 // ── LOGIN ──
 function populateStaffDropdown(){
-  const sel=document.getElementById('staff-name-select');
-  sel.innerHTML='<option value="">-- Select your name --</option>';
-  [...state.staff].filter(s=>s.status==='Active').sort((a,b)=>a.name.localeCompare(b.name)).forEach(s=>sel.innerHTML+=`<option value="${s.id}">${s.name}</option>`);
+  // Legacy stub — individual dropdowns are now used
+  populateGolfDropdown();
+  populateRestDropdown();
 }
+function populateGolfDropdown(){
+  const sel=document.getElementById('golf-staff-select');
+  if(!sel)return;
+  sel.innerHTML='<option value="">-- Select your name --</option>';
+  [...state.staff].filter(s=>s.status==='Active').sort((a,b)=>a.name.localeCompare(b.name))
+    .forEach(s=>sel.innerHTML+=`<option value="${s.id}">${s.name}</option>`);
+}
+function populateRestDropdown(){
+  const sel=document.getElementById('rest-staff-select');
+  if(!sel)return;
+  sel.innerHTML='<option value="">-- Select your name --</option>';
+  [...(state.restaurantStaff||[])].filter(s=>s.status==='Active').sort((a,b)=>a.name.localeCompare(b.name))
+    .forEach(s=>sel.innerHTML+=`<option value="${s.id}">${s.name}</option>`);
+}
+function switchLoginView(view){
+  // Switch the login panel between member view and staff/admin view
+  document.getElementById('lv-member').style.display = view==='member' ? '' : 'none';
+  document.getElementById('lv-staff').style.display  = view==='staff'  ? '' : 'none';
+  document.getElementById('login-error').style.display='none';
+  const errStaff = document.getElementById('login-error-staff');
+  if(errStaff) errStaff.style.display='none';
+  if(view==='staff'){
+    setLoginType('golf'); // default to golf tab when opening staff view
+  } else {
+    state.loginType='member';
+  }
+}
+
 function setLoginType(t){
   state.loginType=t;
-  // Staff login panel tabs
-  document.querySelectorAll('.staff-login-tab').forEach((el,i)=>el.classList.toggle('active',(i===0&&t==='staff')||(i===1&&t==='admin')));
-  // Show the right fields
-  document.getElementById('member-login-fields').style.display = t==='member'?'':'none';
-  document.getElementById('staff-login-fields').style.display  = t==='staff'?'':'none';
-  document.getElementById('admin-login-fields').style.display  = t==='admin'?'':'none';
-  document.getElementById('login-error').style.display='none';
-  if(t==='staff') populateStaffDropdown();
+  // Segment button active states
+  ['golf','restaurant','admin'].forEach(s=>{
+    const btn=document.getElementById('seg-'+s);
+    if(btn) btn.classList.toggle('active', s===t);
+  });
+  // Show/hide field groups
+  const gf=document.getElementById('golf-login-fields');
+  const rf=document.getElementById('restaurant-login-fields');
+  const af=document.getElementById('admin-login-fields');
+  if(gf) gf.style.display = t==='golf'        ? '' : 'none';
+  if(rf) rf.style.display = t==='restaurant'   ? '' : 'none';
+  if(af) af.style.display = t==='admin'        ? '' : 'none';
+  // Clear errors
+  const errEl=document.getElementById('login-error-staff');
+  if(errEl) errEl.style.display='none';
+  // Populate dropdowns
+  if(t==='golf')        populateGolfDropdown();
+  if(t==='restaurant')  populateRestDropdown();
 }
 
 function toggleStaffPanel(){
-  const panel=document.getElementById('staff-login-panel');
-  const isOpen=panel.classList.toggle('open');
-  if(isOpen){
-    setLoginType('staff'); // Show staff fields when panel opens
-  } else {
-    setLoginType('member'); // Revert to member login when panel closes
-  }
+  // Legacy — now calls switchLoginView
+  switchLoginView('staff');
 }
 function pinNext(el,n){if(el.value&&n<4)document.getElementById('pin'+n).focus();}
 function pinBack(e,n){if(e.key==='Backspace'&&!e.target.value)document.getElementById('pin'+n).focus();}
-function getPin(){return['pin0','pin1','pin2','pin3'].map(id=>document.getElementById(id).value).join('');}
-function clearPins(){['pin0','pin1','pin2','pin3'].forEach(id=>document.getElementById(id).value='');}
+function getPin(){return getPinFor('');}
+function clearPins(){clearPinsFor('');}
+
+function getPinFor(suffix=''){
+  return ['pin0','pin1','pin2','pin3'].map(id=>document.getElementById(id+(suffix||''))?.value||'').join('');
+}
+function clearPinsFor(suffix=''){
+  ['pin0','pin1','pin2','pin3'].forEach(id=>{const el=document.getElementById(id+(suffix||''));if(el)el.value='';});
+}
 
 function doLogin(){
-  const err=document.getElementById('login-error');
+  const memberErr=document.getElementById('login-error');
+  const staffErr=document.getElementById('login-error-staff')||memberErr;
+  if(memberErr) memberErr.style.display='none';
+  if(staffErr)  staffErr.style.display='none';
   state.isMember=false;state.currentMemberId=null;
+
   if(state.loginType==='admin'){
-    if(document.getElementById('admin-pass-input').value!==ADMIN_PASS){err.style.display='block';return;}
+    if(document.getElementById('admin-pass-input').value!==ADMIN_PASS){
+      staffErr.textContent='Incorrect admin password.';staffErr.style.display='block';return;
+    }
     state.isAdmin=true;state.currentUser='Admin';state.currentStaffId=null;
-  }else if(state.loginType==='member'){
+    state.adminSection='overview';
+  } else if(state.loginType==='member'){
     const email=document.getElementById('member-email-input').value.trim().toLowerCase();
     const pass=document.getElementById('member-pass-input').value;
     const m=state.members.find(x=>x.email.toLowerCase()===email);
-    if(!m||pass!==m.password||m.status!=='Active'){err.textContent='Incorrect email or password.';err.style.display='block';return;}
+    if(!m||pass!==m.password||m.status!=='Active'){
+      memberErr.textContent='Incorrect email or password.';memberErr.style.display='block';return;
+    }
     state.isAdmin=false;state.isMember=true;state.currentUser=m.name;state.currentMemberId=m.id;state.currentStaffId=null;
     state.adminSection='staff';
-  }else{
-    const sid=parseInt(document.getElementById('staff-name-select').value),pin=getPin();
-    if(!sid){err.textContent='Please select your name.';err.style.display='block';return;}
+  } else if(state.loginType==='golf'){
+    const sid=parseInt(document.getElementById('golf-staff-select')?.value||'0');
+    const pin=getPinFor('');
+    if(!sid){staffErr.textContent='Please select your name.';staffErr.style.display='block';return;}
     const s=staffById(sid);
-    if(!s||pin!==s.pin){err.textContent='Incorrect PIN.';err.style.display='block';clearPins();return;}
+    if(!s||pin!==s.pin){staffErr.textContent='Incorrect PIN.';staffErr.style.display='block';clearPinsFor('');return;}
+    state.isAdmin=s.isAdmin===true;state.currentUser=s.name;state.currentStaffId=s.id;
+    state.adminSection=s.isAdmin?'overview':'staff';
+  } else if(state.loginType==='restaurant'){
+    const sid=parseInt(document.getElementById('rest-staff-select')?.value||'0');
+    const pin=getPinFor('r');
+    if(!sid){staffErr.textContent='Please select your name.';staffErr.style.display='block';return;}
+    const s=state.restaurantStaff.find(x=>x.id===sid);
+    if(!s||pin!==s.pin){staffErr.textContent='Incorrect PIN.';staffErr.style.display='block';clearPinsFor('r');return;}
     state.isAdmin=s.isAdmin===true;state.currentUser=s.name;state.currentStaffId=s.id;
     state.adminSection='staff';
+  } else {
+    memberErr.textContent='Please select a login type.';memberErr.style.display='block';return;
   }
-  err.style.display='none';
+  // Clear any error messages on successful login
+  if(memberErr) memberErr.style.display='none';
+  if(staffErr)  staffErr.style.display='none';
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app').style.display='block';
   const roleLabel = state.isAdmin?' (Admin)':state.isMember?' (Member)':'';
@@ -1442,11 +2281,9 @@ function doLogout(){
   document.getElementById('admin-pass-input').value='';
   document.getElementById('member-email-input').value='';
   document.getElementById('member-pass-input').value='';
-  clearPins();
-  // Close staff panel, reset to member mode
-  document.getElementById('staff-login-panel').classList.remove('open');
+  clearPins();clearPinsFor('r');
   state.isAdmin=false;state.isMember=false;state.currentUser=null;state.currentStaffId=null;state.currentMemberId=null;
-  setLoginType('member');
+  switchLoginView('member');
 }
 
 // ── GUEST SCREEN TOGGLE ──
@@ -1459,7 +2296,7 @@ function hideGuestScreen(){
   document.getElementById('guest-screen').style.display='none';
   document.getElementById('login-screen').style.display='flex';
 }
-setLoginType('member'); // Default to member login on page load
+switchLoginView('member'); // Default to member portal on page load
 // Initialize defaults
 state.memberTeeDate = null;
 state.memberDiningDate = null;
@@ -1482,22 +2319,75 @@ function buildNav(){
   const toggle=document.getElementById('admin-section-toggle');
   if(state.isAdmin){
     toggle.style.display='flex';
-    toggle.innerHTML=`
-      <button class="admin-section-btn ${state.adminSection==='staff'?'active':''}" onclick="setAdminSection('staff')">Staff Scheduling</button>
-      <button class="admin-section-btn ${state.adminSection==='members'?'active':''}" onclick="setAdminSection('members')">Member Services</button>`;
-    if(state.adminSection==='members'){
-      tabs=[{id:'admin-tee-sheet',label:'Tee Sheet'},{id:'admin-dining',label:'Dining Reservations'},{id:'admin-members',label:'Members'}];
+    const sections=[
+      {id:'overview',    label:'📊 Overview'},
+      {id:'golf',        label:'⛳ Golf'},
+      {id:'restaurant',  label:'🍽 Restaurant'},
+      {id:'members',     label:'🔑 Members'},
+    ];
+    toggle.innerHTML=sections.map(s=>`<button class="admin-section-btn ${state.adminSection===s.id?'active':''}" onclick="setAdminSection('${s.id}')">${s.label}</button>`).join('');
+    if(state.adminSection==='overview'){
+      tabs=[{id:'admin-overview',label:'Dashboard'}];
+    }else if(state.adminSection==='golf'){
+      tabs=[
+        {id:'admin-tee-sheet',       label:'Tee Sheet'},
+        {id:'admin-schedule',        label:'Schedule Builder'},
+        {id:'admin-approve-trades',  label:'Approve Shift Pickups'},
+        {id:'admin-avail',           label:'Staff Availability'},
+        {id:'admin-rto',             label:'Time Off Requests'},
+        {id:'admin-staff',           label:'Golf Staff'},
+        {id:'admin-events',          label:'Events'},
+      ];
+    }else if(state.adminSection==='restaurant'){
+      tabs=[
+        {id:'admin-dining',          label:'Dining Reservations'},
+        {id:'admin-rest-schedule',   label:'Schedule Builder'},
+        {id:'admin-rest-trades',     label:'Approve Pickups'},
+        {id:'admin-rest-rto',        label:'Time Off Requests'},
+        {id:'admin-rest-staff',      label:'Restaurant Staff'},
+      ];
     }else{
-      tabs=[{id:'admin-schedule',label:'Schedule Builder'},{id:'admin-approve-trades',label:'Approve Pickups'},{id:'admin-avail',label:'Staff Availability'},{id:'admin-rto',label:'Time Off Requests'},{id:'admin-staff',label:'Staff'},{id:'admin-events',label:'Event Tracker'}];
+      // members
+      tabs=[{id:'admin-members',label:'Member Accounts'}];
     }
   }else if(state.isMember){
     toggle.style.display='none';
     tabs=[{id:'member-tee-book',label:'Book Tee Time'},{id:'member-tee-mine',label:'My Tee Times'},{id:'member-dining-book',label:'Book a Table'},{id:'member-dining-mine',label:'My Reservations'},{id:'member-account',label:'My Account'}];
   }else{
     toggle.style.display='none';
-    const me=myStaff();
-    tabs=[{id:'my-schedule',label:'My Schedule'},{id:'staff-tee-sheet',label:'Tee Sheet'},{id:'rto',label:'Time Off & Availability'},{id:'trade',label:'Shift Trading'}];
-    if(me&&isHighTier(me.pos))tabs.push({id:'approve-trades',label:'Approve Pickups'});
+    const me=myStaff()||state.restaurantStaff?.find(s=>s.id===state.currentStaffId);
+    const p=me?getPerms(me.id,me.side==='restaurant'):{};
+    const isRest=me?.side==='restaurant';
+    // Core tabs — each conditional on permission (default true for all)
+    tabs=[];
+    if(p.viewSchedule!==false) tabs.push({id:'my-schedule',label:'My Schedule'});
+    if(!isRest){
+      // Tee Sheet: admin version if they have golfTeeSheet, read-only otherwise
+      if(p.golfTeeSheet) tabs.push({id:'admin-tee-sheet', label:'Tee Sheet'});
+      else               tabs.push({id:'staff-tee-sheet', label:'Tee Sheet'});
+    }
+    if(p.submitRTO!==false)   tabs.push({id:'rto',  label:'Time Off & Availability'});
+    if(p.tradePicking!==false) tabs.push({id:'trade',label:'Shift Trading'});
+    // Elevated golf permissions (golfTeeSheet is already handled above, not added again)
+    if(!isRest){
+      if(p.golfApprovePickups)   tabs.push({id:'approve-trades',     label:'Approve Pickups'});
+      if(p.golfScheduleBuilder)  tabs.push({id:'admin-schedule',     label:'Schedule Builder'});
+      if(p.golfApproveRTO)       tabs.push({id:'admin-rto',          label:'Time Off Requests'});
+      if(p.golfManageStaff)      tabs.push({id:'admin-staff',        label:'Golf Staff'});
+      if(p.golfEventTracker)     tabs.push({id:'admin-events',       label:'Events'});
+      // golfTeeSheet tab intentionally omitted here — it's already the Tee Sheet tab above
+    }
+    // Elevated restaurant permissions
+    if(isRest){
+      if(p.restApprovePickups)   tabs.push({id:'admin-rest-trades',  label:'Approve Pickups'});
+      if(p.restScheduleBuilder)  tabs.push({id:'admin-rest-schedule',label:'Schedule Builder'});
+      if(p.restApproveRTO)       tabs.push({id:'admin-rest-rto',     label:'Time Off Requests'});
+      if(p.restManageStaff)      tabs.push({id:'admin-rest-staff',   label:'Restaurant Staff'});
+      if(p.restDining)           tabs.push({id:'admin-dining',       label:'Dining Admin'});
+    }
+    // Cross-side
+    if(p.memberAdmin)   tabs.push({id:'admin-members',  label:'Members'});
+    if(p.viewOverview)  tabs.push({id:'admin-overview', label:'Overview'});
   }
   document.getElementById('nav-tabs').innerHTML=tabs.map(t=>`<button class="nav-tab" data-panel="${t.id}" onclick="showPanel('${t.id}')">${t.label}</button>`).join('');
   showPanel(tabs[0].id);
@@ -1521,8 +2411,13 @@ function renderPanel(id){
     'member-tee-book':renderMemberTeeBook,'member-tee-mine':renderMemberTeeMine,
     'member-dining-book':renderMemberDiningBook,'member-dining-mine':renderMemberDiningMine,
     'member-account':renderMemberAccount,
+    'admin-overview':renderAdminOverview,
     'admin-tee-sheet':renderAdminTeeSheet,'admin-dining':renderAdminDining,'admin-members':renderAdminMembers,
     'staff-tee-sheet':renderStaffTeeSheet,
+    'admin-rest-schedule':()=>renderAdminScheduleFor('restaurant'),
+    'admin-rest-trades':()=>renderApproveList('admin-rest-trades-list','restaurant'),
+    'admin-rest-rto':renderAdminRestRTO,
+    'admin-rest-staff':renderRestStaffTable,
   }[id]||function(){})();
 }
 function changeWeek(dir){state.weekOffset+=dir;renderPanel(state.activePanel);}
@@ -1749,9 +2644,10 @@ function renderTradeBoard(){
 }
 
 // ── APPROVE PICKUP REQUESTS ──
-function renderApproveList(elId){
+function renderApproveList(elId,side='golf'){
   const el=document.getElementById(elId);if(!el)return;
-  const pending=state.pickupRequests.filter(p=>p.status==='pending');
+  const sideIds=side==='restaurant'?new Set(state.restaurantStaff.map(s=>s.id)):new Set(state.staff.map(s=>s.id));
+  const pending=state.pickupRequests.filter(p=>p.status==='pending'&&(sideIds.has(p.requestorId)||sideIds.has(p.originalStaffId)));
   if(!pending.length){el.innerHTML='<div class="empty-state"><p>No pickup requests waiting for approval.</p></div>';return;}
   el.innerHTML='';
   pending.forEach(p=>{
@@ -1930,15 +2826,39 @@ function renderAdminSchedule(){
       const isOff=t.toUpperCase()==='OFF';
       const hasSh=t&&!isOff;
 
+      // Check for time-partial recurring blocks
+      const partialBlocks=!rto&&!recBlocked?getActiveBlocksForDay(s.id,iso).filter(b=>b.blockType!=='allday'):[];
+      const hasPartialBlock=partialBlocks.length>0;
+
       // Cell button label and style
       let btnClass='cell-btn', btnStyle='', btnLabel='+ Add';
-      if(rto){btnClass+=' rto-day';btnLabel='RTO';}
-      else if(recBlocked){btnClass+=' recur-blocked';btnLabel='BLOCKED';}
-      else if(isOff){btnClass+=' is-off';btnLabel='OFF';}
+      let blockTooltip='';
+      if(rto){
+        btnClass+=' rto-day';btnLabel='RTO';
+        blockTooltip='RTO approved — cannot schedule';
+      } else if(recBlocked){
+        btnClass+=' recur-blocked';
+        const blocks=getActiveBlocksForDay(s.id,iso);
+        const reason=blocks.map(b=>b.reason).join(', ');
+        btnLabel='BLOCKED';
+        blockTooltip='Recurring block: '+reason;
+      } else if(isOff){btnClass+=' is-off';btnLabel='OFF';}
       else if(hasSh){
         btnClass+=' has-shift';
         btnStyle=`background:${posBg(pos)};color:${posColor(pos)};border-color:${posColor(pos)}`;
         btnLabel=t;
+        // If there's a partial block, add a warning stripe
+        if(hasPartialBlock){
+          const rule=partialBlocks.map(b=>`${b.blockType==='before'?'Not before':'Not after'} ${formatTimeDisplay(b.time)}`).join(', ');
+          btnStyle+=`;outline:2px solid #e67e22;outline-offset:-2px`;
+          blockTooltip='⚠ Recurring restriction: '+rule+' — verify shift fits';
+        }
+      } else if(hasPartialBlock){
+        // No shift but partial block exists — show the restriction
+        const rule=partialBlocks.map(b=>`${b.blockType==='before'?'Before':'After'} ${formatTimeDisplay(b.time)}`).join(', ');
+        btnClass+=' recur-partial';
+        btnLabel=partialBlocks[0].blockType==='before'?'↑ RESTRICTED':'↓ RESTRICTED';
+        blockTooltip='Recurring block: '+partialBlocks.map(b=>b.reason).join(', ')+' ('+rule+')';
       }
 
       const clickable=!rto&&!recBlocked;
@@ -1951,7 +2871,8 @@ function renderAdminSchedule(){
             data-staff="${s.id}"
             data-iso="${iso}"
             data-pos="${pos}"
-            ${clickable?'data-clickable="1"':'title="Cannot schedule -- blocked"'}
+            ${clickable?'data-clickable="1"':''}
+          ${blockTooltip?`title="${blockTooltip}"`:''}
           >${btnLabel}</button>
         </div>
       </td>`;
@@ -2167,134 +3088,261 @@ function clearPrefs(){
   renderAdminSchedule();
 }
 
+// ══════════════════════════════════════════════════════
+// SCHEDULE BUILDER SETTINGS (staffing templates per day)
+// ══════════════════════════════════════════════════════
+const SCHED_DEFAULT_TEMPLATE=()=>({
+  0:{morning:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+  1:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+  2:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+  3:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+  4:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+  5:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':2,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':2,'Range Attendant':1}},
+  6:{morning:{'Golf Shop':1,'Outside Lead':2,'Cart Attendant':3,'Range Attendant':2},afternoon:{'Golf Shop':1,'Outside Lead':1,'Cart Attendant':3,'Range Attendant':2}},
+});
+
+function openScheduleSettings(){
+  renderSettingsGrid();
+  document.getElementById('modal-schedule-settings').classList.add('open');
+}
+
+function renderSettingsGrid(){
+  const T=state.scheduleTemplate;
+  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const pos=GOLF_POSITIONS;
+  const posColors={'Golf Shop':'#c47a3a','Outside Lead':'#2d7a3a','Cart Attendant':'#2a6b9e','Range Attendant':'#7a4a9e'};
+
+  let html=`<thead><tr>
+    <th style="text-align:left">Position</th>
+    ${days.map((d,i)=>`<th>
+      ${d}
+      <button class="copy-day-btn" onclick="copySchedDayBtn(${i})" title="Copy ${d} to all other days">Copy→All</button>
+    </th>`).join('')}
+  </tr></thead><tbody>`;
+
+  // MORNING rows
+  html+=`<tr class="period-header"><td colspan="8"><span class="period-morning">&#9728; Morning Shifts</span> <span style="font-size:10px;font-weight:400;color:var(--gray-400)">— shifts starting before 12:00 PM (e.g. 7-3, 8-4, 9-5, 10-4)</span></td></tr>`;
+  pos.forEach(p=>{
+    const col=posColors[p]||'#888';
+    html+=`<tr>
+      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${col};margin-right:6px;vertical-align:middle"></span>${p}</td>
+      ${[0,1,2,3,4,5,6].map(d=>{
+        const val=(T[d]?.morning||{})[p]||0;
+        return`<td><input class="slot-count" type="number" min="0" max="9" value="${val}" id="st-m-${d}-${p.replace(/ /g,'_')}" oninput="updateSchedTotal(${d})"/></td>`;
+      }).join('')}
+    </tr>`;
+  });
+
+  // AFTERNOON rows
+  html+=`<tr class="period-header"><td colspan="8"><span class="period-afternoon">&#9790; Afternoon Shifts</span> <span style="font-size:10px;font-weight:400;color:var(--gray-400)">— shifts starting at 12:00 PM or later (e.g. 11-CLOSE, 12-8, 2-CLOSE)</span></td></tr>`;
+  pos.forEach(p=>{
+    const col=posColors[p]||'#888';
+    html+=`<tr>
+      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${col};margin-right:6px;vertical-align:middle"></span>${p}</td>
+      ${[0,1,2,3,4,5,6].map(d=>{
+        const val=(T[d]?.afternoon||{})[p]||0;
+        return`<td><input class="slot-count" type="number" min="0" max="9" value="${val}" id="st-a-${d}-${p.replace(/ /g,'_')}" oninput="updateSchedTotal(${d})"/></td>`;
+      }).join('')}
+    </tr>`;
+  });
+
+  // Totals row
+  html+=`<tr class="day-total-row"><td style="font-weight:700;color:var(--text)">Total Staff / Day</td>
+    ${[0,1,2,3,4,5,6].map(d=>{
+      let tot=0;
+      GOLF_POSITIONS.forEach(p=>{
+        tot+=((T[d]?.morning||{})[p]||0)+((T[d]?.afternoon||{})[p]||0);
+      });
+      return`<td id="st-total-${d}" style="font-weight:700;color:var(--green)">${tot}</td>`;
+    }).join('')}
+  </tr></tbody>`;
+
+  document.getElementById('sched-settings-table').innerHTML=html;
+}
+
+function updateSchedTotal(dayIdx){
+  let tot=0;
+  GOLF_POSITIONS.forEach(p=>{
+    const mk=document.getElementById(`st-m-${dayIdx}-${p.replace(/ /g,'_')}`);
+    const ak=document.getElementById(`st-a-${dayIdx}-${p.replace(/ /g,'_')}`);
+    tot+=(parseInt(mk?.value)||0)+(parseInt(ak?.value)||0);
+  });
+  const el=document.getElementById(`st-total-${dayIdx}`);
+  if(el) el.textContent=tot;
+}
+
+function readGridValues(){
+  const T={};
+  for(let d=0;d<7;d++){
+    T[d]={morning:{},afternoon:{}};
+    GOLF_POSITIONS.forEach(p=>{
+      const key=p.replace(/ /g,'_');
+      T[d].morning[p]=parseInt(document.getElementById(`st-m-${d}-${key}`)?.value)||0;
+      T[d].afternoon[p]=parseInt(document.getElementById(`st-a-${d}-${key}`)?.value)||0;
+    });
+  }
+  return T;
+}
+
+function saveSchedSettings(){
+  state.scheduleTemplate=readGridValues();
+  closeModal('modal-schedule-settings');
+}
+
+function copySchedDayBtn(fromDay){
+  // Read current grid values, copy fromDay to all other days
+  const current=readGridValues();
+  const src=current[fromDay];
+  for(let d=0;d<7;d++){
+    if(d===fromDay) continue;
+    GOLF_POSITIONS.forEach(p=>{
+      const key=p.replace(/ /g,'_');
+      const mEl=document.getElementById(`st-m-${d}-${key}`);
+      const aEl=document.getElementById(`st-a-${d}-${key}`);
+      if(mEl) mEl.value=src.morning[p]||0;
+      if(aEl) aEl.value=src.afternoon[p]||0;
+      updateSchedTotal(d);
+    });
+  }
+}
+
+function copySchedDay(fromDay, toDays){
+  // Can be called before modal opens (from quick copy buttons)
+  // If modal is open, read from inputs; otherwise read from state
+  const modalOpen=document.getElementById('modal-schedule-settings').classList.contains('open');
+  const src=modalOpen?readGridValues()[fromDay]:state.scheduleTemplate[fromDay];
+  if(modalOpen){
+    toDays.forEach(d=>{
+      GOLF_POSITIONS.forEach(p=>{
+        const key=p.replace(/ /g,'_');
+        const mEl=document.getElementById(`st-m-${d}-${key}`);
+        const aEl=document.getElementById(`st-a-${d}-${key}`);
+        if(mEl) mEl.value=(src.morning||{})[p]||0;
+        if(aEl) aEl.value=(src.afternoon||{})[p]||0;
+        updateSchedTotal(d);
+      });
+    });
+  } else {
+    // Apply directly to state (called from quick copy before opening modal)
+    if(!src) return;
+    toDays.forEach(d=>{
+      state.scheduleTemplate[d]={
+        morning:{...src.morning},
+        afternoon:{...src.afternoon},
+      };
+    });
+    // Re-open or just update if already open
+    renderSettingsGrid();
+  }
+}
+
+function resetSchedSettings(){
+  if(!confirm('Reset all days to default staffing targets?')) return;
+  const def=SCHED_DEFAULT_TEMPLATE();
+  for(let d=0;d<7;d++){
+    GOLF_POSITIONS.forEach(p=>{
+      const key=p.replace(/ /g,'_');
+      const mEl=document.getElementById(`st-m-${d}-${key}`);
+      const aEl=document.getElementById(`st-a-${d}-${key}`);
+      if(mEl) mEl.value=(def[d].morning||{})[p]||0;
+      if(aEl) aEl.value=(def[d].afternoon||{})[p]||0;
+      updateSchedTotal(d);
+    });
+  }
+}
+
 function autoGenSchedule(){
   const dates=getWeekDates(state.weekOffset);
+  const T=state.scheduleTemplate;
 
-  // Clear all existing shifts for this week before generating fresh
-  state.staff.forEach(s=>{
-    dates.forEach((_,i)=>{
-      delete state.schedule[`${state.weekOffset}_${s.id}_${i}`];
-    });
-  });
-
-  // Target staffing counts per position per day-of-week
-  // Index: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
-  const TARGETS={
-    'Golf Shop':       [3, 3, 2, 2, 1, 2, 3],
-    'Outside Lead':    [1, 3, 2, 1, 3, 2, 2],
-    'Cart Attendant':  [3, 1, 3, 3, 2, 2, 2],
-    'Range Attendant': [3, 1, 3, 3, 1, 1, 1],
+  // Shift options split by time-of-day
+  const MORNING_SHIFTS={
+    'Golf Shop':      ['8-4','7-3','7:30-4'],
+    'Outside Lead':   ['6-2','7-3','7:30-3'],
+    'Cart Attendant': ['7-3','8-4','9-5','7:30-4'],
+    'Range Attendant':['9-3','10-4','9-4'],
   };
-  const SHIFTS={
-    'Golf Shop':       ['6:30-3','7-4','10-6','10-7','11-CLOSE','730-4'],
-    'Outside Lead':    ['7-3','7:30-6','10-8','11-CLOSE','2-CLOSE','9-7'],
-    'Cart Attendant':  ['7-4','10-CLOSE','11-CLOSE','2-CLOSE','7:30-4','11-4'],
-    'Range Attendant': ['7-3','7-2','4-7','2-7','730-1','7:30-3'],
+  const AFTERNOON_SHIFTS={
+    'Golf Shop':      ['12-8','1-9','11-7'],
+    'Outside Lead':   ['11-7','12-6','2-CLOSE'],
+    'Cart Attendant': ['11-CLOSE','12-8','2-CLOSE'],
+    'Range Attendant':['12-4','1-5','11-CLOSE'],
   };
 
-  // Track shifts assigned this week per staff member per position
-  const weekShiftCount={};   // staffId -> total shifts
-  const weekPosCount={};     // staffId -> {pos -> count}
+  // Clear this week's schedule
   state.staff.forEach(s=>{
-    weekShiftCount[s.id]=0;
-    weekPosCount[s.id]={};
-    POSITIONS.forEach(p=>weekPosCount[s.id][p]=0);
+    dates.forEach((_,i)=>{delete state.schedule[`${state.weekOffset}_${s.id}_${i}`];});
   });
 
-  // Count any already-scheduled shifts (don't overwrite)
-  dates.forEach((d,i)=>{
-    state.staff.forEach(s=>{
-      const cell=state.schedule[`${state.weekOffset}_${s.id}_${i}`];
-      if(cell?.time&&cell.time.toUpperCase()!=='OFF'){
-        weekShiftCount[s.id]=(weekShiftCount[s.id]||0)+1;
-        weekPosCount[s.id][cell.pos]=(weekPosCount[s.id][cell.pos]||0)+1;
-      }
+  // Weekly shift counters (for respecting max shifts/week preference)
+  const weekCount={};
+  const weekPosCount={};
+  state.staff.forEach(s=>{weekCount[s.id]=0;weekPosCount[s.id]={};GOLF_POSITIONS.forEach(p=>weekPosCount[s.id][p]=0);});
+
+  function shuffle(arr){for(let j=arr.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[arr[j],arr[k]]=[arr[k],arr[j]];}return arr;}
+
+  function isAvailable(s,iso,dayIdx){
+    if(s.status!=='Active')return false;
+    if(state.schedule[`${state.weekOffset}_${s.id}_${dayIdx}`]?.time)return false;
+    if(hasRTO(s.id,iso))return false;
+    if(isFullyBlockedByRecurring(s.id,iso))return false;
+    const prefs=state.staffPrefs[s.id]||{};
+    if(prefs.dayPrefs&&prefs.dayPrefs[dayIdx]===-1)return false;
+    if(prefs.maxShifts!=null&&weekCount[s.id]>=prefs.maxShifts)return false;
+    return true;
+  }
+
+  function bestShift(s,iso,dayIdx,shiftPool){
+    const prefs=state.staffPrefs[s.id]||{};
+    const dayTime=prefs.dayTimes?prefs.dayTimes[dayIdx]:null;
+    return shiftPool.find(sh=>{
+      if(shiftBlockedByRecurring(s.id,iso,sh))return false;
+      if(!dayTime||(!dayTime.start&&!dayTime.end))return true;
+      const sp=parseShiftMinutes(sh);if(!sp)return true;
+      if(dayTime.start&&sp.start<timeToMin(dayTime.start))return false;
+      if(dayTime.end){const de=dayTime.end==='CLOSE'?23*60:timeToMin(dayTime.end);if(sp.end>de)return false;}
+      return true;
+    })||shiftPool.find(sh=>!shiftBlockedByRecurring(s.id,iso,sh))||shiftPool[0];
+  }
+
+  function assignSlots(pos,dayIdx,iso,count,shiftPool){
+    if(!count||count<=0)return;
+    let pool=state.staff.filter(s=>s.pos===pos&&isAvailable(s,dayIdx===undefined?0:dayIdx,iso));
+    const dow=new Date(iso+'T12:00:00').getDay();
+    const pref=s=>((state.staffPrefs[s.id]?.dayPrefs||[])[dow]||0);
+    pool=[...shuffle(pool.filter(s=>pref(s)===1)),...shuffle(pool.filter(s=>pref(s)===0))].slice(0,count);
+    pool.forEach(s=>{
+      const key=`${state.weekOffset}_${s.id}_${dayIdx}`;
+      const shift=bestShift(s,iso,dayIdx,shiftPool);
+      state.schedule[key]={time:shift,pos};
+      weekCount[s.id]++;weekPosCount[s.id][pos]=(weekPosCount[s.id][pos]||0)+1;
     });
-  });
+  }
 
-  dates.forEach((d,i)=>{
+  dates.forEach((d,dayIdx)=>{
     const iso=formatISO(d);
-    const dow=d.getDay();
+    const targets=T[dayIdx]||{morning:{},afternoon:{}};
 
-    Object.keys(TARGETS).forEach(pos=>{
-      const target=TARGETS[pos][dow]||0;
-
-      // Build candidate pool for this position/day
-      let pool=state.staff.filter(s=>{
-        if(s.status!=='Active') return false;
-        const key=`${state.weekOffset}_${s.id}_${i}`;
-        if(state.schedule[key]?.time) return false; // already has a shift this day
-        if(hasRTO(s.id,iso)) return false;
-        if(isFullyBlockedByRecurring(s.id,iso)) return false;
-
-        const prefs=state.staffPrefs[s.id]||{};
-
-        // Hard check: is this day explicitly avoided for this person?
-        if(prefs.dayPrefs && prefs.dayPrefs[dow]===-1) return false;
-
-        // Hard check: has person hit their total weekly shift max?
-        if(prefs.maxShifts!=null && weekShiftCount[s.id]>=prefs.maxShifts) return false;
-
-        // Hard check: has person hit their per-position shift max?
-        if(prefs.posShifts && prefs.posShifts[pos]!=null && weekPosCount[s.id][pos]>=(prefs.posShifts[pos])) return false;
-
-        // If day has a time window set, we'll filter shifts to that window after pool selection
-        // (handled below when picking shift time)
-
-        // Staff must work this position (their primary pos, or no pos restriction)
-        if(s.pos!==pos) return false;
-
-        return true;
-      });
-
-      // Sort pool: preferred days first, then neutral
-      pool.sort((a,b)=>{
-        const pa=(state.staffPrefs[a.id]?.dayPrefs||[])[dow]||0;
-        const pb=(state.staffPrefs[b.id]?.dayPrefs||[])[dow]||0;
-        return pb-pa; // higher = preferred = comes first
-      });
-
-      // Shuffle within same-priority groups for variety
-      const preferred=pool.filter(s=>((state.staffPrefs[s.id]?.dayPrefs||[])[dow]||0)===1);
-      const neutral  =pool.filter(s=>((state.staffPrefs[s.id]?.dayPrefs||[])[dow]||0)===0);
-      function shuffle(arr){for(let j=arr.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[arr[j],arr[k]]=[arr[k],arr[j]];} return arr;}
-      pool=[...shuffle(preferred),...shuffle(neutral)].slice(0,target);
-
-      const shifts=SHIFTS[pos]||['7-3'];
-      pool.forEach(s=>{
-        const key=`${state.weekOffset}_${s.id}_${i}`;
-        const sprefs=state.staffPrefs[s.id]||{};
-        const dayTime=sprefs.dayTimes?sprefs.dayTimes[dow]:null;
-        // Pick a shift fitting the person's preferred time window AND not recurring-blocked
-        const shift=shifts.find(sh=>{
-          if(shiftBlockedByRecurring(s.id,iso,sh)) return false;
-          if(!dayTime||(!dayTime.start&&!dayTime.end)) return true;
-          const sp=parseShiftMinutes(sh); if(!sp) return true;
-          if(dayTime.start&&sp.start<timeToMin(dayTime.start)) return false;
-          if(dayTime.end){
-              const dEnd = dayTime.end==='CLOSE' ? 23*60 : timeToMin(dayTime.end);
-              if(sp.end>dEnd) return false;
-            }
-          return true;
-        })||shifts.find(sh=>!shiftBlockedByRecurring(s.id,iso,sh))||shifts[0];
-        state.schedule[key]={time:shift,pos};
-        weekShiftCount[s.id]++;
-        weekPosCount[s.id][pos]=(weekPosCount[s.id][pos]||0)+1;
-      });
+    // Morning slots first
+    GOLF_POSITIONS.forEach(pos=>{
+      assignSlots(pos,dayIdx,iso,(targets.morning||{})[pos]||0,MORNING_SHIFTS[pos]||['7-3']);
+    });
+    // Then afternoon slots (from remaining available staff)
+    GOLF_POSITIONS.forEach(pos=>{
+      assignSlots(pos,dayIdx,iso,(targets.afternoon||{})[pos]||0,AFTERNOON_SHIFTS[pos]||['12-8']);
     });
 
-    // Flag RTO / blocked as OFF
+    // Mark RTO/blocked staff as OFF
     state.staff.filter(s=>s.status==='Active').forEach(s=>{
-      const key=`${state.weekOffset}_${s.id}_${i}`;
-      if(state.schedule[key]?.time) return;
-      if(hasRTO(s.id,iso)||isFullyBlockedByRecurring(s.id,iso)){
+      const key=`${state.weekOffset}_${s.id}_${dayIdx}`;
+      if(!state.schedule[key]?.time&&(hasRTO(s.id,iso)||isFullyBlockedByRecurring(s.id,iso))){
         state.schedule[key]={time:'OFF',pos:s.pos};
       }
     });
   });
 
   renderAdminSchedule();
-  alert('Schedule generated! Preferences, shift limits, and blocks are all respected. Review before publishing.');
+  alert('Schedule generated using your staffing targets! Review before publishing.\n\nMorning targets and afternoon targets were applied separately for each day.\nIndividual preferences, RTO, and recurring blocks were all respected.');
 }
 
 // ── ADMIN: AVAILABILITY VIEW (shows recurring blocks) ──
@@ -2324,19 +3372,313 @@ function renderAdminAvail(){
 // ── ADMIN: RTO ──
 function renderAdminRTO(){
   const el=document.getElementById('admin-rto-list'),st=document.getElementById('rto-stats');if(!el)return;
-  const pend=state.rtoRequests.filter(r=>r.status==='pending').length;
-  const appr=state.rtoRequests.filter(r=>r.status==='approved').length;
-  const deni=state.rtoRequests.filter(r=>r.status==='denied').length;
-  st.innerHTML=`<div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value" style="color:#92400e">${pend}</div></div><div class="stat-card"><div class="stat-label">Approved</div><div class="stat-value" style="color:#065f46">${appr}</div></div><div class="stat-card"><div class="stat-label">Denied</div><div class="stat-value" style="color:#991b1b">${deni}</div></div><div class="stat-card"><div class="stat-label">Total</div><div class="stat-value">${state.rtoRequests.length}</div></div>`;
-  if(!state.rtoRequests.length){el.innerHTML='<div class="empty-state"><p>No requests.</p></div>';return;}
-  el.innerHTML=[...state.rtoRequests].reverse().map(r=>`<div class="rto-item"><div class="rto-info"><div class="rto-name">${r.staffName} \u2014 ${r.type}</div><div class="rto-dates">${r.start}${r.end!==r.start?' to '+r.end:''}</div>${r.reason?`<div class="rto-reason">"${r.reason}"</div>`:''}</div><div class="rto-actions"><span class="status-badge badge-${r.status}" style="margin-right:8px">${r.status}</span>${r.status==='pending'?`<button class="btn btn-primary btn-sm" onclick="respondRTO(${r.id},'approved')">Approve</button><button class="btn btn-danger btn-sm" onclick="respondRTO(${r.id},'denied')">Deny</button>`:''}</div></div>`).join('');
+  const golfIds2=new Set(state.staff.map(s=>s.id));
+  const gRTOs=state.rtoRequests.filter(r=>golfIds2.has(r.staffId));
+  const pend=gRTOs.filter(r=>r.status==='pending').length;
+  const appr=gRTOs.filter(r=>r.status==='approved').length;
+  const deni=gRTOs.filter(r=>r.status==='denied').length;
+  st.innerHTML=`<div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value" style="color:#92400e">${pend}</div></div><div class="stat-card"><div class="stat-label">Approved</div><div class="stat-value" style="color:#065f46">${appr}</div></div><div class="stat-card"><div class="stat-label">Denied</div><div class="stat-value" style="color:#991b1b">${deni}</div></div><div class="stat-card"><div class="stat-label">Total</div><div class="stat-value">${gRTOs.length}</div></div>`;
+  const golfIds=new Set(state.staff.map(s=>s.id));
+  const golfRTOs=state.rtoRequests.filter(r=>golfIds.has(r.staffId));
+  if(!golfRTOs.length){el.innerHTML='<div class="empty-state"><p>No requests.</p></div>';return;}
+  el.innerHTML=[...golfRTOs].reverse().map(r=>`<div class="rto-item"><div class="rto-info"><div class="rto-name">${r.staffName} \u2014 ${r.type}</div><div class="rto-dates">${r.start}${r.end!==r.start?' to '+r.end:''}</div>${r.reason?`<div class="rto-reason">"${r.reason}"</div>`:''}</div><div class="rto-actions"><span class="status-badge badge-${r.status}" style="margin-right:8px">${r.status}</span>${r.status==='pending'?`<button class="btn btn-primary btn-sm" onclick="respondRTO(${r.id},'approved')">Approve</button><button class="btn btn-danger btn-sm" onclick="respondRTO(${r.id},'denied')">Deny</button>`:''}</div></div>`).join('');
 }
 function respondRTO(id,status){const r=state.rtoRequests.find(x=>x.id===id);if(r){r.status=status;renderAdminRTO();}}
 
 // ── ADMIN: STAFF ──
+// ══════════════════════════════════════════
+// RESTAURANT STAFF & SCHEDULE SYSTEM
+// ══════════════════════════════════════════
+function restStaffById(id){ return state.restaurantStaff.find(s=>s.id===id); }
+function restLegendHTML(){ return REST_POSITIONS.map(p=>`<div class="legend-item"><div class="legend-dot" style="background:${posBg(p)};border:1px solid ${posColor(p)}"></div>${p}</div>`).join(''); }
+
+// ── RESTAURANT SCHEDULE BUILDER ──
+function renderAdminScheduleFor(side){
+  if(side==='restaurant') renderRestSchedule();
+  else renderAdminSchedule();
+}
+
+function renderRestSchedule(){
+  const wl = document.getElementById('week-label-rest-admin');
+  if(wl) wl.textContent = weekLabel(state.weekOffset);
+  const rLeg = document.getElementById('rest-legend-bar');
+  if(rLeg) rLeg.innerHTML = restLegendHTML();
+  const tbl = document.getElementById('rest-schedule-table');
+  if(!tbl) return;
+  const dates = getWeekDates(state.weekOffset);
+  const heads = dates.map((d,i)=>{
+    const iso=formatISO(d);
+    const evs=state.events.filter(e=>e.date===iso);
+    const dot=evs.length?`<div style="font-size:9px;color:var(--gold);font-weight:600;margin-top:1px">★ ${evs.map(e=>e.name).join(', ')}</div>`:'';
+    return `<th style="min-width:130px">${DAYS[i]}<br><span style="font-size:10px;font-weight:400">${formatDate(d)}</span>${dot}</th>`;
+  }).join('');
+  let html=`<thead><tr><th style="text-align:left;padding-left:16px;width:140px">Staff</th>${heads}</tr></thead><tbody>`;
+  state.restaurantStaff.filter(s=>s.status==='Active').forEach(s=>{
+    html+=`<tr><td>${s.name}<br><span style="font-size:10px;color:var(--gray-400)">${s.pos}</span></td>`;
+    dates.forEach((d,i)=>{
+      const iso=formatISO(d), key=`r${state.weekOffset}_${s.id}_${i}`;
+      const cell=state.schedule[key]||{time:'',pos:s.pos};
+      const pos=cell.pos||s.pos, t=cell.time||'';
+      const isOff=t.toUpperCase()==='OFF', hasSh=t&&!isOff;
+      let btnClass='cell-btn', btnStyle='', btnLabel='+ Add';
+      if(isOff){btnClass+=' is-off';btnLabel='OFF';}
+      else if(hasSh){
+        btnClass+=' has-shift';
+        btnStyle=`background:${posBg(pos)};color:${posColor(pos)};border-color:${posColor(pos)}`;
+        btnLabel=t;
+      }
+      const opts=REST_POSITIONS.map(p=>`<option value="${p}" ${pos===p?'selected':''}>${p}</option>`).join('');
+      html+=`<td><div class="builder-cell">
+        <select class="builder-pos" style="border-color:${posColor(pos)};color:${posColor(pos)}" onchange="updateRestCellPos(this,'${key}')"> ${opts}</select>
+        <button class="${btnClass}" style="${btnStyle}" data-rkey="${key}" data-staff="${s.id}" data-iso="${iso}" data-pos="${pos}" data-clickable="1">${btnLabel}</button>
+      </div></td>`;
+    });
+    html+='</tr>';
+  });
+  html+='</tbody>';
+  const newTbl=document.createElement('table');
+  newTbl.className='sched-tbl';newTbl.id='rest-schedule-table';
+  newTbl.innerHTML=html;
+  tbl.replaceWith(newTbl);
+  newTbl.addEventListener('click',function(e){
+    const btn=e.target.closest('button.cell-btn[data-rkey]');
+    if(!btn||!btn.dataset.clickable)return;
+    e.stopPropagation();
+    openRestTimePicker(btn);
+  });
+}
+
+let _restPickerKey=null;
+function openRestTimePicker(btn){
+  closePicker();
+  _restPickerKey=btn.dataset.rkey;
+  const cell=state.schedule[_restPickerKey]||{time:'',pos:btn.dataset.pos};
+  let startVal='',endVal='',endClose=false;
+  if(cell.time&&cell.time.toUpperCase()!=='OFF'){
+    const parts=cell.time.toUpperCase().split('-');
+    startVal=fmtTimeInput(parts[0]||'');
+    if(parts[1]==='CLOSE'){endClose=true;endVal='';}
+    else endVal=fmtTimeInput(parts[1]||'');
+  }
+  const popup=document.createElement('div');
+  popup.className='time-picker-popup';popup.id='time-picker-popup';
+  popup.innerHTML=`<h4>Set Shift Time</h4>
+    <div class="tp-row"><div class="tp-label">Start</div><input class="tp-time" type="time" id="tp-start" value="${startVal}"/></div>
+    <div class="tp-row"><div class="tp-label">End</div><input class="tp-time" type="time" id="tp-end" value="${endVal}" ${endClose?'disabled':''}/>
+      <div class="tp-close-badge"><input type="checkbox" id="tp-close" ${endClose?'checked':''} style="accent-color:var(--green);width:14px;height:14px;cursor:pointer" onchange="document.getElementById('tp-end').disabled=this.checked;if(this.checked)document.getElementById('tp-end').value=''"/>
+      <label class="tp-close-label" for="tp-close">Close</label></div>
+    </div>
+    <div class="tp-actions">
+      <button class="tp-off" onclick="saveRestPickerOff()">OFF</button>
+      <button class="tp-clear" onclick="saveRestPickerClear()">Clear</button>
+      <button class="tp-save" onclick="saveRestPickerTime()">Save</button>
+    </div>`;
+  document.body.appendChild(popup);
+  popup.style.position='fixed';popup.style.top='50%';popup.style.left='50%';popup.style.transform='translate(-50%,-50%)';popup.style.zIndex='1000';
+  setTimeout(()=>document.getElementById('tp-start')?.focus(),50);
+}
+function saveRestPickerTime(){
+  const start=document.getElementById('tp-start')?.value;
+  const endClose=document.getElementById('tp-close')?.checked;
+  const end=document.getElementById('tp-end')?.value;
+  if(!start){alert('Please enter a start time.');return;}
+  if(!endClose&&!end){alert('Please enter an end time or check Close.');return;}
+  const shiftStr=`${timeInputToDisplay(start)}-${endClose?'CLOSE':timeInputToDisplay(end)}`;
+  if(!state.schedule[_restPickerKey]) state.schedule[_restPickerKey]={time:shiftStr,pos:'Waiter'};
+  else state.schedule[_restPickerKey].time=shiftStr;
+  closePicker();renderRestSchedule();
+}
+function saveRestPickerOff(){
+  if(!_restPickerKey)return;
+  if(!state.schedule[_restPickerKey]) state.schedule[_restPickerKey]={time:'OFF',pos:'Waiter'};
+  else state.schedule[_restPickerKey].time='OFF';
+  closePicker();renderRestSchedule();
+}
+function saveRestPickerClear(){if(!_restPickerKey)return;delete state.schedule[_restPickerKey];closePicker();renderRestSchedule();}
+function updateRestCellPos(sel,key){
+  if(!state.schedule[key])state.schedule[key]={time:'',pos:sel.value};
+  else state.schedule[key].pos=sel.value;
+  sel.style.borderColor=posColor(sel.value);sel.style.color=posColor(sel.value);
+  renderRestSchedule();
+}
+function autoGenRestSchedule(){
+  const dates=getWeekDates(state.weekOffset);
+  state.restaurantStaff.forEach(s=>{
+    dates.forEach((_,i)=>{delete state.schedule[`r${state.weekOffset}_${s.id}_${i}`];});
+  });
+  const SHIFTS=['4-CLOSE','5-CLOSE','11-CLOSE','2-CLOSE','5-10'];
+  const TARGETS_BY_DAY=[3,2,2,2,2,4,4]; // Sun,Mon,Tue,Wed,Thu,Fri,Sat
+  dates.forEach((d,i)=>{
+    const target=TARGETS_BY_DAY[d.getDay()]||2;
+    const pool=[...state.restaurantStaff.filter(s=>s.status==='Active')];
+    for(let j=pool.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[pool[j],pool[k]]=[pool[k],pool[j]];}
+    pool.slice(0,target).forEach(s=>{
+      state.schedule[`r${state.weekOffset}_${s.id}_${i}`]={time:SHIFTS[Math.floor(Math.random()*SHIFTS.length)],pos:s.pos};
+    });
+  });
+  renderRestSchedule();
+  alert('Restaurant schedule generated! Review before publishing.');
+}
+
+// ── RESTAURANT STAFF TABLE ──
+function renderRestStaffTable(){
+  const tb=document.getElementById('rest-staff-tbody');if(!tb)return;
+  tb.innerHTML=state.restaurantStaff.map(s=>`<tr>
+    <td>${s.name}${permBadgeHTML(s,true)}</td>
+    <td><span class="shift-chip" style="background:${posBg(s.pos)};color:${posColor(s.pos)};font-size:11px">${s.pos}</span></td>
+    <td style="letter-spacing:.2em;font-family:monospace">${s.pin}</td>
+    <td><span class="status-badge ${s.status==='Active'?'badge-approved':'badge-denied'}">${s.status}</span></td>
+    <td style="white-space:nowrap;display:flex;gap:5px;flex-wrap:wrap">
+      <button class="btn btn-primary btn-sm" onclick="openPermissionsModal(${s.id},true)" style="background:var(--green-deep)">🔐 Permissions</button>
+      <button class="btn btn-secondary btn-sm" onclick="openEditRestStaffModal(${s.id})">Edit</button>
+      <button class="btn btn-secondary btn-sm" onclick="toggleRestStatus(${s.id})">${s.status==='Active'?'Deactivate':'Activate'}</button>
+      <button class="btn btn-danger btn-sm" onclick="removeRestStaff(${s.id})">Remove</button>
+    </td>
+  </tr>`).join('');
+}
+function toggleRestStatus(id){const s=restStaffById(id);if(s){s.status=s.status==='Active'?'Inactive':'Active';renderRestStaffTable();}}
+function removeRestStaff(id){if(!confirm('Remove this staff member?'))return;state.restaurantStaff=state.restaurantStaff.filter(s=>s.id!==id);renderRestStaffTable();}
+function openAddRestStaffModal(){
+  ['new-rest-name','new-rest-pin'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('modal-add-rest-staff').classList.add('open');
+}
+function addRestStaff(){
+  const name=document.getElementById('new-rest-name').value.trim();
+  const pos=document.getElementById('new-rest-pos').value;
+  const pin=document.getElementById('new-rest-pin').value.trim()||'1234';
+  if(!name){alert('Please enter a name.');return;}
+  state.restaurantStaff.push({id:state.restaurantStaffNextId++,name,pos,pin,status:'Active',side:'restaurant',isAdmin:false});
+  closeModal('modal-add-rest-staff');renderRestStaffTable();
+}
+function openEditRestStaffModal(id){
+  const s=restStaffById(id);if(!s)return;
+  document.getElementById('edit-rest-id').value=id;
+  document.getElementById('edit-rest-name').value=s.name;
+  document.getElementById('edit-rest-pos').value=s.pos;
+  document.getElementById('edit-rest-pin').value=s.pin;
+  document.getElementById('modal-edit-rest-staff').classList.add('open');
+}
+function saveEditRestStaff(){
+  const id=parseInt(document.getElementById('edit-rest-id').value);
+  const s=restStaffById(id);if(!s)return;
+  s.name=document.getElementById('edit-rest-name').value.trim()||s.name;
+  s.pos=document.getElementById('edit-rest-pos').value;
+  s.pin=document.getElementById('edit-rest-pin').value.trim()||s.pin;
+  closeModal('modal-edit-rest-staff');renderRestStaffTable();
+}
+
+// ── RESTAURANT RTO ──
+function renderAdminRestRTO(){
+  const el=document.getElementById('admin-rest-rto-list'),st=document.getElementById('rest-rto-stats');if(!el)return;
+  const restIds=new Set(state.restaurantStaff.map(s=>s.id));
+  const rtosAll=state.rtoRequests.filter(r=>restIds.has(r.staffId));
+  const pend=rtosAll.filter(r=>r.status==='pending').length;
+  const appr=rtosAll.filter(r=>r.status==='approved').length;
+  const deni=rtosAll.filter(r=>r.status==='denied').length;
+  if(st) st.innerHTML=`<div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value" style="color:#92400e">${pend}</div></div><div class="stat-card"><div class="stat-label">Approved</div><div class="stat-value" style="color:#065f46">${appr}</div></div><div class="stat-card"><div class="stat-label">Denied</div><div class="stat-value" style="color:#991b1b">${deni}</div></div>`;
+  if(!rtosAll.length){el.innerHTML='<div class="empty-state"><p>No requests.</p></div>';return;}
+  el.innerHTML=[...rtosAll].reverse().map(r=>`<div class="rto-item"><div class="rto-info"><div class="rto-name">${r.staffName} — ${r.type}</div><div class="rto-dates">${r.start}${r.end!==r.start?' to '+r.end:''}</div>${r.reason?`<div class="rto-reason">"${r.reason}"</div>`:''}</div><div class="rto-actions"><span class="status-badge badge-${r.status}" style="margin-right:8px">${r.status}</span>${r.status==='pending'?`<button class="btn btn-primary btn-sm" onclick="respondRTO(${r.id},'approved')">Approve</button><button class="btn btn-danger btn-sm" onclick="respondRTO(${r.id},'denied')">Deny</button>`:''}</div></div>`).join('');
+}
+
+// ══════════════════════════════════════════
+// PERMISSIONS SYSTEM
+// ══════════════════════════════════════════
+function openPermissionsModal(staffId,isRest=false){
+  const s=isRest?restStaffById(staffId):staffById(staffId);if(!s)return;
+  document.getElementById('perm-modal-staff-name').textContent=s.name+' — Permissions';
+  document.getElementById('perm-staff-id').value=staffId;
+  document.getElementById('perm-staff-id').dataset.isRest=isRest?'1':'0';
+  const p=getPerms(staffId,isRest);
+
+  // Preset buttons — show all presets (admin can choose any, regardless of side)
+  const presetsEl=document.getElementById('perm-presets');
+  presetsEl.innerHTML=Object.entries(PERM_PRESETS).map(([key,pr])=>`
+    <button class="perm-preset-btn" onclick="applyPermPreset('${key}')">
+      <span class="pbl" style="color:${pr.color}">${pr.label}</span>
+      <span class="pbd">${pr.desc}</span>
+    </button>`).join('');
+
+  // Group toggles
+  const groups={};
+  PERM_KEYS.forEach(pk=>{
+    if(!groups[pk.group]) groups[pk.group]=[];
+    groups[pk.group].push(pk);
+  });
+  const groupsEl=document.getElementById('perm-groups');
+  groupsEl.innerHTML=Object.entries(groups).map(([group,keys])=>`
+    <div class="perm-group">
+      <div class="perm-group-title">${group}</div>
+      ${keys.map(pk=>`
+        <div class="perm-row${pk.locked?' locked':''}">
+          <span class="perm-label">${pk.label}${pk.locked?'<span class="perm-lock">(always on)</span>':''}</span>
+          <label class="toggle-wrap">
+            <input type="checkbox" id="ptoggle-${pk.key}" ${p[pk.key]?'checked':''} ${pk.locked?'disabled':''}/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>`).join('')}
+    </div>`).join('');
+
+  document.getElementById('modal-permissions').classList.add('open');
+}
+
+function applyPermPreset(presetKey){
+  const pr=PERM_PRESETS[presetKey];if(!pr)return;
+  PERM_KEYS.forEach(pk=>{
+    const el=document.getElementById('ptoggle-'+pk.key);
+    if(el&&!pk.locked) el.checked=!!pr.perms[pk.key];
+  });
+}
+
+function savePermissions(){
+  const staffId=parseInt(document.getElementById('perm-staff-id').value);
+  const isRest=document.getElementById('perm-staff-id').dataset.isRest==='1';
+  const s=isRest?restStaffById(staffId):staffById(staffId);if(!s)return;
+  const p={};
+  PERM_KEYS.forEach(pk=>{
+    const el=document.getElementById('ptoggle-'+pk.key);
+    p[pk.key]=!!(el&&el.checked);
+  });
+  s.permissions=p;
+  closeModal('modal-permissions');
+  renderStaffTable();
+  // If this is the currently logged-in staff member, rebuild nav immediately
+  if(state.currentStaffId===staffId&&!state.isAdmin) buildNav();
+}
+
+// Helper: get permission badge HTML for a staff member
+function permBadgeHTML(s,isRest=false){
+  const p=getPerms(s.id,isRest);
+  let role,roleColor;
+  if(isRest){
+    if(p.restScheduleBuilder&&p.restManageStaff){role='Rest. Manager';roleColor='#9e6b2a';}
+    else if(p.restApprovePickups){role='Rest. Lead';roleColor='#9e2a2a';}
+    else {role='Rest. Basic';roleColor='var(--gray-400)';}
+  } else {
+    if(p.viewOverview&&p.golfScheduleBuilder&&p.golfTeeSheet){role='Golf Manager';roleColor='var(--green)';}
+    else if(p.golfScheduleBuilder){role='Golf Supervisor';roleColor='#2a6b9e';}
+    else if(p.golfApprovePickups){role='Lead';roleColor='#2a6b9e';}
+    else {role='Basic Staff';roleColor='var(--gray-400)';}
+  }
+  return `<span style="display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;background:${roleColor}22;color:${roleColor};border:1px solid ${roleColor}44;margin-left:6px">${role}</span>`;
+}
+
 function renderStaffTable(){
   const tb=document.getElementById('staff-tbody');if(!tb)return;
-  tb.innerHTML=state.staff.map(s=>`<tr><td>${s.name}${s.isAdmin?'<span class="status-badge badge-needsapproval" style="margin-left:6px;font-size:10px">Admin</span>':''}</td><td><span class="shift-chip" style="background:${posBg(s.pos)};color:${posColor(s.pos)};font-size:11px">${s.pos}</span></td><td style="letter-spacing:.2em;font-family:monospace">${s.pin}</td><td><span class="status-badge ${s.status==='Active'?'badge-approved':'badge-denied'}">${s.status}</span></td><td style="white-space:nowrap"><button class="btn btn-secondary btn-sm" onclick="openEditStaffModal(${s.id})">Edit</button> <button class="btn ${s.isAdmin?'btn-warn':'btn-gold'} btn-sm" onclick="toggleAdminRole(${s.id})">${s.isAdmin?'Remove Admin':'Make Admin'}</button> <button class="btn btn-secondary btn-sm" onclick="toggleStatus(${s.id})">${s.status==='Active'?'Deactivate':'Activate'}</button> <button class="btn btn-danger btn-sm" onclick="removeStaff(${s.id})">Remove</button></td></tr>`).join('');
+  tb.innerHTML=state.staff.map(s=>`<tr>
+    <td>
+      ${s.name}${permBadgeHTML(s)}
+      ${s.isAdmin?'<span class="status-badge badge-needsapproval" style="margin-left:4px;font-size:10px">Override Admin</span>':''}
+    </td>
+    <td><span class="shift-chip" style="background:${posBg(s.pos)};color:${posColor(s.pos)};font-size:11px">${s.pos}</span></td>
+    <td style="letter-spacing:.2em;font-family:monospace">${s.pin}</td>
+    <td><span class="status-badge ${s.status==='Active'?'badge-approved':'badge-denied'}">${s.status}</span></td>
+    <td style="white-space:nowrap;display:flex;gap:5px;flex-wrap:wrap;align-items:center">
+      <button class="btn btn-primary btn-sm" onclick="openPermissionsModal(${s.id})" style="background:var(--green-deep)">🔐 Permissions</button>
+      <button class="btn btn-secondary btn-sm" onclick="openEditStaffModal(${s.id})">Edit</button>
+      <button class="btn btn-secondary btn-sm" onclick="toggleStatus(${s.id})">${s.status==='Active'?'Deactivate':'Activate'}</button>
+      <button class="btn btn-danger btn-sm" onclick="removeStaff(${s.id})">Remove</button>
+    </td>
+  </tr>`).join('');
 }
 function toggleStatus(id){const s=staffById(id);if(s){s.status=s.status==='Active'?'Inactive':'Active';renderStaffTable();}}
 function toggleAdminRole(id){const s=staffById(id);if(s){s.isAdmin=!s.isAdmin;renderStaffTable();}}
@@ -2700,69 +4042,64 @@ function renderStaffTeeSheet(){
   inp.value=state.staffTeeDate;
   const date=state.staffTeeDate;
 
-  const dayName=new Date(date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  const dayLabel=new Date(date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}).toUpperCase();
 
   let lastHour=-1;
-  let html=`<thead><tr>
-    <th style="text-align:left;padding-left:14px">${dayName}</th>
-    <th>&#9654; Player 1</th>
-    <th>&#9654; Player 2</th>
-    <th>&#9654; Player 3</th>
-    <th>&#9654; Player 4</th>
+  let html=`<thead class="tsg-header"><tr>
+    <th style="text-align:left">${dayLabel}</th>
+    <th>&#9654; Player 1</th><th>&#9654; Player 2</th><th>&#9654; Player 3</th><th>&#9654; Player 4</th>
   </tr></thead><tbody>`;
 
   TEE_TIMES.forEach(time=>{
     const hour=parseInt(time.split(':')[0]);
-    const blocked=isSlotBlocked(date,time);
-    const bookings=getSlotBookings(date,time);
-
-    // Hour separator row
     if(hour!==lastHour){
       lastHour=hour;
       const hd=new Date('2000-01-01T'+time.padStart(5,'0')+':00');
       const hLabel=hd.toLocaleTimeString('en-US',{hour:'numeric',hour12:true});
-      html+=`<tr class="ts-hour-sep"><td colspan="5" style="padding:4px 14px;font-size:11px">${hLabel}</td></tr>`;
+      const breakCls=(hour===11||hour===15)?' print-break-before':'';
+      html+=`<tr class="tsg-hour-sep${breakCls}"><td colspan="5" style="text-align:left">${hLabel}</td></tr>`;
     }
 
-    if(blocked){
-      const reason=state.blockedTeeSlots[date+'_'+time]||'Closed';
-      html+=`<tr><td>${formatTime12(time)}</td>
-        <td colspan="4"><div class="ts-cell-blocked">${reason}</div></td>
-      </tr>`;
-      return;
-    }
+    ['front','back'].forEach((side,si)=>{
+      const blocked=isSlotBlocked(date,time,side);
+      const bookings=getSlotBookings(date,time,side);
 
-    // Build 4 seats
-    const seats=[];
-    bookings.forEach(b=>{
-      let name='', sub='';
-      if(b.type==='member'){
-        const m=memberById(b.memberId);
-        name=m?m.name:'Member';
-        sub=b.status==='pending'?'Pending Approval':'Confirmed';
-      } else {
-        name=b.guestName||'Guest';
-        sub=b.status==='pending'?'Guest Request':'Guest (Confirmed)';
+      const timeLabel=si===0
+        ?`<span style="font-size:12px;font-weight:700">${formatTime12(time)}</span><br><span style="font-size:9px;color:var(--gold);font-weight:700;letter-spacing:.06em">F</span>`
+        :`<span style="font-size:11px;font-weight:700;color:var(--gray-400)">B</span>`;
+
+      const seats=[];
+      bookings.forEach(b=>{
+        let name='',sub='',cellCls='tsg-booked';
+        if(b.type==='member'){
+          const m=memberById(b.memberId);
+          name=m?m.name:'Member';
+          const bag=m?.bagSlot?` · ${m.bagSlot}`:'';
+          sub=(b.status==='pending'?'Pending':'Member')+bag;
+        } else if(b.type==='walkin'){
+          name=b.guestName||'Walk-in';
+          sub='Guest';
+          cellCls='tsg-booked walkin-cell';
+        } else {
+          name=b.guestName||'Guest';
+          sub=b.status==='pending'?'Pending':'Guest';
+          cellCls='tsg-booked '+(b.status==='pending'?'pending-cell':'guest-cell');
+        }
+        for(let i=0;i<b.players;i++) seats.push({name,sub,cellCls});
+      });
+
+      let cells=`<td class="tsg-time">${timeLabel}</td>`;
+      for(let s=0;s<TEE_SLOT_CAP;s++){
+        if(blocked){
+          cells+=`<td class="tsg-cell"><div class="tsg-blocked">Closed</div></td>`;
+        } else if(seats[s]){
+          cells+=`<td class="tsg-cell"><div class="${seats[s].cellCls}"><div class="tsg-booked-name">${seats[s].name}</div><div class="tsg-booked-sub">${seats[s].sub}</div></div></td>`;
+        } else {
+          cells+=`<td class="tsg-cell"></td>`;
+        }
       }
-      for(let i=0;i<b.players;i++) seats.push({name,sub,type:b.type,status:b.status});
+      html+=`<tr class="tsg-row${si===1?' back-row':''}">${cells}</tr>`;
     });
-
-    let cells=`<td>${formatTime12(time)}</td>`;
-    for(let s=0;s<TEE_SLOT_CAP;s++){
-      if(seats[s]){
-        const seat=seats[s];
-        let cls='ts-cell-confirmed';
-        if(seat.status==='pending'&&seat.type==='guest') cls='ts-cell-guest';
-        else if(seat.status==='pending') cls='ts-cell-pending';
-        cells+=`<td><div class="${cls}">
-          <div class="ts-cell-name">${seat.name}</div>
-          <div class="ts-cell-sub">${seat.sub}</div>
-        </div></td>`;
-      } else {
-        cells+=`<td><div class="ts-cell-empty"></div></td>`;
-      }
-    }
-    html+=`<tr>${cells}</tr>`;
   });
 
   html+='</tbody>';
@@ -2770,86 +4107,296 @@ function renderStaffTeeSheet(){
 }
 
 // ══════════════════════════════════════════
+// ADMIN — OVERVIEW DASHBOARD
+// ══════════════════════════════════════════
+function renderAdminOverview(){
+  const today = todayISO();
+  const now = new Date();
+  document.getElementById('overview-date-label').textContent =
+    now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+
+  // ── Stat cards ──
+  const pendingTee = state.teeTimeBookings.filter(b=>b.status==='pending').length;
+  const todayTee   = state.teeTimeBookings.filter(b=>b.date===today&&b.status!=='denied'&&b.status!=='cancelled').length;
+  const todayDine  = getDiningCountForDate(today);
+  const pendingRTO = state.rtoRequests.filter(r=>r.status==='pending').length;
+  const activeMembers = state.members.filter(m=>m.status==='Active').length;
+  const staffToday = state.staff.filter(s=>s.status==='Active').length;
+
+  document.getElementById('overview-stats').innerHTML=`
+    <div class="stat-card" style="cursor:pointer" onclick="setAdminSection('golf')">
+      <div class="stat-label">Pending Tee Approvals</div>
+      <div class="stat-value" style="color:${pendingTee>0?'#c0392b':'var(--green)'}">${pendingTee}</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer" onclick="setAdminSection('golf')">
+      <div class="stat-label">Tee Times Today</div>
+      <div class="stat-value">${todayTee}</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer" onclick="setAdminSection('dining')">
+      <div class="stat-label">Dining Reservations Tonight</div>
+      <div class="stat-value">${todayDine}<span style="font-size:16px;color:var(--gray-400)">/${DINING_DAILY_CAP}</span></div>
+    </div>
+    <div class="stat-card" style="cursor:pointer" onclick="setAdminSection('staff')">
+      <div class="stat-label">Pending RTO Requests</div>
+      <div class="stat-value" style="color:${pendingRTO>0?'#c0392b':'var(--green)'}">${pendingRTO}</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer" onclick="setAdminSection('members')">
+      <div class="stat-label">Active Members</div>
+      <div class="stat-value">${activeMembers}</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer" onclick="setAdminSection('staff')">
+      <div class="stat-label">Active Staff</div>
+      <div class="stat-value">${staffToday}</div>
+    </div>
+  `;
+
+  // ── Pending tee times ──
+  const pendingTees = state.teeTimeBookings.filter(b=>b.status==='pending').sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time));
+  const teeEl = document.getElementById('overview-pending-tee');
+  if(!pendingTees.length){
+    teeEl.innerHTML='<div class="empty-state" style="padding:16px 0"><p>No pending approvals ✓</p></div>';
+  } else {
+    teeEl.innerHTML = pendingTees.slice(0,5).map(b=>{
+      const name = b.type==='guest' ? b.guestName : (memberById(b.memberId)?.name||'Member');
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-200)">
+        <div>
+          <div style="font-size:13px;font-weight:600">${name}</div>
+          <div style="font-size:11px;color:var(--gray-400)">${formatDateLong(b.date)} at ${formatTime12(b.time)} &bull; ${b.players} player${b.players>1?'s':''} &bull; ${b.type}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0;margin-left:8px">
+          <button class="btn btn-primary btn-sm" data-ov-action="approve-tee" data-ov-id="${b.id}">Approve</button>
+          <button class="btn btn-danger btn-sm" data-ov-action="deny-tee" data-ov-id="${b.id}">Deny</button>
+        </div>
+      </div>`;
+    }).join('') + (pendingTees.length>5?`<div style="font-size:12px;color:var(--gray-400);margin-top:8px">+${pendingTees.length-5} more — <a style="color:var(--green);cursor:pointer" data-ov-nav="golf">View all in Golf</a></div>`:'');
+  }
+
+  // ── Tonight's dining ──
+  const todayReservations = state.diningReservations.filter(r=>r.date===today&&r.status!=='cancelled').sort((a,b)=>a.time.localeCompare(b.time));
+  const dineEl = document.getElementById('overview-dining-today');
+  if(!todayReservations.length){
+    dineEl.innerHTML='<div class="empty-state" style="padding:16px 0"><p>No reservations tonight yet</p></div>';
+  } else {
+    dineEl.innerHTML = todayReservations.slice(0,5).map(r=>
+      `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--gray-200)">
+        <div>
+          <div style="font-size:13px;font-weight:600">${r.name}</div>
+          <div style="font-size:11px;color:var(--gray-400)">${formatTime12(r.time)} &bull; Party of ${r.partySize}${r.notes?' &bull; '+r.notes:''}</div>
+        </div>
+        <span class="status-badge badge-approved">${r.status}</span>
+      </div>`
+    ).join('') + (todayReservations.length>5?`<div style="font-size:12px;color:var(--gray-400);margin-top:8px">+${todayReservations.length-5} more — <a style="color:var(--green);cursor:pointer" data-ov-nav="dining">View all</a></div>`:'');
+  }
+
+  // ── Pending RTO ──
+  const pendingRTOs = state.rtoRequests.filter(r=>r.status==='pending');
+  const rtoEl = document.getElementById('overview-pending-rto');
+  if(!pendingRTOs.length){
+    rtoEl.innerHTML='<div class="empty-state" style="padding:16px 0"><p>No pending requests ✓</p></div>';
+  } else {
+    rtoEl.innerHTML = pendingRTOs.slice(0,5).map(r=>
+      `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-200)">
+        <div>
+          <div style="font-size:13px;font-weight:600">${r.staffName} &mdash; ${r.type}</div>
+          <div style="font-size:11px;color:var(--gray-400)">${r.start}${r.end!==r.start?' to '+r.end:''}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0;margin-left:8px">
+          <button class="btn btn-primary btn-sm" data-ov-action="approve-rto" data-ov-id="${r.id}">Approve</button>
+          <button class="btn btn-danger btn-sm" data-ov-action="deny-rto" data-ov-id="${r.id}">Deny</button>
+        </div>
+      </div>`
+    ).join('') + (pendingRTOs.length>5?`<div style="font-size:12px;color:var(--gray-400);margin-top:8px">+${pendingRTOs.length-5} more — <a style="color:var(--green);cursor:pointer" data-ov-nav="staff">View all in Staff</a></div>`:'');
+  }
+
+  // ── Members summary ──
+  const memEl = document.getElementById('overview-members');
+  const recent = [...state.members].filter(m=>m.status==='Active').slice(0,5);
+  memEl.innerHTML = `
+    <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+      <div class="stats-row" style="gap:10px">
+        <div class="stat-card" style="min-width:80px;padding:10px 14px">
+          <div class="stat-label">Active</div>
+          <div class="stat-value" style="font-size:24px">${state.members.filter(m=>m.status==='Active').length}</div>
+        </div>
+        <div class="stat-card" style="min-width:80px;padding:10px 14px">
+          <div class="stat-label">Inactive</div>
+          <div class="stat-value" style="font-size:24px;color:var(--gray-400)">${state.members.filter(m=>m.status!=='Active').length}</div>
+        </div>
+      </div>
+      <button class="btn btn-secondary btn-sm" data-ov-nav="members">Manage Members &rarr;</button>
+    </div>
+    ${recent.map(m=>`<div style="font-size:13px;padding:5px 0;border-bottom:1px solid var(--gray-200);color:var(--text)">${m.name} <span style="font-size:11px;color:var(--gray-400)">${m.email}</span></div>`).join('')}
+  `;
+}
+
+// ══════════════════════════════════════════
 // ADMIN — TEE SHEET
 // ══════════════════════════════════════════
+function canApproveTeeTimes(){
+  if(state.isAdmin) return true;
+  const me=myStaff();
+  return me&&getPerms(me.id).golfTeeSheet;
+}
+
 function renderAdminTeeSheet(){
   const inp=document.getElementById('admin-tee-date');
   if(!state.adminTeeDate) state.adminTeeDate=todayISO();
   inp.value=state.adminTeeDate;
   state.adminTeeDate=inp.value;
   const date=state.adminTeeDate;
+  const canApprove=canApproveTeeTimes();
+
+  // ── Pending approvals section at TOP (only for users with approval permission) ──
+  const pendingWrap=document.getElementById('admin-tee-pending-wrap');
+  const allPending=state.teeTimeBookings.filter(b=>b.status==='pending').sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time));
+  if(canApprove&&allPending.length>0){
+    pendingWrap.style.display='block';
+    document.getElementById('admin-pending-count-badge').textContent=`${allPending.length} pending`;
+    document.getElementById('admin-tee-pending-list').innerHTML=allPending.map(b=>{
+      const name=b.type==='guest'?`Guest: ${b.guestName} (${b.guestEmail})`:(memberById(b.memberId)?.name||'Member');
+      const dateLabel=b.date===date?formatTime12(b.time):`${formatDateLong(b.date)} at ${formatTime12(b.time)}`;
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--gold-pale);border:1px solid #fcd34d;border-radius:8px;margin-bottom:6px;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="font-size:13px;font-weight:600">${name}</div>
+          <div style="font-size:11px;color:var(--gray-600);margin-top:2px">${dateLabel} &bull; ${b.players} player${b.players>1?'s':''} &bull; ${b.type}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button class="btn btn-primary btn-sm" data-action="approve-tee" data-id="${b.id}">&#10003; Approve</button>
+          <button class="btn btn-danger btn-sm" data-action="deny-tee" data-id="${b.id}">&#10007; Deny</button>
+        </div>
+      </div>`;
+    }).join('');
+  } else {
+    pendingWrap.style.display='none';
+  }
 
   let totalPlayers=0;
-  TEE_TIMES.forEach(t=>{totalPlayers+=getSlotPlayerCount(date,t);});
-  const pendingCount=state.teeTimeBookings.filter(b=>b.date===date&&b.status==='pending').length;
-
+  TEE_TIMES.forEach(t=>{totalPlayers+=getSlotPlayerCount(date,t,'front')+getSlotPlayerCount(date,t,'back');});
+  const pendingToday=state.teeTimeBookings.filter(b=>b.date===date&&b.status==='pending').length;
   document.getElementById('admin-tee-summary').innerHTML=`
     <div class="day-summary-pill">${formatDateLong(date)}</div>
     <div class="day-summary-pill"><strong>${totalPlayers}</strong> players booked</div>
-    <div class="day-summary-pill ${pendingCount?'warn':''}"><strong>${pendingCount}</strong> pending guest request${pendingCount!==1?'s':''}</div>
+    ${allPending.length?`<div class="day-summary-pill warn"><strong>${allPending.length}</strong> pending across all dates</div>`:''}
   `;
 
+  // ── Build the unified grid (same format as staff read-only but with admin controls) ──
   const sheet=document.getElementById('admin-tee-sheet');
-  let html='';
+  const dayLabel=new Date(date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}).toUpperCase();
+
+  let html=`<thead class="tsg-header"><tr>
+    <th style="text-align:left">${dayLabel}</th>
+    <th>&#9654; Player 1</th><th>&#9654; Player 2</th><th>&#9654; Player 3</th><th>&#9654; Player 4</th>
+    <th>Actions</th>
+  </tr></thead><tbody>`;
+
+  let lastHour=-1;
   TEE_TIMES.forEach(time=>{
-    const bookings=getSlotBookings(date,time);
-    const count=getSlotPlayerCount(date,time);
-    const blocked=isSlotBlocked(date,time);
-    const avail=slotAvailable(date,time);
-    const key=safeKey(date,time);
+    const hour=parseInt(time.split(':')[0]);
 
-    let badgeClass='open', badgeText='Open';
-    if(blocked){badgeClass='blocked';badgeText='Blocked';}
-    else if(avail===0){badgeClass='full';badgeText='Full';}
-    else if(count>0){badgeClass='partial';badgeText=`${count}/${TEE_SLOT_CAP}`;}
+    // Hour separator
+    if(hour!==lastHour){
+      lastHour=hour;
+      const hd=new Date('2000-01-01T'+time.padStart(5,'0')+':00');
+      const hLabel=hd.toLocaleTimeString('en-US',{hour:'numeric',hour12:true});
+      const breakCls=(hour===11||hour===15)?' print-break-before':'';
+      html+=`<tr class="tsg-hour-sep${breakCls}"><td colspan="6" style="text-align:left">${hLabel}</td></tr>`;
+    }
 
-    let chips='';
-    bookings.forEach(b=>{
-      let label='';
-      let statusBadge='';
-      if(b.type==='guest'){
-        label=`Guest: ${b.guestName} (${b.guestEmail})`;
-        if(b.status==='pending') statusBadge='<span class="status-badge badge-pending" style="margin-left:6px">pending</span>';
-      } else if(b.type==='walkin'){
-        label=`Walk-in: ${b.guestName}`;
-      } else {
-        const m=memberById(b.memberId);
-        label=m?m.name:'Member';
+    // Build rows for FRONT and BACK 9
+    ['front','back'].forEach((side,si)=>{
+      const blocked=isSlotBlocked(date,time,side);
+      const bookings=getSlotBookings(date,time,side);
+      const avail=slotAvailable(date,time,side);
+      const key=safeKey(date,time)+'_'+side;
+      const formOpen=state._openWalkinKey===(date+'_'+time+'_'+side);
+
+      // Time label
+      const timeLabel = si===0
+        ? `<span style="font-size:12px;font-weight:700">${formatTime12(time)}</span><br><span style="font-size:9px;color:var(--gold);font-weight:700;letter-spacing:.06em">F</span>`
+        : `<span style="font-size:11px;font-weight:700;color:var(--gray-400)">B</span>`;
+
+      // Build 4 player cells
+      const seats=[];
+      bookings.forEach(b=>{
+        let name='', sub='', cellCls='tsg-booked';
+        if(b.type==='member'){const m=memberById(b.memberId);name=m?m.name:'Member';const bag=m?.bagSlot?` · ${m.bagSlot}`:'';sub=(b.status==='pending'?'Pending':'Member')+bag;}
+        else if(b.type==='guest'){name=b.guestName||'Guest';sub=b.status==='pending'?'Pending':'Guest';cellCls='tsg-booked '+(b.status==='pending'?'pending-cell':'guest-cell');}
+        else if(b.type==='walkin'){name=b.guestName||'Walk-in';sub='Guest';cellCls='tsg-booked walkin-cell';}
+        const cancelBtn=canApprove&&b.status!=='pending'?`<button class="tsg-cancel" data-action="admin-cancel-tee" data-id="${b.id}" title="Cancel booking">✕</button>`:'';
+        for(let p=0;p<b.players;p++) seats.push({name,sub,cellCls,cancelBtn,bid:b.id});
+      });
+
+      let playerCells='';
+      for(let s=0;s<TEE_SLOT_CAP;s++){
+        if(blocked){
+          playerCells+=`<td class="tsg-cell"><div class="tsg-blocked">Closed</div></td>`;
+        } else if(seats[s]){
+          const seat=seats[s];
+          playerCells+=`<td class="tsg-cell" style="position:relative">
+            <div class="${seat.cellCls}">
+              <div class="tsg-booked-name">${seat.name}</div>
+              <div class="tsg-booked-sub">${seat.sub}</div>
+            </div>
+            ${seat.cancelBtn}
+          </td>`;
+        } else {
+          playerCells+=`<td class="tsg-cell"></td>`;
+        }
       }
-      let actions='';
-      if(b.status==='pending'){
-        actions=`<button class="btn btn-primary btn-sm" data-action="approve-tee" data-id="${b.id}">Approve</button> <button class="btn btn-danger btn-sm" data-action="deny-tee" data-id="${b.id}">Deny</button>`;
-      } else {
-        actions=`<button class="btn btn-danger btn-sm" data-action="admin-cancel-tee" data-id="${b.id}">Cancel</button>`;
+
+      // Actions column
+      let walkinOpts='';
+      for(let i=1;i<=Math.max(avail,1);i++) walkinOpts+=`<option value="${i}">${i}p</option>`;
+      const blockLabel=blocked?'Unblock':'Block';
+      const blockCls=blocked?'tsg-block-btn is-blocked':'tsg-block-btn';
+      const actions=canApprove?`
+        <button class="${blockCls}" data-action="toggle-block" data-date="${date}" data-time="${time}" data-side="${side}">${blockLabel}</button>
+        ${!blocked&&avail>0?`<button class="tsg-add-btn" data-action="toggle-walkin" data-date="${date}" data-time="${time}" data-side="${side}" title="Add walk-in/call-in">+</button>`:''}
+      `:'';
+
+      html+=`<tr class="tsg-row${si===1?' back-row':''}">
+        <td class="tsg-time">${timeLabel}</td>
+        ${playerCells}
+        <td class="tsg-actions">${actions}</td>
+      </tr>`;
+
+      // Inline walk-in form row with member autocomplete
+      if(formOpen&&canApprove){
+        html+=`<tr class="tsg-inline-form">
+          <td colspan="6">
+            <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;padding:4px 0">
+              <div>
+                <label class="form-label" style="font-size:10px;margin-bottom:4px">Name</label>
+                <div class="walkin-ac-wrap">
+                  <input class="form-input" type="text" id="walkin-name-${key}"
+                    placeholder="Search member name..."
+                    oninput="filterWalkinMembers('${key}', this.value)"
+                    autocomplete="off"
+                    style="width:230px;padding:7px 10px"/>
+                  <input type="hidden" id="walkin-memberid-${key}" value=""/>
+                  <div class="walkin-dropdown" id="walkin-dropdown-${key}" style="display:none"></div>
+                </div>
+                <label class="walkin-guest-label">
+                  <input type="checkbox" id="walkin-guest-${key}" onchange="toggleWalkinGuest('${key}')"/>
+                  Guest (non-member)
+                </label>
+              </div>
+              <div>
+                <label class="form-label" style="font-size:10px;margin-bottom:4px">Players</label>
+                <select class="form-select" id="walkin-players-${key}" style="padding:7px 10px">${walkinOpts}</select>
+              </div>
+              <div style="display:flex;gap:6px;padding-bottom:28px">
+                <button class="btn btn-primary btn-sm" data-action="add-walkin" data-date="${date}" data-time="${time}" data-side="${side}">Add &#10003;</button>
+                <button class="btn btn-secondary btn-sm" data-action="toggle-walkin" data-date="${date}" data-time="${time}" data-side="${side}">Cancel</button>
+              </div>
+            </div>
+          </td>
+        </tr>`;
       }
-      chips+=`<div class="tee-booking-chip" style="display:flex;width:100%;justify-content:space-between;align-items:center;margin:3px 0">
-        <span>${label} &mdash; ${b.players} player${b.players>1?'s':''}${statusBadge}</span>
-        <span style="display:flex;gap:4px;flex-shrink:0;margin-left:8px">${actions}</span>
-      </div>`;
-    });
-    if(!chips) chips='<span style="color:var(--gray-400);font-size:12px">No bookings</span>';
+    }); // end side loop
+  }); // end time loop
 
-    const blockTitle=blocked?(state.blockedTeeSlots[date+'_'+time]||'Blocked'):'';
-    const blockBtn=`<button class="btn btn-secondary btn-sm" data-action="toggle-block" data-date="${date}" data-time="${time}" title="${blockTitle}">${blocked?'Unblock':'Block'}</button>`;
-    const walkinBtn=!blocked?`<button class="btn btn-secondary btn-sm" data-action="toggle-walkin" data-date="${date}" data-time="${time}">+ Walk-in</button>`:'';
-
-    let walkinOpts='';
-    for(let i=1;i<=Math.max(avail,1);i++) walkinOpts+=`<option value="${i}">${i}</option>`;
-
-    const formOpen = state._openWalkinKey===(date+'_'+time);
-
-    html+=`<div class="tee-row" style="flex-wrap:wrap">
-      <div class="tee-time">${formatTime12(time)}</div>
-      <div class="tee-badge ${badgeClass}">${badgeText}</div>
-      <div class="tee-names" style="display:flex;flex-direction:column;gap:0;min-width:260px">${chips}</div>
-      <div class="tee-action">${blockBtn}${walkinBtn}</div>
-      <div class="inline-form ${formOpen?'open':''}" id="walkin-${key}">
-        <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" id="walkin-name-${key}" placeholder="Walk-in name"/></div>
-        <div class="form-group"><label class="form-label">Players</label><select class="form-select" id="walkin-players-${key}">${walkinOpts}</select></div>
-        <button class="btn btn-primary btn-sm" data-action="add-walkin" data-date="${date}" data-time="${time}">Add</button>
-      </div>
-    </div>`;
-  });
+  html+='</tbody>';
   sheet.innerHTML=html;
 }
 
@@ -2868,25 +4415,88 @@ function adminCancelTeeBooking(id){
   if(b)b.status='cancelled';
   renderAdminTeeSheet();
 }
-function toggleBlockSlot(date,time){
-  const key=date+'_'+time;
+function toggleBlockSlot(date,time,side='front'){
+  const key=date+'_'+time+'_'+side;
   if(state.blockedTeeSlots[key]) delete state.blockedTeeSlots[key];
-  else state.blockedTeeSlots[key]='Blocked by admin';
+  else state.blockedTeeSlots[key]='Blocked';
   renderAdminTeeSheet();
 }
-function toggleWalkinForm(date,time){
-  const key=date+'_'+time;
+function toggleWalkinForm(date,time,side='front'){
+  const key=date+'_'+time+'_'+side;
   state._openWalkinKey = state._openWalkinKey===key ? null : key;
   renderAdminTeeSheet();
 }
-function addWalkin(date,time){
-  const key=safeKey(date,time);
-  const name=document.getElementById('walkin-name-'+key).value.trim();
-  const players=parseInt(document.getElementById('walkin-players-'+key).value||'1');
-  if(!name)return;
-  const avail=slotAvailable(date,time);
+function printTeeSheet(){
+  // Mark the tee sheet table as the print region
+  const teeWrap = document.querySelector('#panel-admin-tee-sheet .tsg-wrap') ||
+                  document.querySelector('#panel-staff-tee-sheet .tsg-wrap');
+  if(!teeWrap) return;
+  // Temporarily add print-region class
+  document.querySelectorAll('.print-region').forEach(el=>el.classList.remove('print-region'));
+  teeWrap.classList.add('print-region');
+  window.print();
+  setTimeout(()=>teeWrap.classList.remove('print-region'), 500);
+}
+
+function filterWalkinMembers(key, query){
+  const dd=document.getElementById('walkin-dropdown-'+key);
+  const hiddenId=document.getElementById('walkin-memberid-'+key);
+  if(hiddenId) hiddenId.value=''; // clear selection when typing
+  if(!dd) return;
+  if(!query||query.length<1){dd.style.display='none';return;}
+  const q=query.toLowerCase();
+  const matches=state.members.filter(m=>m.status==='Active'&&m.name.toLowerCase().includes(q)).slice(0,7);
+  if(!matches.length){dd.style.display='none';return;}
+  dd.innerHTML=matches.map(m=>`<div class="walkin-dropdown-item" onclick="selectWalkinMember('${key}',${m.id},'${m.name.replace(/'/g,"\'")}')">
+    <span>${m.name}</span><span class="walkin-dropdown-member-badge">Member</span>
+  </div>`).join('');
+  dd.style.display='block';
+}
+
+function selectWalkinMember(key, memberId, name){
+  const inp=document.getElementById('walkin-name-'+key);
+  const hidden=document.getElementById('walkin-memberid-'+key);
+  const dd=document.getElementById('walkin-dropdown-'+key);
+  if(inp) inp.value=name;
+  if(hidden) hidden.value=memberId;
+  if(dd) dd.style.display='none';
+}
+
+function toggleWalkinGuest(key){
+  const cb=document.getElementById('walkin-guest-'+key);
+  const inp=document.getElementById('walkin-name-'+key);
+  const hidden=document.getElementById('walkin-memberid-'+key);
+  const dd=document.getElementById('walkin-dropdown-'+key);
+  if(!cb) return;
+  if(cb.checked){
+    if(inp){inp.value='';inp.placeholder='Enter guest name';}
+    if(hidden) hidden.value='';
+    if(dd) dd.style.display='none';
+  } else {
+    if(inp){inp.value='';inp.placeholder='Search member name...';}
+    if(hidden) hidden.value='';
+  }
+}
+
+function addWalkin(date,time,side='front'){
+  const key=safeKey(date,time)+'_'+side;
+  const nameEl=document.getElementById('walkin-name-'+key);
+  const memberIdEl=document.getElementById('walkin-memberid-'+key);
+  const guestCb=document.getElementById('walkin-guest-'+key);
+  const name=nameEl?.value.trim();
+  const memberId=memberIdEl?.value?parseInt(memberIdEl.value):null;
+  const isGuest=guestCb?.checked;
+  const players=parseInt(document.getElementById('walkin-players-'+key)?.value||'1');
+  if(!name){alert('Please enter a name.');return;}
+  const avail=slotAvailable(date,time,side);
   if(players<1||players>avail)return;
-  state.teeTimeBookings.push({id:state.teeNextId++,date,time,type:'walkin',guestName:name,players,status:'confirmed'});
+  if(!isGuest&&memberId){
+    // Add as member booking
+    state.teeTimeBookings.push({id:state.teeNextId++,date,time,side,type:'member',memberId,players,status:'confirmed'});
+  } else {
+    // Add as guest / walk-in
+    state.teeTimeBookings.push({id:state.teeNextId++,date,time,side,type:'walkin',guestName:name,players,status:'confirmed'});
+  }
   state._openWalkinKey=null;
   renderAdminTeeSheet();
 }
@@ -2974,10 +4584,13 @@ function renderAdminMembers(){
   tb.innerHTML=state.members.map(m=>{
     const teeCount=state.teeTimeBookings.filter(b=>b.memberId===m.id&&b.status!=='cancelled').length;
     const diningCount=state.diningReservations.filter(r=>r.memberId===m.id&&r.status!=='cancelled').length;
+    const bagCell=m.bagSlot
+      ?`<span style="font-size:11px;background:#e8f0fe;color:#1a56db;padding:2px 8px;border-radius:8px;font-weight:600">${m.bagSlot}</span>`
+      :`<span style="font-size:11px;color:var(--gray-400)">No bag</span>`;
     return `<tr>
       <td>${m.name}</td>
       <td>${m.email}</td>
-      <td style="font-family:monospace;font-size:12px">${m.password}</td>
+      <td>${bagCell}</td>
       <td><span class="status-badge ${m.status==='Active'?'badge-approved':'badge-denied'}">${m.status}</span></td>
       <td style="white-space:nowrap">
         <button class="btn btn-secondary btn-sm" onclick="openEditMemberModal(${m.id})">Edit</button>
@@ -3005,7 +4618,7 @@ function addMember(){
   const password=document.getElementById('new-member-password').value.trim()||'Member123';
   if(!name||!email){alert('Please enter a name and email.');return;}
   if(state.members.some(m=>m.email.toLowerCase()===email.toLowerCase())){alert('A member with this email already exists.');return;}
-  state.members.push({id:state.memberNextId++,name,email,password,status:'Active'});
+  state.members.push({id:state.memberNextId++,name,email,password,status:'Active',bagSlot:null});
   closeModal('modal-add-member');
   renderAdminMembers();
 }
@@ -3015,6 +4628,14 @@ function openEditMemberModal(id){
   document.getElementById('edit-member-name').value=m.name;
   document.getElementById('edit-member-email').value=m.email;
   document.getElementById('edit-member-password').value=m.password;
+  // Bag room fields
+  const hasSlot=!!m.bagSlot;
+  const naCb=document.getElementById('edit-member-bag-na');
+  if(naCb) naCb.checked=!hasSlot;
+  const bagField=document.getElementById('edit-member-bag-field');
+  if(bagField) bagField.style.display=hasSlot?'':'none';
+  const bagSlotEl=document.getElementById('edit-member-bag-slot');
+  if(bagSlotEl) bagSlotEl.value=m.bagSlot||'';
   document.getElementById('modal-edit-member').classList.add('open');
 }
 function saveEditMember(){
@@ -3023,6 +4644,8 @@ function saveEditMember(){
   m.name=document.getElementById('edit-member-name').value.trim()||m.name;
   m.email=document.getElementById('edit-member-email').value.trim()||m.email;
   m.password=document.getElementById('edit-member-password').value.trim()||m.password;
+  const na=document.getElementById('edit-member-bag-na').checked;
+  m.bagSlot=na?null:(document.getElementById('edit-member-bag-slot').value.trim().toUpperCase()||null);
   closeModal('modal-edit-member');
   renderAdminMembers();
 }
@@ -3032,6 +4655,20 @@ function saveEditMember(){
 // Handles all dynamically-rendered member/admin booking controls
 // ══════════════════════════════════════════
 document.getElementById('app').addEventListener('click', function(e){
+  // Overview quick-action buttons
+  const ovBtn=e.target.closest('[data-ov-action]');
+  if(ovBtn){
+    const act=ovBtn.dataset.ovAction, id=parseInt(ovBtn.dataset.ovId);
+    if(act==='approve-tee'){approveTeeBooking(id);renderAdminOverview();}
+    else if(act==='deny-tee'){denyTeeBooking(id);renderAdminOverview();}
+    else if(act==='approve-rto'){respondRTO(id,'approved');renderAdminOverview();}
+    else if(act==='deny-rto'){respondRTO(id,'denied');renderAdminOverview();}
+    return;
+  }
+  // Overview nav links
+  const ovNav=e.target.closest('[data-ov-nav]');
+  if(ovNav){setAdminSection(ovNav.dataset.ovNav);return;}
+
   const t=e.target.closest('[data-action]');
   if(!t) return;
   const action=t.dataset.action;
@@ -3050,9 +4687,9 @@ document.getElementById('app').addEventListener('click', function(e){
     case 'approve-tee': approveTeeBooking(id); break;
     case 'deny-tee': denyTeeBooking(id); break;
     case 'admin-cancel-tee': adminCancelTeeBooking(id); break;
-    case 'toggle-block': toggleBlockSlot(date,time); break;
-    case 'toggle-walkin': toggleWalkinForm(date,time); break;
-    case 'add-walkin': addWalkin(date,time); break;
+    case 'toggle-block': toggleBlockSlot(date,time,t.dataset.side||'front'); break;
+    case 'toggle-walkin': toggleWalkinForm(date,time,t.dataset.side||'front'); break;
+    case 'add-walkin': addWalkin(date,time,t.dataset.side||'front'); break;
     case 'admin-cancel-dining': adminCancelDining(id); break;
   }
 });
